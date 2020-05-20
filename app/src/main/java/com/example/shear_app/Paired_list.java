@@ -54,7 +54,7 @@ public class Paired_list extends Activity {
 
 
             //////////////////////////teste de verificação do gitlab///////////////////////////////
-            
+
         }
     };
 }
