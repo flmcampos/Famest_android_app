@@ -51,6 +51,10 @@ public class Paired_list extends Activity {
             returnIntent.putExtra(DEVICE_ADDRESS,item);
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
+
+
+            //////////////////////////teste de verificação do gitlab///////////////////////////////
+            
         }
     };
 }
