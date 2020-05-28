@@ -12,4 +12,7 @@
     <string name="data_to_collect_esq">Data to collect esq</string>
     <string name="data_to_collect_dir">Data to collect dir</string>
     <string name="start_the_read">Start the read</string>
+    <string name="file">file</string>
+    <string name="menu_de_conex_o">Menu de conexão</string>
+    <string name="gr_ficos">Gráficos</string>
 </resources>

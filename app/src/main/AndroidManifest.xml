@@ -12,9 +12,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <receiver android:name=".Reader$mReceiver" android:exported="true">
 
-        </receiver>
 
         <activity
             android:name=".MainActivity"

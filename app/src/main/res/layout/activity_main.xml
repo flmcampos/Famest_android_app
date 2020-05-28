@@ -13,9 +13,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="18dp"
         android:onClick="on"
         android:text="@string/on" />
 
@@ -28,11 +28,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="126dp"
-        android:layout_marginLeft="126dp"
-        android:layout_marginTop="91dp"
-        android:layout_marginEnd="186dp"
-        android:layout_marginRight="186dp"
+        android:layout_marginStart="211dp"
+        android:layout_marginLeft="211dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginRight="101dp"
         android:onClick="pé_esq"
         android:text="@string/Esquerdo" />
 
@@ -45,11 +45,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
         android:layout_marginTop="89dp"
-        android:layout_marginEnd="305dp"
-        android:layout_marginRight="305dp"
+        android:layout_marginEnd="247dp"
+        android:layout_marginRight="247dp"
         android:onClick="pé_dir"
         android:text="@string/Direito" />
 
