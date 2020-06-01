@@ -2,17 +2,19 @@
 
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
 
     <item
-        android:id="bt_connection"
+        android:id="@+id/bt_connection"
         android:icon="@drawable/ic_bluetooth_black_24dp"
         android:title="@string/menu_de_conex_o" />
 
     <item
-        android:id="graphs"
+        android:id="@+id/graphs"
         android:icon="@drawable/graph_icon"
-        android:title="@string/gr_ficos"
-        app:showAsAction="never" />
+        android:title="@string/gr_ficos" />
 
 </menu>

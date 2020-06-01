@@ -1,4 +1,4 @@
-#Wed May 20 17:15:25 BST 2020
-base.0=D\:\\Users\\Pedro\\Desktop\\shear_app (2)\\shear_app\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+#Mon Jun 01 15:37:03 BST 2020
+base.0=C\:\\Users\\fcampos\\Desktop\\famest-app\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

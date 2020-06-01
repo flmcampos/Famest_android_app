@@ -9,17 +9,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.util.Set;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
+
+    private DrawerLayout drawerLayout;
+
 
     BluetoothAdapter BTadapter;
     Set<BluetoothDevice> paired_devices;
@@ -43,9 +52,28 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BTadapter = BluetoothAdapter.getDefaultAdapter();
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.open_nav_drawer, R.string.close_nav_drawer);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
-    public void on(View view) {
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    /*public void on(View view) {
         if (BTadapter == null) {
 
             Toast.makeText(getApplicationContext(), "No Bluetooth communication available", Toast.LENGTH_SHORT).show();
@@ -136,6 +164,6 @@ public class MainActivity extends Activity {
                 startActivityForResult(i1, side.equals("esq") ? 2 : 3);
             }
         }
-    }
+    }*/
 
 }
