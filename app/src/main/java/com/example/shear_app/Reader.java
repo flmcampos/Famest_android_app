@@ -27,7 +27,7 @@ public class Reader extends Activity {
 
     private View LHal_ball, LMet1_ball, LMet2_ball, LMet3_ball, LMid_ball, LCal1_ball, LCal2_ball;
     private View RHal_ball, RMet1_ball, RMet2_ball, RMet3_ball, RMid_ball, RCal1_ball, RCal2_ball;
-    private View CP_esq, CP_dir;
+    private View CP_esq_ball, CP_dir_ball;
 
 
     public static BluetoothConnection BTConnectionL;
@@ -53,6 +53,9 @@ public class Reader extends Activity {
         RMid_ball = findViewById(R.id.Rmid);
         RCal1_ball = findViewById(R.id.Rcal1);
         RCal2_ball = findViewById(R.id.Rcal2);
+
+        CP_dir_ball =  findViewById(R.id.CP_dir);
+        CP_esq_ball = findViewById(R.id.CP_esq);
 
 
         Bundle bn = getIntent().getExtras();
@@ -115,10 +118,14 @@ public class Reader extends Activity {
             RCal2_ball.getLayoutParams().width = (3000 + (RCal2))/100;
             RCal2_ball.getLayoutParams().height = (3000 + (RCal2))/100;
 
-            CP_dir.setTranslationX((getX(RHal_ball)+getX(RMet1_ball)+getX(RMet2_ball)+getX(RMet3_ball)+getX(RMid_ball)+getX(RCal1_ball)+getX(RCal2_ball))/RSum);
-            CP_dir.setTranslationY((getY(RHal_ball)+getY(RMet1_ball)+getY(RMet2_ball)+getY(RMet3_ball)+getY(RMid_ball)+getY(RCal1_ball)+getY(RCal2_ball))/RSum);
+            if (RSum != 0 ) {
 
+                CP_dir_ball.setVisibility(View.VISIBLE);
 
+                CP_dir_ball.setTranslationX((getX(RHal_ball)*RHal + getX(RMet1_ball)*RMet1 + getX(RMet2_ball)*RMet2 + getX(RMet3_ball)*RMet3 + getX(RMid_ball)*RMid + getX(RCal1_ball)*RCal1 + getX(RCal2_ball)*RCal2) / RSum);
+                CP_dir_ball.setTranslationY((getY(RHal_ball)*RHal + getY(RMet1_ball)*RMet1 + getY(RMet2_ball)*RMet2 + getY(RMet3_ball)*RMet3 + getY(RMid_ball)*RMid + getY(RCal1_ball)*RCal1 + getY(RCal2_ball)*RCal2) / RSum);
+
+            }
 
 
             messageTextR.setText(s);
@@ -171,10 +178,15 @@ public class Reader extends Activity {
 
             //Calculate Center of pressure
 
-            CP_esq.setTranslationX((getX(LHal_ball)+getX(LMet1_ball)+getX(LMet2_ball)+getX(LMet3_ball)+getX(LMid_ball)+getX(LCal1_ball)+getX(LCal2_ball))/LSum);
-            CP_esq.setTranslationY((getY(LHal_ball)+getY(LMet1_ball)+getY(LMet2_ball)+getY(LMet3_ball)+getY(LMid_ball)+getY(LCal1_ball)+getY(LCal2_ball))/LSum);
+            if (LSum !=0) {
+
+                CP_esq_ball.setVisibility(View.VISIBLE);
 
 
+                CP_esq_ball.setTranslationX((getX(LHal_ball)*LHal + getX(LMet1_ball)*LMet1 + getX(LMet2_ball)*LMet2 + getX(LMet3_ball)*LMet3 + getX(LMid_ball)*LMid + getX(LCal1_ball)*LCal1 + getX(LCal2_ball)*LCal2) / LSum);
+                CP_esq_ball.setTranslationY((getY(LHal_ball)*LHal + getY(LMet1_ball)*LMet1 + getY(LMet2_ball)*LMet2 + getY(LMet3_ball)*LMet3 + getY(LMid_ball)*LMid + getY(LCal1_ball)*LCal1 + getY(LCal2_ball)*LCal2) / LSum);
+
+            }
 
             messageTextL.setText(s);
         }

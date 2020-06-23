@@ -11,13 +11,14 @@
         android:layout_width="415dp"
         android:layout_height="481dp"
         app:srcCompat="@drawable/Pes"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="4dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:contentDescription="@string/todo" />
 
     <View
         android:id="@+id/Lmet3"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -30,8 +31,8 @@
 
     <View
         android:id="@+id/Lcal2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -44,8 +45,8 @@
 
     <View
         android:id="@+id/Lmid"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -58,8 +59,8 @@
 
     <View
         android:id="@+id/Lhal"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -72,8 +73,8 @@
 
     <View
         android:id="@+id/Lmet1"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -86,8 +87,8 @@
 
     <View
         android:id="@+id/Lmet2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -100,8 +101,8 @@
 
     <View
         android:id="@+id/Lcal1"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -115,8 +116,8 @@
 
     <View
         android:id="@+id/Rhal"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -129,22 +130,22 @@
 
     <View
         android:id="@+id/Rcal1"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="247dp"
         android:layout_marginLeft="247dp"
         android:layout_marginTop="402dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginRight="120dp"
         android:background="@drawable/pressure_point" />
 
     <View
         android:id="@+id/Rmet3"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -157,8 +158,8 @@
 
     <View
         android:id="@+id/Rmid"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -171,8 +172,8 @@
 
     <View
         android:id="@+id/Rmet1"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -185,8 +186,8 @@
 
     <View
         android:id="@+id/Rmet2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -199,8 +200,8 @@
 
     <View
         android:id="@+id/Rcal2"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -210,4 +211,35 @@
         android:layout_marginEnd="84dp"
         android:layout_marginRight="90dp"
         android:background="@drawable/pressure_point" />
+
+    <View
+        android:id="@+id/CP_esq"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="288dp"
+        android:layout_marginLeft="288dp"
+        android:layout_marginTop="299dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginRight="-4dp"
+        android:background="@drawable/center_of_pressure"
+        android:visibility="invisible"/>
+
+    <View
+        android:id="@+id/CP_dir"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="299dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginRight="-4dp"
+        android:background="@drawable/center_of_pressure"
+        android:visibility="invisible"/>
+
 </RelativeLayout>
