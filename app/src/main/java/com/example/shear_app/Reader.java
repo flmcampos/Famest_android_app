@@ -122,8 +122,8 @@ public class Reader extends Activity {
 
                 CP_dir_ball.setVisibility(View.VISIBLE);
 
-                CP_dir_ball.setTranslationX((getX(RHal_ball)*RHal + getX(RMet1_ball)*RMet1 + getX(RMet2_ball)*RMet2 + getX(RMet3_ball)*RMet3 + getX(RMid_ball)*RMid + getX(RCal1_ball)*RCal1 + getX(RCal2_ball)*RCal2) / RSum);
-                CP_dir_ball.setTranslationY((getY(RHal_ball)*RHal + getY(RMet1_ball)*RMet1 + getY(RMet2_ball)*RMet2 + getY(RMet3_ball)*RMet3 + getY(RMid_ball)*RMid + getY(RCal1_ball)*RCal1 + getY(RCal2_ball)*RCal2) / RSum);
+                CP_dir_ball.setTranslationX((RHal_ball.getX()*RHal + RMet1_ball.getX()*RMet1 + RMet2_ball.getX()*RMet2 + RMet3_ball.getX()*RMet3 + RMid_ball.getX()*RMid + RCal1_ball.getX()*RCal1 + RCal2_ball.getX()*RCal2) / RSum);
+                CP_dir_ball.setTranslationY((RHal_ball.getY()*RHal + RMet1_ball.getY()*RMet1 + RMet2_ball.getY()*RMet2 + RMet3_ball.getY()*RMet3 + RMid_ball.getY()*RMid + RCal1_ball.getY()*RCal1 + RCal2_ball.getY()*RCal2) / RSum);
 
             }
 
@@ -182,9 +182,8 @@ public class Reader extends Activity {
 
                 CP_esq_ball.setVisibility(View.VISIBLE);
 
-
-                CP_esq_ball.setTranslationX((getX(LHal_ball)*LHal + getX(LMet1_ball)*LMet1 + getX(LMet2_ball)*LMet2 + getX(LMet3_ball)*LMet3 + getX(LMid_ball)*LMid + getX(LCal1_ball)*LCal1 + getX(LCal2_ball)*LCal2) / LSum);
-                CP_esq_ball.setTranslationY((getY(LHal_ball)*LHal + getY(LMet1_ball)*LMet1 + getY(LMet2_ball)*LMet2 + getY(LMet3_ball)*LMet3 + getY(LMid_ball)*LMid + getY(LCal1_ball)*LCal1 + getY(LCal2_ball)*LCal2) / LSum);
+                CP_esq_ball.setX((LHal_ball.getX()*LHal + LMet1_ball.getX()*LMet1 + LMet2_ball.getX()*LMet2 + LMet3_ball.getX()*LMet3 + LMid_ball.getX()*LMid + LCal1_ball.getX()*LCal1 + LCal2_ball.getX()*LCal2) / LSum);
+                CP_esq_ball.setY((LHal_ball.getY()*LHal + LMet1_ball.getY()*LMet1 + LMet2_ball.getY()*LMet2 + LMet3_ball.getY()*LMet3 + LMid_ball.getY()*LMid + LCal1_ball.getY()*LCal1 + LCal2_ball.getY()*LCal2) / LSum);
 
             }
 
@@ -192,7 +191,7 @@ public class Reader extends Activity {
         }
     };
 
-    private int getX (View ball) {
+    /*private int getX (View ball) {
 
         int [] location = new int[2];
         ball.getLocationOnScreen(location);
@@ -208,5 +207,5 @@ public class Reader extends Activity {
         int y = location[1];
 
         return y;
-    }
+    }*/
 }
