@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -85,6 +86,7 @@ public class Reader extends Activity {
 
             for (int i=0 ; i< arrofs.length; i++) {
                 if (arrofs[i] == "S") {
+                    //Sensor pressure values
                     RHal = Integer.parseInt(arrofs[i+1]);
                     RMet1 = Integer.parseInt(arrofs[i+2]);
                     RMet2 = Integer.parseInt(arrofs[i+3]);
@@ -97,28 +99,42 @@ public class Reader extends Activity {
             }
             RSum = (RHal) + (RMet1) + (RMet2)+ (RMet3)+(RMid)+(RCal1)+(RCal2);
 
-            RHal_ball.getLayoutParams().width = (3000 + (RHal))/100;
-            RHal_ball.getLayoutParams().height = (3000 + (RHal))/100;
+            //Ball growth
 
-            RMet1_ball.getLayoutParams().width = (3000 + (RMet1))/100;
-            RMet1_ball.getLayoutParams().height = (3000 + (RMet1))/100;
+            RHal_ball.getLayoutParams().width = (2000 + (RHal))/100;
+            RHal_ball.getLayoutParams().height = (2000 + (RHal))/100;
 
-            RMet2_ball.getLayoutParams().width = (3000 + (RMet2))/100;
-            RMet2_ball.getLayoutParams().height = (3000 + (RMet2))/100;
+            RMet1_ball.getLayoutParams().width = (2000 + (RMet1))/100;
+            RMet1_ball.getLayoutParams().height = (2000 + (RMet1))/100;
 
-            RMet3_ball.getLayoutParams().width = (3000 + (RMet3))/100;
-            RMet3_ball.getLayoutParams().height = (3000 + (RMet3))/100;
+            RMet2_ball.getLayoutParams().width = (2000 + (RMet2))/100;
+            RMet2_ball.getLayoutParams().height = (2000 + (RMet2))/100;
 
-            RMid_ball.getLayoutParams().width = (3000 + (RMid))/100;
-            RMid_ball.getLayoutParams().height = (3000 + (RMid))/100;
+            RMet3_ball.getLayoutParams().width = (2000 + (RMet3))/100;
+            RMet3_ball.getLayoutParams().height = (2000 + (RMet3))/100;
 
-            RCal1_ball.getLayoutParams().width = (3000 + (RCal1))/100;
-            RCal1_ball.getLayoutParams().height = (3000 + (RCal1))/100;
+            RMid_ball.getLayoutParams().width = (2000 + (RMid))/100;
+            RMid_ball.getLayoutParams().height = (2000 + (RMid))/100;
 
-            RCal2_ball.getLayoutParams().width = (3000 + (RCal2))/100;
-            RCal2_ball.getLayoutParams().height = (3000 + (RCal2))/100;
+            RCal1_ball.getLayoutParams().width = (2000 + (RCal1))/100;
+            RCal1_ball.getLayoutParams().height = (2000 + (RCal1))/100;
+
+            RCal2_ball.getLayoutParams().width = (2000 + (RCal2))/100;
+            RCal2_ball.getLayoutParams().height = (2000 + (RCal2))/100;
+
+            //Ball color change
+
+            RHal_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RHal + 255)))); //Dúvida?????????????
+            RMet1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMet1 + 255))));
+            RMet2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMet2 + 255))));
+            RMet3_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMet3 + 255))));
+            RMid_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMid + 255))));
+            RCal1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RCal1 + 255))));
+            RCal2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))));
 
             if (RSum != 0 ) {
+
+                //Calculate center of pressure coordinates
 
                 CP_dir_ball.setVisibility(View.VISIBLE);
 
@@ -142,6 +158,8 @@ public class Reader extends Activity {
 
             for (int i=0 ; i< arrofs.length; i++) {
                 if (arrofs[i]=="S") {
+
+                    //Sensor pressure values
                     LHal = Integer.parseInt(arrofs[i+1]);
                     LMet1 = Integer.parseInt(arrofs[i+2]);
                     LMet2 = Integer.parseInt(arrofs[i+3]);
@@ -154,27 +172,38 @@ public class Reader extends Activity {
 
             LSum = (LHal) + (LMet1) + (LMet2)+ (LMet3)+(LMid)+(LCal1)+(LCal2);
 
+            //Ball growth
 
-            LHal_ball.getLayoutParams().width = (3000 + (LHal))/100;
-            LHal_ball.getLayoutParams().height = (3000 + (LHal))/100;
+            LHal_ball.getLayoutParams().width = (2000 + (LHal))/100;
+            LHal_ball.getLayoutParams().height = (2000 + (LHal))/100;
 
-            LMet1_ball.getLayoutParams().width = (3000 + (LMet1))/100;
-            LMet1_ball.getLayoutParams().height = (3000 + (LMet1))/100;
+            LMet1_ball.getLayoutParams().width = (2000 + (LMet1))/100;
+            LMet1_ball.getLayoutParams().height = (2000 + (LMet1))/100;
 
-            LMet2_ball.getLayoutParams().width = (3000 + (LMet2))/100;
-            LMet2_ball.getLayoutParams().height = (3000 + (LMet2))/100;
+            LMet2_ball.getLayoutParams().width = (2000 + (LMet2))/100;
+            LMet2_ball.getLayoutParams().height = (2000 + (LMet2))/100;
 
-            LMet3_ball.getLayoutParams().width = (3000 + (LMet3))/100;
-            LMet3_ball.getLayoutParams().height = (3000 + (LMet3))/100;
+            LMet3_ball.getLayoutParams().width = (2000 + (LMet3))/100;
+            LMet3_ball.getLayoutParams().height = (2000 + (LMet3))/100;
 
-            LMid_ball.getLayoutParams().width = (3000 + (LMid))/100;
-            LMid_ball.getLayoutParams().height = (3000 + (LMid))/100;
+            LMid_ball.getLayoutParams().width = (2000 + (LMid))/100;
+            LMid_ball.getLayoutParams().height = (2000 + (LMid))/100;
 
-            LCal1_ball.getLayoutParams().width = (3000 + (LCal1))/100;
-            LCal1_ball.getLayoutParams().height = (3000 + (LCal1))/100;
+            LCal1_ball.getLayoutParams().width = (2000 + (LCal1))/100;
+            LCal1_ball.getLayoutParams().height = (2000 + (LCal1))/100;
 
-            LCal2_ball.getLayoutParams().width = (3000 + (LCal2))/100;
-            LCal2_ball.getLayoutParams().height = (3000 + (LCal2))/100;
+            LCal2_ball.getLayoutParams().width = (2000 + (LCal2))/100;
+            LCal2_ball.getLayoutParams().height = (2000 + (LCal2))/100;
+
+            //Ball color change
+
+            LHal_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LHal + 255)))); //Dúvida?????????????
+            LMet1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMet1 + 255))));
+            LMet2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMet2 + 255))));
+            LMet3_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMet3 + 255))));
+            LMid_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMid + 255))));
+            LCal1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LCal1 + 255))));
+            LCal2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LCal2 + 255))));
 
             //Calculate Center of pressure
 
@@ -190,6 +219,44 @@ public class Reader extends Activity {
             messageTextL.setText(s);
         }
     };
+
+    String DecToHexa (int n) {
+
+        // char array to store hexadecimal number
+        char[] hexaDeciNum = new char[100];
+
+        // counter for hexadecimal number array
+        int i = 0;
+        while(n!=0)
+        {
+            // temporary variable to store remainder
+            int temp  = 0;
+
+            // storing remainder in temp variable.
+            temp = n % 16;
+
+            // check if temp < 10
+            if(temp < 10)
+            {
+                hexaDeciNum[i] = (char)(temp + 48);
+                i++;
+            }
+            else
+            {
+                hexaDeciNum[i] = (char)(temp + 55);
+                i++;
+            }
+
+            n = n/16;
+        }
+        String Hexa = "";
+
+        for(int j=i-1; j>=0; j--) {
+            Hexa = Hexa + hexaDeciNum[j];
+        }
+
+        return "#FF" + Hexa + "00";
+    }
 
     /*private int getX (View ball) {
 
