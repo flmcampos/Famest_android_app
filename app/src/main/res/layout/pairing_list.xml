@@ -16,14 +16,5 @@
 
     </ListView>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="502dp"
-        android:gravity="center_horizontal"
-        android:text="TextView" />
-
 
 </RelativeLayout>

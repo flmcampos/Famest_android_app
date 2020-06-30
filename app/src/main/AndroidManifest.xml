@@ -35,6 +35,7 @@
         </activity>
 
         <activity android:name=".Reader" />
+        <activity android:name=".DrawerActivity" />
 
     </application>
 

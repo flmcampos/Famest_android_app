@@ -22,12 +22,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.Set;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends DrawerActivity {
 
-    private DrawerLayout drawerLayout;
+    //private DrawerLayout drawerLayout;
 
 
     BluetoothAdapter BTadapter;
@@ -50,30 +52,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        getLayoutInflater().inflate(R.layout.activity_main,frameLayout);
+
         BTadapter = BluetoothAdapter.getDefaultAdapter();
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.open_nav_drawer, R.string.close_nav_drawer);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
-    /*public void on(View view) {
+    public void on(View view) {
         if (BTadapter == null) {
 
             Toast.makeText(getApplicationContext(), "No Bluetooth communication available", Toast.LENGTH_SHORT).show();
@@ -164,6 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(i1, side.equals("esq") ? 2 : 3);
             }
         }
-    }*/
+    }
 
 }

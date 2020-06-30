@@ -17,7 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class Reader extends Activity {
+public class Reader extends DrawerActivity {
 
     public TextView messageTextL;
     public TextView messageTextR;
