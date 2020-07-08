@@ -2,6 +2,7 @@ package com.example.shear_app;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,16 +26,74 @@ public class ReaderActivity extends Activity {
 
     public static BluetoothConnectionActivity BTConnectionL;
     public static BluetoothConnectionActivity BTConnectionR;
+
     public TextView messageTextL;
     public TextView messageTextR;
+
     protected FrameLayout frameLayout;
+
     List<LeituraClass> PeDireito = new ArrayList<>();
     List<LeituraClass> PeEsquerdo = new ArrayList<>();
+
     private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2;
     private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2;
+
     private int RSum, LSum;
+
+    private View CP_esq_ball, CP_dir_ball;
+
     private View LHal_ball, LMet1_ball, LMet2_ball, LMet3_ball, LMid_ball, LCal1_ball, LCal2_ball;
     private View RHal_ball, RMet1_ball, RMet2_ball, RMet3_ball, RMid_ball, RCal1_ball, RCal2_ball;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.chat_bt);
+
+        frameLayout = (FrameLayout) findViewById(R.id.map_container);
+
+        getLayoutInflater().inflate(R.layout.feet_map, frameLayout);
+
+        frameLayout.setVisibility(View.INVISIBLE);
+
+        LHal_ball = findViewById(R.id.Lhal);
+        LMet1_ball = findViewById(R.id.Lmet1);
+        LMet2_ball = findViewById(R.id.Lmet2);
+        LMet3_ball = findViewById(R.id.Lmet3);
+        LMid_ball = findViewById(R.id.Lmid);
+        LCal1_ball = findViewById(R.id.Lcal1);
+        LCal2_ball = findViewById(R.id.Lcal2);
+
+        RHal_ball = findViewById(R.id.Rhal);
+        RMet1_ball = findViewById(R.id.Rmet1);
+        RMet2_ball = findViewById(R.id.Rmet2);
+        RMet3_ball = findViewById(R.id.Rmet3);
+        RMid_ball = findViewById(R.id.Rmid);
+        RCal1_ball = findViewById(R.id.Rcal1);
+        RCal2_ball = findViewById(R.id.Rcal2);
+
+        CP_dir_ball = findViewById(R.id.CP_dir);
+        CP_esq_ball = findViewById(R.id.CP_esq);
+
+
+        Bundle bn = getIntent().getExtras();
+        String mDeviceAddressLeft = bn.getString("esq");
+        String mDeviceAddressRight = bn.getString("dir");
+
+        //Create connection for device
+        BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsq);
+        BTConnectionL.execute();
+
+        //Create connection for device
+        BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
+        BTConnectionR.execute();
+
+        messageTextR = findViewById(R.id.Data_collected2);
+        messageTextL = findViewById(R.id.Data_collected);
+    }
+
+
     private final Handler mHandlerDir = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -117,7 +176,8 @@ public class ReaderActivity extends Activity {
             messageTextR.setText(s);
         }
     };
-    private View CP_esq_ball, CP_dir_ball;
+
+
     private final Handler mHandlerEsq = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -126,20 +186,6 @@ public class ReaderActivity extends Activity {
 
             String delimiter = "\\|";
             String[] arrofs = s.split(delimiter);
-
-            /*for (int i=0 ; i< arrofs.length; i++) {
-                if (arrofs[i]=="S") {
-
-                    //Sensor pressure values
-                    LHal = Integer.parseInt(arrofs[i+1]);
-                    LMet1 = Integer.parseInt(arrofs[i+2]);
-                    LMet2 = Integer.parseInt(arrofs[i+3]);
-                    LMet3 = Integer.parseInt(arrofs[i+4]);
-                    LMid = Integer.parseInt(arrofs[i+5]);
-                    LCal1 = Integer.parseInt(arrofs[i+6]);
-                    LCal2 = Integer.parseInt(arrofs[i+7]);
-                }
-            }*/
 
             LHal = Integer.parseInt(arrofs[1]);
             LMet1 = Integer.parseInt(arrofs[2]);
@@ -170,40 +216,43 @@ public class ReaderActivity extends Activity {
 
             //Ball growth
 
-            /*ViewGroup.LayoutParams LHalParams = LHal_ball.getLayoutParams();
-               LHalParams.width = (2000 + (LHal)) / 100;
-               LHalParams.height = (2000 + (LHal)) / 100;
-               LHal_ball.setLayoutParams(LHalParams);*/
-            LHal_ball.getLayoutParams().width = (2000 + (LHal))/100;
-            LHal_ball.getLayoutParams().height = (2000 + (LHal))/100;
+            LHal_ball.getLayoutParams().width = (2000 + (RHal))/100;
+            LHal_ball.getLayoutParams().height = (2000 + (RHal))/100;
+            LHal_ball.requestLayout();
 
             LMet1_ball.getLayoutParams().width = (2000 + (LMet1))/100;
             LMet1_ball.getLayoutParams().height = (2000 + (LMet1))/100;
+            LMet1_ball.requestLayout();
 
             LMet2_ball.getLayoutParams().width = (2000 + (LMet2))/100;
             LMet2_ball.getLayoutParams().height = (2000 + (LMet2))/100;
+            LMet2_ball.requestLayout();
 
             LMet3_ball.getLayoutParams().width = (2000 + (LMet3))/100;
             LMet3_ball.getLayoutParams().height = (2000 + (LMet3))/100;
+            LMet3_ball.requestLayout();
 
             LMid_ball.getLayoutParams().width = (2000 + (LMid))/100;
             LMid_ball.getLayoutParams().height = (2000 + (LMid))/100;
+            LMid_ball.requestLayout();
 
             LCal1_ball.getLayoutParams().width = (2000 + (LCal1))/100;
             LCal1_ball.getLayoutParams().height = (2000 + (LCal1))/100;
+            LCal1_ball.requestLayout();
 
             LCal2_ball.getLayoutParams().width = (2000 + (LCal2))/100;
             LCal2_ball.getLayoutParams().height = (2000 + (LCal2))/100;
+            LCal2_ball.requestLayout();
 
             //Ball color change
 
-            LHal_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LHal + 255)))); //Dúvida?????????????
-            LMet1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMet1 + 255))));
-            LMet2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMet2 + 255))));
-            LMet3_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMet3 + 255))));
-            LMid_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LMid + 255))));
-            LCal1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LCal1 + 255))));
-            LCal2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * LCal2 + 255))));
+            LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LHal+ 255))), PorterDuff.Mode.MULTIPLY );
+            LMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet1+ 255))), PorterDuff.Mode.MULTIPLY );
+            LMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet2+ 255))), PorterDuff.Mode.MULTIPLY );
+            LMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet3+ 255))), PorterDuff.Mode.MULTIPLY );
+            LMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMid+ 255))), PorterDuff.Mode.MULTIPLY );
+            LCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal1+ 255))), PorterDuff.Mode.MULTIPLY );
+            LCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal2+ 255))), PorterDuff.Mode.MULTIPLY );
 
                 //Calculate Center of pressure
 
@@ -224,51 +273,7 @@ public class ReaderActivity extends Activity {
 
     };
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.chat_bt);
-
-        frameLayout = (FrameLayout) findViewById(R.id.map_container);
-
-        getLayoutInflater().inflate(R.layout.feet_map, frameLayout);
-
-        LHal_ball = findViewById(R.id.Rhal);
-        LMet1_ball = findViewById(R.id.Lmet1);
-        LMet2_ball = findViewById(R.id.Lmet2);
-        LMet3_ball = findViewById(R.id.Lmet3);
-        LMid_ball = findViewById(R.id.Lmid);
-        LCal1_ball = findViewById(R.id.Lcal1);
-        LCal2_ball = findViewById(R.id.Lcal2);
-
-        RHal_ball = findViewById(R.id.Rhal);
-        RMet1_ball = findViewById(R.id.Rmet1);
-        RMet2_ball = findViewById(R.id.Rmet2);
-        RMet3_ball = findViewById(R.id.Rmet3);
-        RMid_ball = findViewById(R.id.Rmid);
-        RCal1_ball = findViewById(R.id.Rcal1);
-        RCal2_ball = findViewById(R.id.Rcal2);
-
-        CP_dir_ball = findViewById(R.id.CP_dir);
-        CP_esq_ball = findViewById(R.id.CP_esq);
-
-
-        Bundle bn = getIntent().getExtras();
-        String mDeviceAddressLeft = bn.getString("esq");
-        String mDeviceAddressRight = bn.getString("dir");
-
-        //Create connection for device
-        BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsq);
-        BTConnectionL.execute();
-
-        //Create connection for device
-        BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
-        BTConnectionR.execute();
-
-        messageTextR = findViewById(R.id.Data_collected2);
-        messageTextL = findViewById(R.id.Data_collected);
-    }
 
         String DecToHexa(int n) {
 
@@ -304,6 +309,12 @@ public class ReaderActivity extends Activity {
             return "#FF" + Hexa + "00";
         }
 
+    @Override
+    public void onBackPressed() {}
+
+    public void start_map(View view) {
+            frameLayout.setVisibility(View.VISIBLE);
+    }
 
     /*private int getX (View ball) {
 

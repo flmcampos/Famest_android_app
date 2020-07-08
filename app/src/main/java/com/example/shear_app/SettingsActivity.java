@@ -110,9 +110,6 @@ public class SettingsActivity extends Activity {
         }
     }
 
-    @Override
-    public void onBackPressed() {}
-
     private void connectToDevice(String side){
         if (BTadapter == null) {
             Toast.makeText(getApplicationContext(), "No Bluetooth communication available", Toast.LENGTH_SHORT).show();
