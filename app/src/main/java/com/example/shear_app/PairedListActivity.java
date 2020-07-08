@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Paired_list extends Activity {
+public class PairedListActivity extends Activity {
     ListView lview;
     String[] paires;
     String side;

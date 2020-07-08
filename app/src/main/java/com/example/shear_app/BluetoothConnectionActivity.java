@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
-public class BluetoothConnection extends AsyncTask<Void, Void, Void> {
+public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
     public static boolean Connected = true;
     private ProgressDialog mProgressdialog;
@@ -34,7 +34,7 @@ public class BluetoothConnection extends AsyncTask<Void, Void, Void> {
     private static final String TAG = "Socket_Creation";
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
-    BluetoothConnection(Activity activity, String address, Handler handler) {
+    BluetoothConnectionActivity(Activity activity, String address, Handler handler) {
         mactivity = activity;
         maddress = address;
         mHandler = handler;

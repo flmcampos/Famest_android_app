@@ -1,6 +1,5 @@
 package com.example.shear_app;
 
-import android.bluetooth.BluetoothAdapter;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -32,9 +31,8 @@ public class DrawerActivity extends AppCompatActivity {
                 R.string.open_nav_drawer, R.string.close_nav_drawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-
     }
+
     @Override
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -43,6 +41,4 @@ public class DrawerActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
-
 }

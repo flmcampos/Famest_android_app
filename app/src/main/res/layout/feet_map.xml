@@ -8,10 +8,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="415dp"
+        android:layout_width="match_parent"
         android:layout_height="481dp"
         android:contentDescription="@string/todo"
-        app:srcCompat="@drawable/Pes"
+        android:src="@drawable/pes"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
