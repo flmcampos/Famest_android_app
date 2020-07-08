@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+
 public class DrawerActivity extends AppCompatActivity {
 
     protected FrameLayout frameLayout;

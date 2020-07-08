@@ -1,4 +1,4 @@
-package com.example.famest
+package com.example.shear_app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

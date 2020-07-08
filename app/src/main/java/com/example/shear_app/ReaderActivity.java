@@ -16,17 +16,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.famest.DrawerActivity;
-import com.example.famest.LeituraClass;
-import com.example.famest.BluetoothConnectionActivity;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReaderActivity extends Activity {
 
-    public static com.example.famest.BluetoothConnectionActivity BTConnectionL;
-    public static com.example.famest.BluetoothConnectionActivity BTConnectionR;
+    public static BluetoothConnectionActivity BTConnectionL;
+    public static BluetoothConnectionActivity BTConnectionR;
     public TextView messageTextL;
     public TextView messageTextR;
     protected FrameLayout frameLayout;
@@ -236,7 +234,7 @@ public class ReaderActivity extends Activity {
 
         getLayoutInflater().inflate(R.layout.feet_map, frameLayout);
 
-        LHal_ball = findViewById(R.id.Lhal);
+        LHal_ball = findViewById(R.id.Rhal);
         LMet1_ball = findViewById(R.id.Lmet1);
         LMet2_ball = findViewById(R.id.Lmet2);
         LMet3_ball = findViewById(R.id.Lmet3);
