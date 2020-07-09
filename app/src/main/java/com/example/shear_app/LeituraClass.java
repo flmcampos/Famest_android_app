@@ -21,5 +21,5 @@ public class LeituraClass {
     public int RTemp_data;
     public int LHumid_data;
     public int RHumid_data;
-    public Date readingDate;
+    public long readingDate;
 }

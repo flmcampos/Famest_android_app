@@ -233,7 +233,7 @@ public class ReaderActivity extends Activity {
                 val.RCal1_data = RCal1;
                 val.RCal2_data = RCal2;
 
-                val.readingDate = Calendar.getInstance().getTime();
+                val.readingDate = elapsedTime;
 
                 PeDireito.add(val);
 
@@ -336,7 +336,7 @@ public class ReaderActivity extends Activity {
                 val.LCal1_data = LCal1;
                 val.LCal2_data = LCal2;
 
-                val.readingDate = Calendar.getInstance().getTime();
+                val.readingDate = elapsedTime;
 
                 PeEsquerdo.add(val);
 
