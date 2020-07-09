@@ -8,17 +8,81 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/map_container"
+        android:id="@+id/data_container"
         android:layout_width="match_parent"
-        android:layout_height="471dp"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="260dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Data_collected_dir">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/map_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Data_collected_dir">
 
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/Data_collected_dir"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:text="data_to_collect_dir"
+        app:layout_constraintBottom_toTopOf="@+id/data_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Data_collected_esq" />
+
+    <TextView
+        android:id="@+id/Data_collected_esq"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginTop="104dp"
+        android:text="data_to_collect_esq"
+        app:layout_constraintBottom_toTopOf="@+id/Data_collected_dir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Start_Read"
+        android:text="Start"
+        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <Button
+        android:id="@+id/Data_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="Dados"
+        android:text="@string/dados"
+        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toEndOf="@+id/Start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
 
     <Button
         android:id="@+id/data_collect"
@@ -31,26 +95,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:onClick="start_map"
-        android:text="Start"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:text="Mapa"
+        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
+        app:layout_constraintEnd_toStartOf="@+id/Start"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
 
-    <TextView
-        android:id="@+id/Data_collected2"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:text="data_to_collect_dir"
-        app:layout_constraintBottom_toTopOf="@+id/map_container" />
-
-    <TextView
-        android:id="@+id/Data_collected"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:text="data_to_collect_esq"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected2" />
+    <Button
+        android:id="@+id/Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Stop"
+        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Start"
+        android:onClick="Stop_read"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

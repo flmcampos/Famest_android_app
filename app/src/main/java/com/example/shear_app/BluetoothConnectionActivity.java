@@ -92,6 +92,11 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
                 }
             }
         }
+
+        @Override
+        public void interrupt() {
+            currentThread().interrupt();
+        }
     };
 
     private String read() {
@@ -119,6 +124,8 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         msg.obj = s;
         mHandler.sendMessage(msg);
     }
+
+
 
     public void disconnect() {
 

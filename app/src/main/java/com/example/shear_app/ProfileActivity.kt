@@ -18,5 +18,6 @@ class ProfileActivity: AppCompatActivity() {
 
         val preferences = getSharedPreferences("database", Context.MODE_PRIVATE)
         val savedName = preferences.getString("savedName", "This value doesn't exist.")
+
     }
 }

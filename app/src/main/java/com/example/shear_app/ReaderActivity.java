@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -31,9 +32,10 @@ public class ReaderActivity extends Activity {
     public TextView messageTextR;
 
     protected FrameLayout frameLayout;
+    protected FrameLayout dataLayout;
 
-    List<LeituraClass> PeDireito = new ArrayList<>();
-    List<LeituraClass> PeEsquerdo = new ArrayList<>();
+    private ArrayList <String> PeDireito = new ArrayList<>();
+    private ArrayList <String> PeEsquerdo = new ArrayList<>();
 
     private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2;
     private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2;
@@ -45,17 +47,44 @@ public class ReaderActivity extends Activity {
     private View LHal_ball, LMet1_ball, LMet2_ball, LMet3_ball, LMid_ball, LCal1_ball, LCal2_ball;
     private View RHal_ball, RMet1_ball, RMet2_ball, RMet3_ball, RMid_ball, RCal1_ball, RCal2_ball;
 
+    Boolean data_dir_esq = false;
+
+    /*Button button;
+    TextView timerTextView;
+    long startTime = 0;
+
+    //runs without a timer by reposting this handler at the end of the runnable
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+
+            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+            timerHandler.postDelayed(this, 500);
+        }
+    };*/
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //timerTextView = findViewById(R.id.TimerTextView);
+        //button = findViewById(R.id.Start);
+
         setContentView(R.layout.chat_bt);
 
         frameLayout = (FrameLayout) findViewById(R.id.map_container);
+        dataLayout = (FrameLayout) findViewById(R.id.data_container);
 
         getLayoutInflater().inflate(R.layout.feet_map, frameLayout);
+        getLayoutInflater().inflate(R.layout.data, dataLayout);
 
         frameLayout.setVisibility(View.INVISIBLE);
+        dataLayout.setVisibility(View.INVISIBLE);
 
         LHal_ball = findViewById(R.id.Lhal);
         LMet1_ball = findViewById(R.id.Lmet1);
@@ -89,91 +118,114 @@ public class ReaderActivity extends Activity {
         BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
         BTConnectionR.execute();
 
-        messageTextR = findViewById(R.id.Data_collected2);
-        messageTextL = findViewById(R.id.Data_collected);
+        messageTextR = findViewById(R.id.Data_collected_dir);
+        messageTextL = findViewById(R.id.Data_collected_esq);
+
+        /*button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button = (Button) v;
+                if (button.getText().equals("Start")) {
+                    startTime = System.currentTimeMillis();
+                    timerHandler.postDelayed(timerRunnable, 0);
+                    button.setText("Stop");
+                } else {
+                    timerHandler.removeCallbacks(timerRunnable);
+                    button.setText("Start");
+                }
+            }
+        });*/
     }
+
 
 
     private final Handler mHandlerDir = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            String s = (String) msg.obj;
-            Log.d("TAG", "Mensagem lida R: " + s);
+            if (data_dir_esq) {
+                String s = (String) msg.obj;
+                Log.d("TAG", "Mensagem lida R: " + s);
 
-            String delimiter = "\\|";
-            String[] arrofs = s.split(delimiter);
+                String delimiter = "\\|";
+                String[] arrofs = s.split(delimiter);
 
-            RHal = Integer.parseInt(arrofs[1]);
-            RMet1 = Integer.parseInt(arrofs[2]);
-            RMet2 = Integer.parseInt(arrofs[3]);
-            RMet3 = Integer.parseInt(arrofs[4]);
-            RMid = Integer.parseInt(arrofs[5]);
-            RCal1 = Integer.parseInt(arrofs[6]);
-            RCal2 = Integer.parseInt(arrofs[7]);
+                RHal = Integer.parseInt(arrofs[1]);
+                RMet1 = Integer.parseInt(arrofs[2]);
+                RMet2 = Integer.parseInt(arrofs[3]);
+                RMet3 = Integer.parseInt(arrofs[4]);
+                RMid = Integer.parseInt(arrofs[5]);
+                RCal1 = Integer.parseInt(arrofs[6]);
+                RCal2 = Integer.parseInt(arrofs[7]);
 
-            LeituraClass val = new LeituraClass();
+                LeituraClass val = new LeituraClass();
 
-            val.RHal_data = RHal;
-            val.RMet1_data = RMet1;
-            val.RMet2_data = RMet2;
-            val.RMet3_data = RMet3;
-            val.RMid_data = RMid;
-            val.RCal1_data = RCal1;
-            val.RCal2_data = RCal2;
+                val.RHal_data = RHal;
+                val.RMet1_data = RMet1;
+                val.RMet2_data = RMet2;
+                val.RMet3_data = RMet3;
+                val.RMid_data = RMid;
+                val.RCal1_data = RCal1;
+                val.RCal2_data = RCal2;
 
-            PeDireito.add(val);
+                RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
 
-            RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
+                //Ball growth
 
-            //Ball growth
+                RHal_ball.getLayoutParams().width = (200 + (RHal)) / 10;
+                RHal_ball.getLayoutParams().height = (200 + (RHal)) / 10;
+                RHal_ball.requestLayout();
 
-            RHal_ball.getLayoutParams().width = (2000 + (RHal))/100;
-            RHal_ball.getLayoutParams().height = (2000 + (RHal))/100;
+                RMet1_ball.getLayoutParams().width = (200 + (RMet1)) / 10;
+                RMet1_ball.getLayoutParams().height = (200 + (RMet1)) / 10;
+                RMet1_ball.requestLayout();
 
-            RMet1_ball.getLayoutParams().width = (2000 + (RMet1))/100;
-            RMet1_ball.getLayoutParams().height = (2000 + (RMet1))/100;
+                RMet2_ball.getLayoutParams().width = (200 + (RMet2)) / 10;
+                RMet2_ball.getLayoutParams().height = (200 + (RMet2)) / 10;
+                RMet2_ball.requestLayout();
 
-            RMet2_ball.getLayoutParams().width = (2000 + (RMet2))/100;
-            RMet2_ball.getLayoutParams().height = (2000 + (RMet2))/100;
+                RMet3_ball.getLayoutParams().width = (200 + (RMet3)) / 10;
+                RMet3_ball.getLayoutParams().height = (200 + (RMet3)) / 10;
+                RMet3_ball.requestLayout();
 
-            RMet3_ball.getLayoutParams().width = (2000 + (RMet3))/100;
-            RMet3_ball.getLayoutParams().height = (2000 + (RMet3))/100;
+                RMid_ball.getLayoutParams().width = (200 + (RMid)) / 10;
+                RMid_ball.getLayoutParams().height = (200 + (RMid)) / 10;
+                RMid_ball.requestLayout();
 
-            RMid_ball.getLayoutParams().width = (2000 + (RMid))/100;
-            RMid_ball.getLayoutParams().height = (2000 + (RMid))/100;
+                RCal1_ball.getLayoutParams().width = (200 + (RCal1)) / 10;
+                RCal1_ball.getLayoutParams().height = (200 + (RCal1)) / 10;
+                RCal1_ball.requestLayout();
 
-            RCal1_ball.getLayoutParams().width = (2000 + (RCal1))/100;
-            RCal1_ball.getLayoutParams().height = (2000 + (RCal1))/100;
+                RCal2_ball.getLayoutParams().width = (200 + (RCal2)) / 10;
+                RCal2_ball.getLayoutParams().height = (200 + (RCal2)) / 10;
+                RCal2_ball.requestLayout();
 
-            RCal2_ball.getLayoutParams().width = (2000 + (RCal2))/100;
-            RCal2_ball.getLayoutParams().height = (2000 + (RCal2))/100;
+                //Ball color change
 
-            //Ball color change
+                RHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RHal + 255))), PorterDuff.Mode.MULTIPLY);
+                RMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet1 + 255))), PorterDuff.Mode.MULTIPLY);
+                RMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet2 + 255))), PorterDuff.Mode.MULTIPLY);
+                RMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet3 + 255))), PorterDuff.Mode.MULTIPLY);
+                RMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMid + 255))), PorterDuff.Mode.MULTIPLY);
+                RCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal1 + 255))), PorterDuff.Mode.MULTIPLY);
+                RCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))), PorterDuff.Mode.MULTIPLY);
 
-            RHal_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RHal + 255)))); //Dúvida?????????????
-            RMet1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMet1 + 255))));
-            RMet2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMet2 + 255))));
-            RMet3_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMet3 + 255))));
-            RMid_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RMid + 255))));
-            RCal1_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RCal1 + 255))));
-            RCal2_ball.setBackgroundColor(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))));
+                if (RSum != 0) {
 
-            if (RSum != 0) {
+                    //Calculate center of pressure coordinates
 
-                //Calculate center of pressure coordinates
+                    CP_dir_ball.setVisibility(View.VISIBLE);
 
-                CP_dir_ball.setVisibility(View.VISIBLE);
+                    CP_dir_ball.setX((RHal_ball.getX() * RHal + RMet1_ball.getX() * RMet1 + RMet2_ball.getX() * RMet2 + RMet3_ball.getX() * RMet3 + RMid_ball.getX() * RMid + RCal1_ball.getX() * RCal1 + RCal2_ball.getX() * RCal2) / RSum);
+                    CP_dir_ball.setY((RHal_ball.getY() * RHal + RMet1_ball.getY() * RMet1 + RMet2_ball.getY() * RMet2 + RMet3_ball.getY() * RMet3 + RMid_ball.getY() * RMid + RCal1_ball.getY() * RCal1 + RCal2_ball.getY() * RCal2) / RSum);
 
-                CP_dir_ball.setX((RHal_ball.getX() * RHal + RMet1_ball.getX() * RMet1 + RMet2_ball.getX() * RMet2 + RMet3_ball.getX() * RMet3 + RMid_ball.getX() * RMid + RCal1_ball.getX() * RCal1 + RCal2_ball.getX() * RCal2) / RSum);
-                CP_dir_ball.setY((RHal_ball.getY() * RHal + RMet1_ball.getY() * RMet1 + RMet2_ball.getY() * RMet2 + RMet3_ball.getY() * RMet3 + RMid_ball.getY() * RMid + RCal1_ball.getY() * RCal1 + RCal2_ball.getY() * RCal2) / RSum);
+                } else {
+                    CP_dir_ball.setVisibility(View.INVISIBLE);
 
-            } else {
-                CP_dir_ball.setVisibility(View.INVISIBLE);
+                }
 
+
+                messageTextR.setText(s);
             }
-
-
-            messageTextR.setText(s);
         }
     };
 
@@ -181,78 +233,76 @@ public class ReaderActivity extends Activity {
     private final Handler mHandlerEsq = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            String s = (String) msg.obj;
-            Log.d("TAG", "Mensagem lida L: " + s);
+            if (data_dir_esq) {
+                String s = (String) msg.obj;
+                Log.d("TAG", "Mensagem lida L: " + s);
 
-            String delimiter = "\\|";
-            String[] arrofs = s.split(delimiter);
+                String delimiter = "\\|";
+                String[] arrofs = s.split(delimiter);
 
-            LHal = Integer.parseInt(arrofs[1]);
-            LMet1 = Integer.parseInt(arrofs[2]);
-            LMet2 = Integer.parseInt(arrofs[3]);
-            LMet3 = Integer.parseInt(arrofs[4]);
-            LMid = Integer.parseInt(arrofs[5]);
-            LCal1 = Integer.parseInt(arrofs[6]);
-            LCal2 = Integer.parseInt(arrofs[7]);
-
-
-
-            LeituraClass val = new LeituraClass();
-
-            val.LHal_data = LHal;
-            val.LMet1_data = LMet1;
-            val.LMet2_data = LMet2;
-            val.LMet3_data = LMet3;
-            val.LMid_data = LMid;
-            val.LCal1_data = LCal1;
-            val.LCal2_data = LCal2;
-
-            PeEsquerdo.add(val);
-
-            LSum = (LHal) + (LMet1) + (LMet2) + (LMet3) + (LMid) + (LCal1) + (LCal2);
-
-            Log.d("Values", "Valores inteiros: " + LHal + "," + LMet2+ ","+ LMet3+ "," +LMid+ "," +LCal1+ "," +LCal2+ ", SOMA: " + LSum);
+                LHal = Integer.parseInt(arrofs[1]);
+                LMet1 = Integer.parseInt(arrofs[2]);
+                LMet2 = Integer.parseInt(arrofs[3]);
+                LMet3 = Integer.parseInt(arrofs[4]);
+                LMid = Integer.parseInt(arrofs[5]);
+                LCal1 = Integer.parseInt(arrofs[6]);
+                LCal2 = Integer.parseInt(arrofs[7]);
 
 
-            //Ball growth
+                LeituraClass val = new LeituraClass();
 
-            LHal_ball.getLayoutParams().width = (2000 + (RHal))/100;
-            LHal_ball.getLayoutParams().height = (2000 + (RHal))/100;
-            LHal_ball.requestLayout();
+                val.LHal_data = LHal;
+                val.LMet1_data = LMet1;
+                val.LMet2_data = LMet2;
+                val.LMet3_data = LMet3;
+                val.LMid_data = LMid;
+                val.LCal1_data = LCal1;
+                val.LCal2_data = LCal2;
 
-            LMet1_ball.getLayoutParams().width = (2000 + (LMet1))/100;
-            LMet1_ball.getLayoutParams().height = (2000 + (LMet1))/100;
-            LMet1_ball.requestLayout();
+                LSum = (LHal) + (LMet1) + (LMet2) + (LMet3) + (LMid) + (LCal1) + (LCal2);
 
-            LMet2_ball.getLayoutParams().width = (2000 + (LMet2))/100;
-            LMet2_ball.getLayoutParams().height = (2000 + (LMet2))/100;
-            LMet2_ball.requestLayout();
+                Log.d("Values", "Valores inteiros: " + LHal + "," + LMet2 + "," + LMet3 + "," + LMid + "," + LCal1 + "," + LCal2 + ", SOMA: " + LSum);
 
-            LMet3_ball.getLayoutParams().width = (2000 + (LMet3))/100;
-            LMet3_ball.getLayoutParams().height = (2000 + (LMet3))/100;
-            LMet3_ball.requestLayout();
 
-            LMid_ball.getLayoutParams().width = (2000 + (LMid))/100;
-            LMid_ball.getLayoutParams().height = (2000 + (LMid))/100;
-            LMid_ball.requestLayout();
+                //Ball growth
 
-            LCal1_ball.getLayoutParams().width = (2000 + (LCal1))/100;
-            LCal1_ball.getLayoutParams().height = (2000 + (LCal1))/100;
-            LCal1_ball.requestLayout();
+                LHal_ball.getLayoutParams().width = (200 + (LHal)) / 10;
+                LHal_ball.getLayoutParams().height = (200 + (LHal)) / 10;
+                LHal_ball.requestLayout();
 
-            LCal2_ball.getLayoutParams().width = (2000 + (LCal2))/100;
-            LCal2_ball.getLayoutParams().height = (2000 + (LCal2))/100;
-            LCal2_ball.requestLayout();
+                LMet1_ball.getLayoutParams().width = (200 + (LMet1)) / 10;
+                LMet1_ball.getLayoutParams().height = (200 + (LMet1)) / 10;
+                LMet1_ball.requestLayout();
 
-            //Ball color change
+                LMet2_ball.getLayoutParams().width = (200 + (LMet2)) / 10;
+                LMet2_ball.getLayoutParams().height = (200 + (LMet2)) / 10;
+                LMet2_ball.requestLayout();
 
-            LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LHal+ 255))), PorterDuff.Mode.MULTIPLY );
-            LMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet1+ 255))), PorterDuff.Mode.MULTIPLY );
-            LMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet2+ 255))), PorterDuff.Mode.MULTIPLY );
-            LMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet3+ 255))), PorterDuff.Mode.MULTIPLY );
-            LMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMid+ 255))), PorterDuff.Mode.MULTIPLY );
-            LCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal1+ 255))), PorterDuff.Mode.MULTIPLY );
-            LCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal2+ 255))), PorterDuff.Mode.MULTIPLY );
+                LMet3_ball.getLayoutParams().width = (200 + (LMet3)) / 10;
+                LMet3_ball.getLayoutParams().height = (200 + (LMet3)) / 10;
+                LMet3_ball.requestLayout();
+
+                LMid_ball.getLayoutParams().width = (200 + (LMid)) / 10;
+                LMid_ball.getLayoutParams().height = (200 + (LMid)) / 10;
+                LMid_ball.requestLayout();
+
+                LCal1_ball.getLayoutParams().width = (200 + (LCal1)) / 10;
+                LCal1_ball.getLayoutParams().height = (200 + (LCal1)) / 10;
+                LCal1_ball.requestLayout();
+
+                LCal2_ball.getLayoutParams().width = (200 + (LCal2)) / 10;
+                LCal2_ball.getLayoutParams().height = (200 + (LCal2)) / 10;
+                LCal2_ball.requestLayout();
+
+                //Ball color change
+
+                LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LHal + 255))), PorterDuff.Mode.MULTIPLY);
+                LMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet1 + 255))), PorterDuff.Mode.MULTIPLY);
+                LMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet2 + 255))), PorterDuff.Mode.MULTIPLY);
+                LMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet3 + 255))), PorterDuff.Mode.MULTIPLY);
+                LMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMid + 255))), PorterDuff.Mode.MULTIPLY);
+                LCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal1 + 255))), PorterDuff.Mode.MULTIPLY);
+                LCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal2 + 255))), PorterDuff.Mode.MULTIPLY);
 
                 //Calculate Center of pressure
 
@@ -270,7 +320,7 @@ public class ReaderActivity extends Activity {
 
                 messageTextL.setText(s);
             }
-
+        }
     };
 
 
@@ -313,24 +363,42 @@ public class ReaderActivity extends Activity {
     public void onBackPressed() {}
 
     public void start_map(View view) {
-            frameLayout.setVisibility(View.VISIBLE);
+            if (dataLayout.getVisibility() != View.VISIBLE) {
+                frameLayout.setVisibility(View.VISIBLE);
+            } else {
+                dataLayout.setVisibility(View.INVISIBLE);
+                frameLayout.setVisibility(View.VISIBLE);
+            }
     }
 
-    /*private int getX (View ball) {
-
-        int [] location = new int[2];
-        ball.getLocationOnScreen(location);
-        int x = location[0];
-
-        return x;
+    public void Dados(View view) {
+        if (frameLayout.getVisibility() != View.VISIBLE) {
+            dataLayout.setVisibility(View.VISIBLE);
+        } else {
+            frameLayout.setVisibility(View.INVISIBLE);
+            dataLayout.setVisibility(View.VISIBLE);
+        }
     }
 
-    private int getY (View ball) {
+    public void Start_Read(View view) {
 
-        int [] location = new int[2];
-        ball.getLocationOnScreen(location);
-        int y = location[1];
+        data_dir_esq = true;
 
-        return y;
-    }*/
+
+            /*if (button.getText().equals("Start")) {
+                startTime = System.currentTimeMillis();
+                timerHandler.postDelayed(timerRunnable, 0);
+                button.setText("Stop");
+            } else {
+                timerHandler.removeCallbacks(timerRunnable);
+                button.setText("Start");
+            }*/
+    }
+
+    public void Stop_read(View view) {
+        data_dir_esq = false;
+        messageTextL.setText("Reading stopped");
+        messageTextR.setText("Reading stopped");
+
+    }
 }

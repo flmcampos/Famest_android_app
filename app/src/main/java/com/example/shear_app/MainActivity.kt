@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
 
-        goToData.setOnClickListener {
+        /*goToData.setOnClickListener {
             startActivity(Intent(this, DataActivity::class.java))
-        }
+        }*/
 
         goToHistory.setOnClickListener {
             startActivity(Intent(this, HistoryActivity::class.java))

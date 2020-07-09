@@ -1079,8 +1079,9 @@ id ALT
 id CP_dir
 id CP_esq
 id CTRL
-id Data_collected
-id Data_collected2
+id Data_Button
+id Data_collected_dir
+id Data_collected_esq
 id FUNCTION
 id Lcal1
 id Lcal2
@@ -1099,6 +1100,8 @@ id Rmet3
 id Rmid
 id SHIFT
 id SYM
+id Start
+id Stop
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
@@ -1187,6 +1190,7 @@ id coordinator
 id custom
 id customPanel
 id data_collect
+id data_container
 id decor_content_parent
 id default_activity_button
 id design_bottom_sheet
@@ -1515,6 +1519,7 @@ string button
 string character_counter_content_description
 string character_counter_pattern
 string close_nav_drawer
+string dados
 string data_to_collect_dir
 string data_to_collect_esq
 string fab_transformation_scrim_behavior
