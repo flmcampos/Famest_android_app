@@ -1,5 +1,7 @@
 package com.example.shear_app;
 
+import java.util.Date;
+
 public class LeituraClass {
     public int LHal_data;
     public int RHal_data;
@@ -19,4 +21,5 @@ public class LeituraClass {
     public int RTemp_data;
     public int LHumid_data;
     public int RHumid_data;
+    public Date readingDate;
 }

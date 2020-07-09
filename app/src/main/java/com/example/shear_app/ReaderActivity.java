@@ -6,24 +6,28 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
-
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ReaderActivity extends Activity {
+
+    Chronometer cmTimer;
+    Button btnStart, btnStop;
+    Boolean resume = false;
+    long elapsedTime;
+    String TAG = "TAG";
 
     public static BluetoothConnectionActivity BTConnectionL;
     public static BluetoothConnectionActivity BTConnectionR;
@@ -34,8 +38,8 @@ public class ReaderActivity extends Activity {
     protected FrameLayout frameLayout;
     protected FrameLayout dataLayout;
 
-    private ArrayList <String> PeDireito = new ArrayList<>();
-    private ArrayList <String> PeEsquerdo = new ArrayList<>();
+    List<LeituraClass> PeDireito = new ArrayList<>();
+    List<LeituraClass> PeEsquerdo = new ArrayList<>();
 
     private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2;
     private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2;
@@ -48,25 +52,6 @@ public class ReaderActivity extends Activity {
     private View RHal_ball, RMet1_ball, RMet2_ball, RMet3_ball, RMid_ball, RCal1_ball, RCal2_ball;
 
     Boolean data_dir_esq = false;
-
-    /*Button button;
-    TextView timerTextView;
-    long startTime = 0;
-
-    //runs without a timer by reposting this handler at the end of the runnable
-    Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
-            seconds = seconds % 60;
-
-            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-            timerHandler.postDelayed(this, 500);
-        }
-    };*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +70,11 @@ public class ReaderActivity extends Activity {
 
         frameLayout.setVisibility(View.INVISIBLE);
         dataLayout.setVisibility(View.INVISIBLE);
+
+        cmTimer = (Chronometer) findViewById(R.id.cmTimer);
+
+        btnStart = findViewById(R.id.Start);
+        btnStop = findViewById(R.id.Stop);
 
         LHal_ball = findViewById(R.id.Lhal);
         LMet1_ball = findViewById(R.id.Lmet1);
@@ -135,6 +125,24 @@ public class ReaderActivity extends Activity {
                 }
             }
         });*/
+
+        cmTimer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                if (!resume) {
+                    long minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
+                    long seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
+                    elapsedTime = SystemClock.elapsedRealtime();
+                    Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
+                } else {
+                    long minutes = ((elapsedTime - cmTimer.getBase()) / 1000) / 60;
+                    long seconds = ((elapsedTime - cmTimer.getBase()) / 1000) % 60;
+                    elapsedTime = elapsedTime + 1000;
+                    Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
+                }
+            }
+        });
+
     }
 
 
@@ -157,15 +165,7 @@ public class ReaderActivity extends Activity {
                 RCal1 = Integer.parseInt(arrofs[6]);
                 RCal2 = Integer.parseInt(arrofs[7]);
 
-                LeituraClass val = new LeituraClass();
 
-                val.RHal_data = RHal;
-                val.RMet1_data = RMet1;
-                val.RMet2_data = RMet2;
-                val.RMet3_data = RMet3;
-                val.RMid_data = RMid;
-                val.RCal1_data = RCal1;
-                val.RCal2_data = RCal2;
 
                 RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
 
@@ -223,6 +223,19 @@ public class ReaderActivity extends Activity {
 
                 }
 
+                LeituraClass val = new LeituraClass();
+
+                val.RHal_data = RHal;
+                val.RMet1_data = RMet1;
+                val.RMet2_data = RMet2;
+                val.RMet3_data = RMet3;
+                val.RMid_data = RMid;
+                val.RCal1_data = RCal1;
+                val.RCal2_data = RCal2;
+
+                val.readingDate = Calendar.getInstance().getTime();
+
+                PeDireito.add(val);
 
                 messageTextR.setText(s);
             }
@@ -249,19 +262,9 @@ public class ReaderActivity extends Activity {
                 LCal2 = Integer.parseInt(arrofs[7]);
 
 
-                LeituraClass val = new LeituraClass();
-
-                val.LHal_data = LHal;
-                val.LMet1_data = LMet1;
-                val.LMet2_data = LMet2;
-                val.LMet3_data = LMet3;
-                val.LMid_data = LMid;
-                val.LCal1_data = LCal1;
-                val.LCal2_data = LCal2;
-
                 LSum = (LHal) + (LMet1) + (LMet2) + (LMet3) + (LMid) + (LCal1) + (LCal2);
 
-                Log.d("Values", "Valores inteiros: " + LHal + "," + LMet2 + "," + LMet3 + "," + LMid + "," + LCal1 + "," + LCal2 + ", SOMA: " + LSum);
+                //Log.d("Values", "Valores inteiros: " + LHal + "," + LMet2 + "," + LMet3 + "," + LMid + "," + LCal1 + "," + LCal2 + ", SOMA: " + LSum);
 
 
                 //Ball growth
@@ -296,13 +299,18 @@ public class ReaderActivity extends Activity {
 
                 //Ball color change
 
-                LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LHal + 255))), PorterDuff.Mode.MULTIPLY);
-                LMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet1 + 255))), PorterDuff.Mode.MULTIPLY);
-                LMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet2 + 255))), PorterDuff.Mode.MULTIPLY);
-                LMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMet3 + 255))), PorterDuff.Mode.MULTIPLY);
-                LMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LMid + 255))), PorterDuff.Mode.MULTIPLY);
-                LCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal1 + 255))), PorterDuff.Mode.MULTIPLY);
-                LCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * LCal2 + 255))), PorterDuff.Mode.MULTIPLY);
+                /*if (-0.5 * LHal +255 <= 0) {
+                    LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((0))), PorterDuff.Mode.MULTIPLY);
+                } else {
+                    LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LHal + 255))), PorterDuff.Mode.MULTIPLY);
+                }*/
+                LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LHal + 255))), PorterDuff.Mode.MULTIPLY);
+                LMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMet1 + 255))), PorterDuff.Mode.MULTIPLY);
+                LMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMet2 + 255))), PorterDuff.Mode.MULTIPLY);
+                LMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMet3 + 255))), PorterDuff.Mode.MULTIPLY);
+                LMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMid + 255))), PorterDuff.Mode.MULTIPLY);
+                LCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LCal1 + 255))), PorterDuff.Mode.MULTIPLY);
+                LCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LCal2 + 255))), PorterDuff.Mode.MULTIPLY);
 
                 //Calculate Center of pressure
 
@@ -317,6 +325,20 @@ public class ReaderActivity extends Activity {
                     CP_esq_ball.setVisibility(View.INVISIBLE);
 
                 }
+
+                LeituraClass val = new LeituraClass();
+
+                val.LHal_data = LHal;
+                val.LMet1_data = LMet1;
+                val.LMet2_data = LMet2;
+                val.LMet3_data = LMet3;
+                val.LMid_data = LMid;
+                val.LCal1_data = LCal1;
+                val.LCal2_data = LCal2;
+
+                val.readingDate = Calendar.getInstance().getTime();
+
+                PeEsquerdo.add(val);
 
                 messageTextL.setText(s);
             }
@@ -383,22 +405,29 @@ public class ReaderActivity extends Activity {
     public void Start_Read(View view) {
 
         data_dir_esq = true;
+        btnStart.setEnabled(false);
+        btnStop.setEnabled(true);
 
+        if (!resume) {
+            cmTimer.setBase(SystemClock.elapsedRealtime());
+            cmTimer.start();
+        } else {
+            cmTimer.start();
+        }
 
-            /*if (button.getText().equals("Start")) {
-                startTime = System.currentTimeMillis();
-                timerHandler.postDelayed(timerRunnable, 0);
-                button.setText("Stop");
-            } else {
-                timerHandler.removeCallbacks(timerRunnable);
-                button.setText("Start");
-            }*/
     }
 
     public void Stop_read(View view) {
         data_dir_esq = false;
         messageTextL.setText("Reading stopped");
         messageTextR.setText("Reading stopped");
+
+        btnStart.setEnabled(true);
+        btnStop.setEnabled(false);
+        cmTimer.stop();
+        cmTimer.setText("");
+        resume = true;
+        btnStart.setText("Resume");
 
     }
 }
