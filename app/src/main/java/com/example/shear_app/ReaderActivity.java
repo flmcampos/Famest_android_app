@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -489,15 +490,19 @@ public class ReaderActivity extends Activity {
                 dir.mkdir();
 
             }
-            File file = new File(dir, "example1.txt");
+            File file = new File(dir, "example.txt");
 
 
             try {
                 FileOutputStream fos = new FileOutputStream(file);
+                //ObjectOutputStream oos = new ObjectOutputStream(fos);
                 //fos = openFileOutput("example.txt", MODE_PRIVATE);
                 //fos.write(PeEsquerdo.toString().getBytes());
                 //fos.write(PeDireito.toString().getBytes());
                 //fos.write(test.getBytes());
+                for (int i =0 ; i<PeEsquerdo.size(); i++ ) {
+                    fos.write(PeEsquerdo.get(i).toString().getBytes());
+                }
 
                 fos.close();
 
