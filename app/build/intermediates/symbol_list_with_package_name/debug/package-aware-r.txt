@@ -1100,6 +1100,7 @@ id Rmet3
 id Rmid
 id SHIFT
 id SYM
+id Save_session
 id Start
 id Stop
 id Tempo_label

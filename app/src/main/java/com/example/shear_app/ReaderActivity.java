@@ -1,9 +1,13 @@
 package com.example.shear_app;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
@@ -13,15 +17,24 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class ReaderActivity extends Activity {
+
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     Chronometer cmTimer;
     Button btnStart, btnStop;
@@ -56,9 +69,6 @@ public class ReaderActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //timerTextView = findViewById(R.id.TimerTextView);
-        //button = findViewById(R.id.Start);
 
         setContentView(R.layout.chat_bt);
 
@@ -111,21 +121,6 @@ public class ReaderActivity extends Activity {
         messageTextR = findViewById(R.id.Data_collected_dir);
         messageTextL = findViewById(R.id.Data_collected_esq);
 
-        /*button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                button = (Button) v;
-                if (button.getText().equals("Start")) {
-                    startTime = System.currentTimeMillis();
-                    timerHandler.postDelayed(timerRunnable, 0);
-                    button.setText("Stop");
-                } else {
-                    timerHandler.removeCallbacks(timerRunnable);
-                    button.setText("Start");
-                }
-            }
-        });*/
-
         cmTimer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -142,9 +137,7 @@ public class ReaderActivity extends Activity {
                 }
             }
         });
-
     }
-
 
 
     private final Handler mHandlerDir = new Handler() {
@@ -164,7 +157,6 @@ public class ReaderActivity extends Activity {
                 RMid = Integer.parseInt(arrofs[5]);
                 RCal1 = Integer.parseInt(arrofs[6]);
                 RCal2 = Integer.parseInt(arrofs[7]);
-
 
 
                 RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
@@ -346,51 +338,51 @@ public class ReaderActivity extends Activity {
     };
 
 
+    String DecToHexa(int n) {
 
-        String DecToHexa(int n) {
+        // char array to store hexadecimal number
+        char[] hexaDeciNum = new char[100];
 
-            // char array to store hexadecimal number
-            char[] hexaDeciNum = new char[100];
+        // counter for hexadecimal number array
+        int i = 0;
+        while (n != 0) {
+            // temporary variable to store remainder
+            int temp = 0;
 
-            // counter for hexadecimal number array
-            int i = 0;
-            while (n != 0) {
-                // temporary variable to store remainder
-                int temp = 0;
+            // storing remainder in temp variable.
+            temp = n % 16;
 
-                // storing remainder in temp variable.
-                temp = n % 16;
-
-                // check if temp < 10
-                if (temp < 10) {
-                    hexaDeciNum[i] = (char) (temp + 48);
-                    i++;
-                } else {
-                    hexaDeciNum[i] = (char) (temp + 55);
-                    i++;
-                }
-
-                n = n / 16;
-            }
-            StringBuilder Hexa = new StringBuilder();
-
-            for (int j = i - 1; j >= 0; j--) {
-                Hexa.append(hexaDeciNum[j]);
+            // check if temp < 10
+            if (temp < 10) {
+                hexaDeciNum[i] = (char) (temp + 48);
+                i++;
+            } else {
+                hexaDeciNum[i] = (char) (temp + 55);
+                i++;
             }
 
-            return "#FF" + Hexa + "00";
+            n = n / 16;
+        }
+        StringBuilder Hexa = new StringBuilder();
+
+        for (int j = i - 1; j >= 0; j--) {
+            Hexa.append(hexaDeciNum[j]);
         }
 
+        return "#FF" + Hexa + "00";
+    }
+
     @Override
-    public void onBackPressed() {}
+    public void onBackPressed() {
+    }
 
     public void start_map(View view) {
-            if (dataLayout.getVisibility() != View.VISIBLE) {
-                frameLayout.setVisibility(View.VISIBLE);
-            } else {
-                dataLayout.setVisibility(View.INVISIBLE);
-                frameLayout.setVisibility(View.VISIBLE);
-            }
+        if (dataLayout.getVisibility() != View.VISIBLE) {
+            frameLayout.setVisibility(View.VISIBLE);
+        } else {
+            dataLayout.setVisibility(View.INVISIBLE);
+            frameLayout.setVisibility(View.VISIBLE);
+        }
     }
 
     public void Dados(View view) {
@@ -430,4 +422,97 @@ public class ReaderActivity extends Activity {
         btnStart.setText("Resume");
 
     }
+
+    public void save_data(View view) {
+
+        if (Build.VERSION.SDK_INT >= 23)
+        {
+            if (checkPermission())
+            {
+                // Code for above or equal 23 API Oriented Device
+                // Your Permission granted already .Do next code
+                savedata_tofile();
+            } else {
+                requestPermission(); // Code for permission
+            }
+        }
+        else
+        {
+            // Code for Below 23 API Oriented Device
+            // Do next code
+            savedata_tofile();
+        }
+    }
+
+    private void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            Toast.makeText(this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("value", "Permission Granted, Now you can use local drive .");
+                } else {
+                    Log.e("value", "Permission Denied, You cannot use local drive .");
+                }
+                break;
+        }
+    }
+
+    private void savedata_tofile() {
+
+        String test = "Text file to check saved data";
+        String state = Environment.getExternalStorageState();
+
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+
+            String root = Environment.getExternalStorageDirectory().toString();
+            File dir = new File(root + "/MyAppFile");
+
+            if (!dir.exists()) {
+
+                dir.mkdir();
+
+            }
+            File file = new File(dir, "example1.txt");
+
+
+            try {
+                FileOutputStream fos = new FileOutputStream(file);
+                //fos = openFileOutput("example.txt", MODE_PRIVATE);
+                //fos.write(PeEsquerdo.toString().getBytes());
+                //fos.write(PeDireito.toString().getBytes());
+                //fos.write(test.getBytes());
+
+                fos.close();
+
+                Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+
+            }
+        } else {
+            Toast.makeText(this, "Storage could not be found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
