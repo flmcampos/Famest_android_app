@@ -41,7 +41,8 @@
         app:layout_constraintEnd_toStartOf="@+id/checkBoxMulher"
         app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome"
+        android:layout_marginLeft="96dp" />
 
     <CheckBox
         android:id="@+id/checkBoxMulher"

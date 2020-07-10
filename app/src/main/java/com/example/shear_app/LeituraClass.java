@@ -1,25 +1,26 @@
 package com.example.shear_app;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 public class LeituraClass {
-    public int LHal_data;
-    public int RHal_data;
-    public int LMet1_data;
-    public int RMet1_data;
-    public int LMet2_data;
-    public int RMet2_data;
-    public int LMet3_data;
-    public int RMet3_data;
-    public int LMid_data;
-    public int RMid_data;
-    public int LCal1_data;
-    public int RCal1_data;
-    public int LCal2_data;
-    public int RCal2_data;
-    public int LTemp_data;
-    public int RTemp_data;
-    public int LHumid_data;
-    public int RHumid_data;
+    public int Hal_data;
+    public int Met1_data;
+    public int Met2_data;
+    public int Met3_data;
+    public int Mid_data;
+    public int Cal1_data;
+    public int Cal2_data;
+    public int Temp_data;
+    public int Humid_data;;
     public long readingDate;
+
+    @NonNull
+    @Override
+    public String toString() {
+        String result = readingDate+ "," +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
+                +Met3_data+ "," + Mid_data+ "," +Cal1_data+ "," +Cal2_data+ ","+ Temp_data + "," + Humid_data + System.getProperty("line.separator");
+        return result;
+    }
 }

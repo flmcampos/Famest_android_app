@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -55,8 +56,8 @@ public class ReaderActivity extends Activity {
     List<LeituraClass> PeDireito = new ArrayList<>();
     List<LeituraClass> PeEsquerdo = new ArrayList<>();
 
-    private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2;
-    private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2;
+    private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2, LHum, LTemp;
+    private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2, RHum, RTemp;
 
     private int RSum, LSum;
 
@@ -218,13 +219,13 @@ public class ReaderActivity extends Activity {
 
                 LeituraClass val = new LeituraClass();
 
-                val.RHal_data = RHal;
-                val.RMet1_data = RMet1;
-                val.RMet2_data = RMet2;
-                val.RMet3_data = RMet3;
-                val.RMid_data = RMid;
-                val.RCal1_data = RCal1;
-                val.RCal2_data = RCal2;
+                val.Hal_data = RHal;
+                val.Met1_data = RMet1;
+                val.Met2_data = RMet2;
+                val.Met3_data = RMet3;
+                val.Mid_data = RMid;
+                val.Cal1_data = RCal1;
+                val.Cal2_data = RCal2;
 
                 val.readingDate = elapsedTime;
 
@@ -321,13 +322,13 @@ public class ReaderActivity extends Activity {
 
                 LeituraClass val = new LeituraClass();
 
-                val.LHal_data = LHal;
-                val.LMet1_data = LMet1;
-                val.LMet2_data = LMet2;
-                val.LMet3_data = LMet3;
-                val.LMid_data = LMid;
-                val.LCal1_data = LCal1;
-                val.LCal2_data = LCal2;
+                val.Hal_data = LHal;
+                val.Met1_data = LMet1;
+                val.Met2_data = LMet2;
+                val.Met3_data = LMet3;
+                val.Mid_data = LMid;
+                val.Cal1_data = LCal1;
+                val.Cal2_data = LCal2;
 
                 val.readingDate = elapsedTime;
 
@@ -500,8 +501,17 @@ public class ReaderActivity extends Activity {
                 //fos.write(PeEsquerdo.toString().getBytes());
                 //fos.write(PeDireito.toString().getBytes());
                 //fos.write(test.getBytes());
+                fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
                 for (int i =0 ; i<PeEsquerdo.size(); i++ ) {
                     fos.write(PeEsquerdo.get(i).toString().getBytes());
+                }
+
+                fos.write((System.getProperty("line.separator")).getBytes());
+
+                fos.write(("Data from right foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+
+                for (int i =0 ; i<PeDireito.size(); i++ ) {
+                    fos.write(PeDireito.get(i).toString().getBytes());
                 }
 
                 fos.close();
