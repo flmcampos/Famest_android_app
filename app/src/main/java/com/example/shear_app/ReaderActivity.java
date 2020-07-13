@@ -235,7 +235,7 @@ public class ReaderActivity extends AppCompatActivity {
                 val.Cal1_data = RCal1;
                 val.Cal2_data = RCal2;
 
-                val.readingDate = timeInMilliseconds;
+                val.readingDate = SystemClock.elapsedRealtime() - startTime;
 
                 PeDireito.add(val);
 
@@ -339,7 +339,7 @@ public class ReaderActivity extends AppCompatActivity {
                 val.Cal1_data = LCal1;
                 val.Cal2_data = LCal2;
 
-                val.readingDate = timeInMilliseconds;
+                val.readingDate = SystemClock.elapsedRealtime() - startTime;
 
                 PeEsquerdo.add(val);
 
@@ -431,7 +431,7 @@ public class ReaderActivity extends AppCompatActivity {
         btnStart.setEnabled(false);
         btnStop.setEnabled(true);
 
-        startTime = System.currentTimeMillis();
+        startTime = SystemClock.elapsedRealtime();
         customHandler.postDelayed(updateTimerThread, 0);
 
 
@@ -452,9 +452,9 @@ public class ReaderActivity extends AppCompatActivity {
 
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
-            timeInMilliseconds = System.currentTimeMillis() - startTime;
+            customHandler.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTime)%1000);
+            timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
             tvTimer.setText(getDateFromMillis(timeInMilliseconds));
-            customHandler.postDelayed(this, 1000);
         }
     };
 
