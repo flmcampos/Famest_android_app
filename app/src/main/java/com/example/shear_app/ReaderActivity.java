@@ -446,7 +446,7 @@ public class ReaderActivity extends AppCompatActivity {
         btnStop.setEnabled(false);
         btnStart.setText("Resume");
 
-        customHandler.removeCallbacks(updateTimerThread);
+        //customHandler.removeCallbacks(updateTimerThread);
 
     }
 
@@ -525,38 +525,42 @@ public class ReaderActivity extends AppCompatActivity {
 
             }
             File file = new File(dir, "example.txt");
+            if (file.exists()){
+                file.delete();
+            } else {
 
 
-            try {
-                FileOutputStream fos = new FileOutputStream(file);
-                //ObjectOutputStream oos = new ObjectOutputStream(fos);
-                //fos = openFileOutput("example.txt", MODE_PRIVATE);
-                //fos.write(PeEsquerdo.toString().getBytes());
-                //fos.write(PeDireito.toString().getBytes());
-                //fos.write(test.getBytes());
-                fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
-                for (int i =0 ; i<PeEsquerdo.size(); i++ ) {
-                    fos.write(PeEsquerdo.get(i).toString().getBytes());
+                try {
+                    FileOutputStream fos = new FileOutputStream(file);
+                    //ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    //fos = openFileOutput("example.txt", MODE_PRIVATE);
+                    //fos.write(PeEsquerdo.toString().getBytes());
+                    //fos.write(PeDireito.toString().getBytes());
+                    //fos.write(test.getBytes());
+                    fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+                    for (int i = 0; i < PeEsquerdo.size(); i++) {
+                        fos.write(PeEsquerdo.get(i).toString().getBytes());
+                    }
+
+                    fos.write((System.getProperty("line.separator")).getBytes());
+
+                    fos.write(("Data from right foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+
+                    for (int i = 0; i < PeDireito.size(); i++) {
+                        fos.write(PeDireito.get(i).toString().getBytes());
+                    }
+
+                    fos.close();
+
+                    Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+
                 }
-
-                fos.write((System.getProperty("line.separator")).getBytes());
-
-                fos.write(("Data from right foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
-
-                for (int i =0 ; i<PeDireito.size(); i++ ) {
-                    fos.write(PeDireito.get(i).toString().getBytes());
-                }
-
-                fos.close();
-
-                Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
-
             }
         } else {
             Toast.makeText(this, "Storage could not be found", Toast.LENGTH_SHORT).show();

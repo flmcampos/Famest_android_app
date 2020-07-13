@@ -21,13 +21,13 @@ public class LeituraClass {
     @NonNull
     @Override
     public String toString() {
-        return getMSDateFromMillis(readingDate) + "," +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
+        return readingDate + "," +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
                 +Met3_data+ "," + Mid_data+ "," +Cal1_data+ "," +Cal2_data+ ","+ Temp_data + "," + Humid_data + System.getProperty("line.separator");
     }
 
-    private static String getMSDateFromMillis(long d) {
+    /*private static String getMSDateFromMillis(long d) {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         return df.format(d);
-    }
+    }*/
 }
