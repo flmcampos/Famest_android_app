@@ -1,4 +1,4 @@
-#Fri Jul 10 18:05:55 BST 2020
+#Mon Jul 13 16:07:20 BST 2020
 base.0=C\:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

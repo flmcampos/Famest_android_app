@@ -8,16 +8,16 @@
         "source": "C:\\Users\\fcampos\\famest-app\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_bluetooth_black_24dp.png.flat",
-        "source": "C:\\Users\\fcampos\\famest-app\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_bluetooth_black_24dp.png"
+        "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_bluetooth_black_24dp.png.flat",
+        "source": "C:\\Users\\fcampos\\famest-app\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_bluetooth_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_feet_cop.png.flat",
         "source": "C:\\Users\\fcampos\\famest-app\\app\\src\\main\\res\\mipmap-xxxhdpi\\feet_cop.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_bluetooth_black_24dp.png.flat",
-        "source": "C:\\Users\\fcampos\\famest-app\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_bluetooth_black_24dp.png"
+        "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_bluetooth_black_24dp.png.flat",
+        "source": "C:\\Users\\fcampos\\famest-app\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_bluetooth_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable_center_of_pressure.xml.flat",
@@ -58,6 +58,10 @@
     {
         "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_graph_icon.png.flat",
         "source": "C:\\Users\\fcampos\\famest-app\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\graph_icon.png"
+    },
+    {
+        "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\layout_graphs.xml.flat",
+        "source": "C:\\Users\\fcampos\\famest-app\\app\\src\\main\\res\\layout\\graphs.xml"
     },
     {
         "merged": "C:\\Users\\fcampos\\famest-app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_foreground.png.flat",

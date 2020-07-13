@@ -2,6 +2,9 @@ package com.example.shear_app;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -21,8 +24,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,18 +40,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
-public class ReaderActivity extends Activity {
+public class ReaderActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 1;
 
-    Chronometer cmTimer;
+    TextView tvTimer;
+    long startTime, timeInMilliseconds = 0;
+    Handler customHandler = new Handler();
     Button btnStart, btnStop;
-    Boolean resume = false;
-    long elapsedTime;
     String TAG = "TAG";
 
     public static BluetoothConnectionActivity BTConnectionL;
@@ -68,6 +80,8 @@ public class ReaderActivity extends Activity {
 
     Boolean data_dir_esq = false;
 
+    double x,y;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +97,7 @@ public class ReaderActivity extends Activity {
         frameLayout.setVisibility(View.INVISIBLE);
         dataLayout.setVisibility(View.INVISIBLE);
 
-        cmTimer = (Chronometer) findViewById(R.id.cmTimer);
+        tvTimer = (TextView) findViewById(R.id.tvTimer);
 
         btnStart = findViewById(R.id.Start);
         btnStop = findViewById(R.id.Stop);
@@ -107,6 +121,10 @@ public class ReaderActivity extends Activity {
         CP_dir_ball = findViewById(R.id.CP_dir);
         CP_esq_ball = findViewById(R.id.CP_esq);
 
+        LineGraphSeries<DataPoint> seriesR = new LineGraphSeries<>();
+        LineGraphSeries<DataPoint> seriesL = new LineGraphSeries<>();
+        GraphView graphView = findViewById(R.id.graph);
+
 
         Bundle bn = getIntent().getExtras();
         String mDeviceAddressLeft = bn.getString("esq");
@@ -123,24 +141,14 @@ public class ReaderActivity extends Activity {
         messageTextR = findViewById(R.id.Data_collected_dir);
         messageTextL = findViewById(R.id.Data_collected_esq);
 
-        cmTimer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                if (!resume) {
-                    long minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
-                    long seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
-                    elapsedTime = SystemClock.elapsedRealtime();
-                    Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
-                } else {
-                    long minutes = ((elapsedTime - cmTimer.getBase()) / 1000) / 60;
-                    long seconds = ((elapsedTime - cmTimer.getBase()) / 1000) % 60;
-                    elapsedTime = elapsedTime + 1000;
-                    Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
-                }
-            }
-        });
+
     }
 
+    public static String getDateFromMillis(long d) {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df.format(d);
+    }
 
     private final Handler mHandlerDir = new Handler() {
         @Override
@@ -227,11 +235,12 @@ public class ReaderActivity extends Activity {
                 val.Cal1_data = RCal1;
                 val.Cal2_data = RCal2;
 
-                val.readingDate = elapsedTime;
+                val.readingDate = timeInMilliseconds;
 
                 PeDireito.add(val);
 
                 messageTextR.setText(s);
+
             }
         }
     };
@@ -330,11 +339,12 @@ public class ReaderActivity extends Activity {
                 val.Cal1_data = LCal1;
                 val.Cal2_data = LCal2;
 
-                val.readingDate = elapsedTime;
+                val.readingDate = timeInMilliseconds;
 
                 PeEsquerdo.add(val);
 
                 messageTextL.setText(s);
+
             }
         }
     };
@@ -376,7 +386,26 @@ public class ReaderActivity extends Activity {
 
     @Override
     public void onBackPressed() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Encerrar atividade");
+        alertDialog.setMessage("Deseja encerrar a atividade e a conexão com as palmilhas?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        BTConnectionL.disconnect();
+                        BTConnectionR.disconnect();
+                        finish();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        }
+                });
+        alertDialog.show();
     }
+
+
 
     public void start_map(View view) {
         if (dataLayout.getVisibility() != View.VISIBLE) {
@@ -402,12 +431,9 @@ public class ReaderActivity extends Activity {
         btnStart.setEnabled(false);
         btnStop.setEnabled(true);
 
-        if (!resume) {
-            cmTimer.setBase(SystemClock.elapsedRealtime());
-            cmTimer.start();
-        } else {
-            cmTimer.start();
-        }
+        startTime = System.currentTimeMillis();
+        customHandler.postDelayed(updateTimerThread, 0);
+
 
     }
 
@@ -418,12 +444,19 @@ public class ReaderActivity extends Activity {
 
         btnStart.setEnabled(true);
         btnStop.setEnabled(false);
-        cmTimer.stop();
-        cmTimer.setText("");
-        resume = true;
         btnStart.setText("Resume");
 
+        customHandler.removeCallbacks(updateTimerThread);
+
     }
+
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+            timeInMilliseconds = System.currentTimeMillis() - startTime;
+            tvTimer.setText(getDateFromMillis(timeInMilliseconds));
+            customHandler.postDelayed(this, 1000);
+        }
+    };
 
     public void save_data(View view) {
 
