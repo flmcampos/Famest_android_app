@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Data_collected_dir">
+        app:layout_constraintTop_toTopOf="@+id/map_container">
 
     </FrameLayout>
 
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Data_collected_dir">
+        app:layout_constraintTop_toTopOf="@+id/Data_collected_esq">
 
 
     </FrameLayout>
@@ -49,12 +49,24 @@
         app:layout_constraintStart_toEndOf="@+id/Tempo_label"
         app:layout_constraintTop_toTopOf="@+id/Tempo_label" />
 
+    <FrameLayout
+        android:id="@+id/graph_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map_container">
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/Data_collected_dir"
         android:layout_width="match_parent"
         android:layout_height="61dp"
         android:text="data_to_collect_dir"
-        app:layout_constraintBottom_toTopOf="@+id/data_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,10 +150,13 @@
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="6dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         android:layout_marginBottom="20dp"
-        android:text="Tempo: "
+        android:text="Tempo:"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
+        app:layout_constraintEnd_toStartOf="@+id/tvTimer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Save_session"
         app:layout_constraintVertical_bias="0.0" />
@@ -162,6 +177,22 @@
         app:layout_constraintEnd_toStartOf="@+id/Stop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/data_collect" />
+
+    <Button
+        android:id="@+id/graph_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="83dp"
+        android:text="Gráficos"
+        android:onClick="start_graph"
+        app:layout_constraintBottom_toTopOf="@+id/data_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Stop"
+        app:layout_constraintTop_toBottomOf="@+id/Data_Button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

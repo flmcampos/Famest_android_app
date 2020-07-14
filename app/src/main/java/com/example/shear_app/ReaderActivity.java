@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -64,6 +65,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     protected FrameLayout frameLayout;
     protected FrameLayout dataLayout;
+    protected FrameLayout graphLayout;
 
     List<LeituraClass> PeDireito = new ArrayList<>();
     List<LeituraClass> PeEsquerdo = new ArrayList<>();
@@ -80,7 +82,8 @@ public class ReaderActivity extends AppCompatActivity {
 
     Boolean data_dir_esq = false;
 
-    double x,y;
+    private LineGraphSeries<DataPoint> seriesL;
+    private LineGraphSeries<DataPoint> seriesR;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,12 +93,15 @@ public class ReaderActivity extends AppCompatActivity {
 
         frameLayout = (FrameLayout) findViewById(R.id.map_container);
         dataLayout = (FrameLayout) findViewById(R.id.data_container);
+        graphLayout = (FrameLayout) findViewById(R.id.graph_container);
 
         getLayoutInflater().inflate(R.layout.feet_map, frameLayout);
         getLayoutInflater().inflate(R.layout.data, dataLayout);
+        getLayoutInflater().inflate(R.layout.graphs,graphLayout);
 
         frameLayout.setVisibility(View.INVISIBLE);
         dataLayout.setVisibility(View.INVISIBLE);
+        graphLayout.setVisibility(View.INVISIBLE);
 
         tvTimer = (TextView) findViewById(R.id.tvTimer);
 
@@ -121,10 +127,26 @@ public class ReaderActivity extends AppCompatActivity {
         CP_dir_ball = findViewById(R.id.CP_dir);
         CP_esq_ball = findViewById(R.id.CP_esq);
 
-        LineGraphSeries<DataPoint> seriesR = new LineGraphSeries<>();
-        LineGraphSeries<DataPoint> seriesL = new LineGraphSeries<>();
-        GraphView graphView = findViewById(R.id.graph);
+        seriesL = new LineGraphSeries<DataPoint>();
+        seriesR = new LineGraphSeries<DataPoint>();
 
+        GraphView graphView = (GraphView) findViewById(R.id.graph);
+
+        graphView.addSeries(seriesL);
+        graphView.addSeries(seriesR);
+
+        seriesL.setColor(Color.GREEN);
+        seriesL.setTitle("Soma do esquerdo");
+
+        seriesL.setColor(Color.BLUE);
+        seriesL.setTitle("Soma do direito");
+
+        //customize viewport
+        Viewport viewport = graphView.getViewport();
+        viewport.setYAxisBoundsManual(true);
+        viewport.setMinY(0);
+        viewport.setMaxY(1000);
+        viewport.setMinX(0);
 
         Bundle bn = getIntent().getExtras();
         String mDeviceAddressLeft = bn.getString("esq");
@@ -241,6 +263,8 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextR.setText(s);
 
+                seriesR.appendData(new DataPoint((double) val.readingDate,(double) RSum),true,300);
+
             }
         }
     };
@@ -345,6 +369,8 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextL.setText(s);
 
+                seriesR.appendData(new DataPoint((double) val.readingDate,(double) LSum),true,300);
+
             }
         }
     };
@@ -408,21 +434,21 @@ public class ReaderActivity extends AppCompatActivity {
 
 
     public void start_map(View view) {
-        if (dataLayout.getVisibility() != View.VISIBLE) {
-            frameLayout.setVisibility(View.VISIBLE);
-        } else {
-            dataLayout.setVisibility(View.INVISIBLE);
-            frameLayout.setVisibility(View.VISIBLE);
-        }
+        dataLayout.setVisibility(View.INVISIBLE);
+        graphLayout.setVisibility(View.INVISIBLE);
+        frameLayout.setVisibility(View.VISIBLE);
     }
 
     public void Dados(View view) {
-        if (frameLayout.getVisibility() != View.VISIBLE) {
-            dataLayout.setVisibility(View.VISIBLE);
-        } else {
-            frameLayout.setVisibility(View.INVISIBLE);
-            dataLayout.setVisibility(View.VISIBLE);
-        }
+        frameLayout.setVisibility(View.INVISIBLE);
+        graphLayout.setVisibility(View.INVISIBLE);
+        dataLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void start_graph(View view) {
+        frameLayout.setVisibility(View.INVISIBLE);
+        graphLayout.setVisibility(View.VISIBLE);
+        dataLayout.setVisibility(View.INVISIBLE);
     }
 
     public void Start_Read(View view) {
@@ -431,8 +457,13 @@ public class ReaderActivity extends AppCompatActivity {
         btnStart.setEnabled(false);
         btnStop.setEnabled(true);
 
-        startTime = SystemClock.elapsedRealtime();
-        customHandler.postDelayed(updateTimerThread, 0);
+        if (btnStart.getText().equals("Start")) {
+            startTime = SystemClock.elapsedRealtime();
+            customHandler.postDelayed(updateTimerThread, 0);
+        } else {
+            tvTimer.setVisibility(View.VISIBLE);
+
+        }
 
 
     }
@@ -445,6 +476,7 @@ public class ReaderActivity extends AppCompatActivity {
         btnStart.setEnabled(true);
         btnStop.setEnabled(false);
         btnStart.setText("Resume");
+        tvTimer.setVisibility(View.INVISIBLE);
 
         //customHandler.removeCallbacks(updateTimerThread);
 
@@ -566,5 +598,6 @@ public class ReaderActivity extends AppCompatActivity {
             Toast.makeText(this, "Storage could not be found", Toast.LENGTH_SHORT).show();
         }
     }
+
 
 }

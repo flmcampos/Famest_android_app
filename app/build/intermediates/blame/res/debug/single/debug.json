@@ -12,28 +12,28 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_bluetooth_black_24dp.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_feet.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-xxhdpi\\feet.png"
+        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pes.png.flat",
+        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\drawable\\pes.png"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_feet_cop_round.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-xxxhdpi\\feet_cop_round.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pes.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\drawable\\pes.png"
+        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_feet.png.flat",
+        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-xxhdpi\\feet.png"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_graph_icon.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\graph_icon.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",
@@ -44,12 +44,12 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\layout_settings_main.xml.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\layout\\settings_main.xml"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_feet_cop_round.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-hdpi\\feet_cop_round.png"
+    },
+    {
+        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\layout_settings_main.xml.flat",
+        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\layout\\settings_main.xml"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",

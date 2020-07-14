@@ -33,8 +33,8 @@ public class SettingsActivity extends Activity {
     public Button b_dir;
     public Button b_esq;
 
-    private String mDeviceAddressLeft;
-    private String mDeviceAddressRight;
+    public static String mDeviceAddressLeft;
+    public static String mDeviceAddressRight;
 
 
 

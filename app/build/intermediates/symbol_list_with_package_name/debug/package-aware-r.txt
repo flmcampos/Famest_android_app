@@ -1244,6 +1244,8 @@ id goToProfile
 id goToSettings
 id gone
 id graph
+id graph_button
+id graph_container
 id graphs
 id group_divider
 id groups
@@ -1253,7 +1255,6 @@ id icon
 id icon_group
 id ifRoom
 id image
-id imageView
 id info
 id invisible
 id italic
