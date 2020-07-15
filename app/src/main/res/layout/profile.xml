@@ -183,6 +183,7 @@
         android:layout_marginTop="16dp"
         android:text="Novo Perfil"
         android:textSize="24sp"
+        android:onClick="guardarInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

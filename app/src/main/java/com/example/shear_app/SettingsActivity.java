@@ -102,7 +102,7 @@ public class SettingsActivity extends Activity {
             Bundle bn = new Bundle();
             bn.putString("esq", mDeviceAddressLeft);
             bn.putString("dir",mDeviceAddressRight);
-            Intent i = new Intent(this, ReaderActivity.class);
+            Intent i = new Intent(this, MainActivity.class);
             i.putExtras(bn);
             startActivity(i);
         } else {

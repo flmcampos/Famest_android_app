@@ -112,10 +112,6 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-mdpi\\feet_cop.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\layout_history.xml.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\layout\\history.xml"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_feet_cop_round.xml.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-anydpi-v26\\feet_cop_round.xml"
     },
@@ -282,10 +278,6 @@
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_feet_cop_round.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\mipmap-mdpi\\feet_cop_round.png"
-    },
-    {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\layout_profile_list.xml.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\src\\main\\res\\layout\\profile_list.xml"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famestAPP\\app\\build\\intermediates\\res\\merged\\debug\\layout_nav_header.xml.flat",

@@ -85,6 +85,25 @@ public class ReaderActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> seriesL;
     private LineGraphSeries<DataPoint> seriesR;
 
+    public TextView messageLHal;
+    public TextView messageLMet1;
+    public TextView messageLMet2;
+    public TextView messageLMet3;
+    public TextView messageLMid;
+    public TextView messageLCal1;
+    public TextView messageLCal2;
+
+    public TextView messageRHal;
+    public TextView messageRMet1;
+    public TextView messageRMet2;
+    public TextView messageRMet3;
+    public TextView messageRMid;
+    public TextView messageRCal1;
+    public TextView messageRCal2;
+
+    private int MaxLHal, MaxLMet1, MaxLMet2, MaxLMet3, MaxLMid, MaxLCal1, MaxLCal2, MaxLHum, MaxLTemp;
+    private int MaxRHal, MaxRMet1, MaxRMet2, MaxRMet3, MaxRMid, MaxRCal1, MaxRCal2, MaxRHum, MaxRTemp;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +183,24 @@ public class ReaderActivity extends AppCompatActivity {
 
         messageTextR = findViewById(R.id.Data_collected_dir);
         messageTextL = findViewById(R.id.Data_collected_esq);
+
+        messageLHal = findViewById(R.id.LHalMax);
+        messageLMet1 = findViewById(R.id.LMet1Max);
+        messageLMet2 = findViewById(R.id.LMet2Max);
+        messageLMet3 = findViewById(R.id.LMet3Max);
+        messageLMid = findViewById(R.id.LMidMax);
+        messageLCal1 = findViewById(R.id.LCal1Max);
+        messageLCal2 = findViewById(R.id.LCal2Max);
+
+        messageRHal = findViewById(R.id.RHalMax);
+        messageRMet1 = findViewById(R.id.RMet1Max);
+        messageRMet2 = findViewById(R.id.LMet2Max);
+        messageRMet3 = findViewById(R.id.LMet3Max);
+        messageRMid = findViewById(R.id.LMidMax);
+        messageRCal1 = findViewById(R.id.LCal1Max);
+        messageRCal2 = findViewById(R.id.LCal2Max);
+
+        MaxLHal = MaxLMet1 = MaxLMet2 = MaxLMet3 = MaxLMid = MaxLCal1 = MaxLCal2 = MaxRHal = MaxRMet1 = MaxRMet2 = MaxRMet3 = MaxRMid = MaxRCal1 = MaxRCal2 = 0;
 
 
     }
@@ -265,14 +302,42 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextR.setText(s);
 
-                /*runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        seriesR.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime, (double) RSum), true, 10000000);
-                    }
-                });*/
-
                 seriesR.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime,(double) RSum),true,10000);
+
+                if (RHal > MaxRHal) {
+                    MaxRHal = RHal;
+                    messageRHal.setText(String.format("%d", MaxRHal));
+                }
+
+                if (RMet1 > MaxRMet1) {
+                    MaxRMet1 = RMet1;
+                    messageRMet1.setText(String.format("%d", MaxRMet1));
+                }
+
+                if (RMet2 > MaxRMet2) {
+                    MaxRMet2 = RMet2;
+                    messageRMet2.setText(String.format("%d", MaxRMet2));
+                }
+
+                if (RMet3 > MaxRMet3) {
+                    MaxRMet3 = RMet3;
+                    messageRMet3.setText(String.format("%d", MaxRMet3));
+                }
+
+                if (RMid > MaxRMid) {
+                    MaxRMid = RMid;
+                    messageRMid.setText(String.format("%d", MaxRMid));
+                }
+
+                if (RCal1 > MaxRCal1) {
+                    MaxRCal1 = RCal1;
+                    messageRCal1.setText(String.format("%d", MaxRCal1));
+                }
+
+                if (RCal2 > MaxRCal2) {
+                    MaxRCal2 = RCal2;
+                    messageRCal2.setText(String.format("%d", MaxRCal2));
+                }
 
             }
         }
@@ -379,6 +444,41 @@ public class ReaderActivity extends AppCompatActivity {
                 messageTextL.setText(s);
 
                 seriesL.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime,(double) LSum),true,10000);
+
+                if (LHal > MaxLHal) {
+                    MaxLHal = LHal;
+                    messageLHal.setText(String.format("%d", MaxLHal));
+                }
+
+                if (LMet1 > MaxLMet1) {
+                    MaxLMet1 = LMet1;
+                    messageLMet1.setText(String.format("%d", MaxLMet1));
+                }
+
+                if (LMet2 > MaxLMet2) {
+                    MaxLMet2 = LMet2;
+                    messageLMet2.setText(String.format("%d", MaxLMet2));
+                }
+
+                if (LMet3 > MaxLMet3) {
+                    MaxLMet3 = LMet3;
+                    messageLMet3.setText(String.format("%d", MaxLMet3));
+                }
+
+                if (LMid > MaxLMid) {
+                    MaxLMid = LMid;
+                    messageLMid.setText(String.format("%d", MaxLMid));
+                }
+
+                if (LCal1 > MaxLCal1) {
+                    MaxLCal1 = LCal1;
+                    messageLCal1.setText(String.format("%d", MaxLCal1));
+                }
+
+                if (LCal2 > MaxLCal2) {
+                    MaxLCal2 = LCal2;
+                    messageLCal2.setText(String.format("%d", MaxLCal2));
+                }
 
             }
         }
