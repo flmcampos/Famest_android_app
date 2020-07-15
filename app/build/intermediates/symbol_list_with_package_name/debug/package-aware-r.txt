@@ -1256,6 +1256,7 @@ id goToSettings
 id goToStart
 id gone
 id graph
+id graph2
 id graph_button
 id graph_container
 id graphs

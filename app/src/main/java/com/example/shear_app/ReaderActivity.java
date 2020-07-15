@@ -118,7 +118,7 @@ public class ReaderActivity extends AppCompatActivity {
         getLayoutInflater().inflate(R.layout.data, dataLayout);
         getLayoutInflater().inflate(R.layout.graphs,graphLayout);
 
-        frameLayout.setVisibility(View.INVISIBLE);
+        frameLayout.setVisibility(View.VISIBLE);
         dataLayout.setVisibility(View.INVISIBLE);
         graphLayout.setVisibility(View.INVISIBLE);
 
@@ -149,25 +149,35 @@ public class ReaderActivity extends AppCompatActivity {
         seriesL = new LineGraphSeries<DataPoint>();
         seriesR = new LineGraphSeries<DataPoint>();
 
-        GraphView graphView = (GraphView) findViewById(R.id.graph);
+        GraphView graphesq = (GraphView) findViewById(R.id.graph);
+        GraphView graphdir = (GraphView) findViewById(R.id.graph2);
 
-        graphView.addSeries(seriesL);
-        graphView.addSeries(seriesR);
+        graphesq.addSeries(seriesL);
+        graphdir.addSeries(seriesR);
 
         seriesL.setColor(Color.GREEN);
         seriesL.setTitle("Soma do esquerdo");
 
-        seriesL.setColor(Color.BLUE);
-        seriesL.setTitle("Soma do direito");
+        seriesR.setColor(Color.BLUE);
+        seriesR.setTitle("Soma do direito");
 
-        //customize viewport
-        Viewport viewport = graphView.getViewport();
-        viewport.setYAxisBoundsManual(true);
-        viewport.setXAxisBoundsManual(true);
-        viewport.setMinY(0);
-        viewport.setMaxY(1000);
-        viewport.setMinX(0);
-        viewport.setMaxX(10000);
+        //customize viewportesq
+        Viewport viewportesq = graphesq.getViewport();
+        viewportesq.setYAxisBoundsManual(true);
+        viewportesq.setXAxisBoundsManual(true);
+        viewportesq.setMinY(0);
+        viewportesq.setMaxY(1000);
+        viewportesq.setMinX(0);
+        viewportesq.setMaxX(10000);
+
+        //customize viewportdir
+        Viewport viewportdir = graphdir.getViewport();
+        viewportdir.setYAxisBoundsManual(true);
+        viewportdir.setXAxisBoundsManual(true);
+        viewportdir.setMinY(0);
+        viewportdir.setMaxY(1000);
+        viewportdir.setMinX(0);
+        viewportdir.setMaxX(10000);
 
         Bundle bn = getIntent().getExtras();
         String mDeviceAddressLeft = bn.getString("esq");
@@ -302,7 +312,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextR.setText(s);
 
-                seriesR.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime,(double) RSum),true,10000);
+                seriesR.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime),(double) RSum),true,10000);
 
                 if (RHal > MaxRHal) {
                     MaxRHal = RHal;
@@ -443,7 +453,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextL.setText(s);
 
-                seriesL.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime,(double) LSum),true,10000);
+                seriesL.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime), (double) LSum),true,10000);
 
                 if (LHal > MaxLHal) {
                     MaxLHal = LHal;
@@ -521,23 +531,27 @@ public class ReaderActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Encerrar atividade");
-        alertDialog.setMessage("Deseja encerrar a atividade e a conexão com as palmilhas?");
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        BTConnectionL.disconnect();
-                        BTConnectionR.disconnect();
-                        finish();
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+        if (data_dir_esq) {
+            Toast.makeText(this, "Parar a aquisição primeiro", Toast.LENGTH_SHORT).show();
+        } else {
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Encerrar atividade");
+            alertDialog.setMessage("Deseja encerrar a atividade e a conexão com as palmilhas?");
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            BTConnectionL.disconnect();
+                            BTConnectionR.disconnect();
+                            finish();
                         }
-                });
-        alertDialog.show();
+                    });
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+            alertDialog.show();
+        }
     }
 
 
@@ -601,7 +615,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     public void save_data(View view) {
 
-        if (Build.VERSION.SDK_INT >= 23)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkPermission())
             {
@@ -707,6 +721,4 @@ public class ReaderActivity extends AppCompatActivity {
             Toast.makeText(this, "Storage could not be found", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }

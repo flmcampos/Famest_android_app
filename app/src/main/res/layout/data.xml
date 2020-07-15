@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:layout_marginBottom="615dp"
-        android:text="Máximos"
+        android:text="Máximos (KPa)"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"

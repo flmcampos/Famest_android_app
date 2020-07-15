@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,32 +26,71 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class  ProfileActivity extends AppCompatActivity {
 
-    public EditText mEditTextNome;
-    public EditText mEditTextIdade;
-    public EditText mEditTextAltura;
-    public EditText mEditTextPeso;
-    public EditText mEditTextNumeroSapato;
+    private EditText mEditTextNome;
+    private EditText mEditTextIdade;
+    private EditText mEditTextAltura;
+    private EditText mEditTextPeso;
+    private EditText mEditTextNumeroSapato;
+    private CheckBox checkHomem;
+    private CheckBox checkMulher;
+    public static String gender;
+
+    public static String Nome;
+    public static String Idade;
+    public static String Altura;
+    public static String Peso;
+    public static String Numero_Sapato;
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
-    }
 
-    public void guardarInfo(View view) {
-
-        Intent intent = new Intent(this, MainActivity.class);
-
+        checkHomem = (CheckBox) findViewById(R.id.checkBoxHomem);
+        checkMulher = (CheckBox) findViewById(R.id.checkBoxMulher);
         mEditTextNome = (EditText) findViewById(R.id.editTextNome);
         mEditTextIdade = (EditText) findViewById((R.id.editTextIdade));
         mEditTextAltura = (EditText) findViewById(R.id.editTextAltura);
         mEditTextPeso = (EditText) findViewById(R.id.editTextPeso);
         mEditTextNumeroSapato = (EditText) findViewById(R.id.editTextNumeroSapato);
 
-        String Nome = mEditTextNome.getText().toString();
-        String Idade = mEditTextIdade.getText().toString();
-        String Altura = mEditTextAltura.getText().toString();
-        String Peso = mEditTextPeso.getText().toString();
-        String Numero_Sapato = mEditTextNumeroSapato.getText().toString();
+    }
+
+    public void onCheckboxClicked(View view) {
+        // Is the view now checked?
+        boolean checked = ((CheckBox) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.checkBoxHomem:
+                if (checked) {
+                    checkMulher.setChecked(false);
+                    gender = checkHomem.getText().toString();
+                } else {
+                    checkHomem.setChecked(true);
+                    gender = checkHomem.getText().toString();
+                }
+                break;
+            case R.id.checkBoxMulher:
+                if (checked) {
+                    checkHomem.setChecked(false);
+                    gender = checkMulher.getText().toString();
+                } else {
+                    checkMulher.setChecked(true);
+                    gender = checkMulher.getText().toString();
+                }
+                break;
+        }
+    }
+
+    public void guardarInfo(View view) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+
+        Nome = mEditTextNome.getText().toString();
+        Idade = mEditTextIdade.getText().toString();
+        Altura = mEditTextAltura.getText().toString();
+        Peso = mEditTextPeso.getText().toString();
+        Numero_Sapato = mEditTextNumeroSapato.getText().toString();
 
         Context context = getApplicationContext();
         CharSequence text = "Perfil Guardado";

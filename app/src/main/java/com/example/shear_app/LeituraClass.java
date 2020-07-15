@@ -18,10 +18,18 @@ public class LeituraClass {
     public int Humid_data;
     public long readingDate;
 
+    public String name = ProfileActivity.Nome;
+    public String age = ProfileActivity.Idade;
+    public String gender = ProfileActivity.gender;
+    public String height = ProfileActivity.Altura;
+    public String Weight = ProfileActivity.Peso;
+    public String foot_size = ProfileActivity.Numero_Sapato;
+
+
     @NonNull
     @Override
     public String toString() {
-        return readingDate + "," +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
+        return name+ "," + age + "," + gender + "," +height+ "," + Weight + "," + foot_size + System.getProperty("line.separator") + System.getProperty("line.separator") + readingDate + "," +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
                 +Met3_data+ "," + Mid_data+ "," +Cal1_data+ "," +Cal2_data+ ","+ Temp_data + "," + Humid_data + System.getProperty("line.separator");
     }
 

@@ -1,6 +1,7 @@
 package com.example.shear_app;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -36,5 +37,13 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, ReaderActivity.class);
         i.putExtras(bn);
         startActivity(i);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity();
+        }
     }
 }
