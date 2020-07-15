@@ -144,9 +144,11 @@ public class ReaderActivity extends AppCompatActivity {
         //customize viewport
         Viewport viewport = graphView.getViewport();
         viewport.setYAxisBoundsManual(true);
+        viewport.setXAxisBoundsManual(true);
         viewport.setMinY(0);
         viewport.setMaxY(1000);
         viewport.setMinX(0);
+        viewport.setMaxX(10000);
 
         Bundle bn = getIntent().getExtras();
         String mDeviceAddressLeft = bn.getString("esq");
@@ -263,7 +265,14 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextR.setText(s);
 
-                seriesR.appendData(new DataPoint((double) val.readingDate,(double) RSum),true,300);
+                /*runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        seriesR.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime, (double) RSum), true, 10000000);
+                    }
+                });*/
+
+                seriesR.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime,(double) RSum),true,10000);
 
             }
         }
@@ -369,7 +378,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextL.setText(s);
 
-                seriesR.appendData(new DataPoint((double) val.readingDate,(double) LSum),true,300);
+                seriesL.appendData(new DataPoint((double) SystemClock.elapsedRealtime() - startTime,(double) LSum),true,10000);
 
             }
         }
