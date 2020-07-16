@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -14,6 +15,8 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +51,9 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class ReaderActivity extends AppCompatActivity {
+
+    Vibrator v;
+    // Vibrate for 500 milliseconds
 
     private static final int PERMISSION_REQUEST_CODE = 1;
 
@@ -111,6 +117,8 @@ public class ReaderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.chat_bt);
+
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         frameLayout = (FrameLayout) findViewById(R.id.map_container);
         dataLayout = (FrameLayout) findViewById(R.id.data_container);
@@ -333,6 +341,11 @@ public class ReaderActivity extends AppCompatActivity {
                     messageRMet1.setText(String.format("%d", MaxRMet1));
                     if (MaxRMet1 > 300) {
                         messageRMet1.setBackgroundColor(Color.parseColor("#E38282"));
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                        } else {
+                            v.vibrate(500);
+                        }
                     }
                 }
 
