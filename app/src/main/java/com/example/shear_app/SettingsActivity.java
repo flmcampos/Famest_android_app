@@ -27,8 +27,8 @@ public class SettingsActivity extends Activity {
     String[] name;
     String[] address;
 
-    private static boolean BTesq = false;
-    private static boolean BTdir = false;
+    public static boolean BTesq = false;
+    public static boolean BTdir = false;
 
     public Button b_dir;
     public Button b_esq;
@@ -88,6 +88,18 @@ public class SettingsActivity extends Activity {
     }
 //
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (ProfileActivity.perfil) {
+            Bundle bn = new Bundle();
+            bn.putString("esq", mDeviceAddressLeft);
+            bn.putString("dir", mDeviceAddressRight);
+            Intent i = new Intent(this, MainActivity.class);
+            i.putExtras(bn);
+        }
+    }
 
     public void pé_esq(View view) {
         connectToDevice("esq");

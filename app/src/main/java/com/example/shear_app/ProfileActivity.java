@@ -33,14 +33,15 @@ public class  ProfileActivity extends AppCompatActivity {
     private EditText mEditTextNumeroSapato;
     private CheckBox checkHomem;
     private CheckBox checkMulher;
-    public static String gender;
 
+    public static String gender;
     public static String Nome;
     public static String Idade;
     public static String Altura;
     public static String Peso;
     public static String Numero_Sapato;
 
+    public static Boolean perfil = false;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,20 +85,30 @@ public class  ProfileActivity extends AppCompatActivity {
 
     public void guardarInfo(View view) {
 
-        Intent intent = new Intent(this, MainActivity.class);
-
         Nome = mEditTextNome.getText().toString();
         Idade = mEditTextIdade.getText().toString();
         Altura = mEditTextAltura.getText().toString();
         Peso = mEditTextPeso.getText().toString();
         Numero_Sapato = mEditTextNumeroSapato.getText().toString();
 
-        Context context = getApplicationContext();
-        CharSequence text = "Perfil Guardado";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        if (Nome.length()>0 && Idade.length()>0 && Altura.length()>0 && Peso.length()>0 && Numero_Sapato.length()>0 && gender.length()>0) {
 
-        startActivity(intent);
+            //Intent intent = new Intent(this, MainActivity.class);
+
+            Context context = getApplicationContext();
+            CharSequence text = "Perfil Guardado";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            perfil = true;
+
+            Intent openMainActivity = new Intent(this, MainActivity.class);
+            openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivityIfNeeded(openMainActivity, 0);
+            //startActivity(intent);
+
+        } else {
+            Toast.makeText(this, "Preencha os restantes campos", Toast.LENGTH_SHORT).show();
+        }
     }
 }

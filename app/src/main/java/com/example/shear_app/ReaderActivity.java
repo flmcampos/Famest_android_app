@@ -70,8 +70,10 @@ public class ReaderActivity extends AppCompatActivity {
     List<LeituraClass> PeDireito = new ArrayList<>();
     List<LeituraClass> PeEsquerdo = new ArrayList<>();
 
-    private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2, LHum, LTemp;
-    private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2, RHum, RTemp;
+    private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2;
+    private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2;
+
+    private float LHum, LTemp, RHum, RTemp;
 
     private int RSum, LSum;
 
@@ -168,7 +170,7 @@ public class ReaderActivity extends AppCompatActivity {
         viewportesq.setMinY(0);
         viewportesq.setMaxY(1000);
         viewportesq.setMinX(0);
-        viewportesq.setMaxX(10000);
+        viewportesq.setMaxX(10);
 
         //customize viewportdir
         Viewport viewportdir = graphdir.getViewport();
@@ -177,7 +179,7 @@ public class ReaderActivity extends AppCompatActivity {
         viewportdir.setMinY(0);
         viewportdir.setMaxY(1000);
         viewportdir.setMinX(0);
-        viewportdir.setMaxX(10000);
+        viewportdir.setMaxX(10);
 
         Bundle bn = getIntent().getExtras();
         String mDeviceAddressLeft = bn.getString("esq");
@@ -204,11 +206,11 @@ public class ReaderActivity extends AppCompatActivity {
 
         messageRHal = findViewById(R.id.RHalMax);
         messageRMet1 = findViewById(R.id.RMet1Max);
-        messageRMet2 = findViewById(R.id.LMet2Max);
-        messageRMet3 = findViewById(R.id.LMet3Max);
-        messageRMid = findViewById(R.id.LMidMax);
-        messageRCal1 = findViewById(R.id.LCal1Max);
-        messageRCal2 = findViewById(R.id.LCal2Max);
+        messageRMet2 = findViewById(R.id.RMet2Max);
+        messageRMet3 = findViewById(R.id.RMet3Max);
+        messageRMid = findViewById(R.id.RMidMax);
+        messageRCal1 = findViewById(R.id.RCal1Max);
+        messageRCal2 = findViewById(R.id.RCal2Max);
 
         MaxLHal = MaxLMet1 = MaxLMet2 = MaxLMet3 = MaxLMid = MaxLCal1 = MaxLCal2 = MaxRHal = MaxRMet1 = MaxRMet2 = MaxRMet3 = MaxRMid = MaxRCal1 = MaxRCal2 = 0;
 
@@ -238,6 +240,8 @@ public class ReaderActivity extends AppCompatActivity {
                 RMid = Integer.parseInt(arrofs[5]);
                 RCal1 = Integer.parseInt(arrofs[6]);
                 RCal2 = Integer.parseInt(arrofs[7]);
+                RTemp = Float.parseFloat(arrofs[8]);
+                RHum = Float.parseFloat(arrofs[9]);
 
 
                 RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
@@ -305,6 +309,8 @@ public class ReaderActivity extends AppCompatActivity {
                 val.Mid_data = RMid;
                 val.Cal1_data = RCal1;
                 val.Cal2_data = RCal2;
+                val.Temp_data = RTemp;
+                val.Humid_data = RHum;
 
                 val.readingDate = SystemClock.elapsedRealtime() - startTime;
 
@@ -312,41 +318,62 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextR.setText(s);
 
-                seriesR.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime),(double) RSum),true,10000);
+                seriesR.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime)/1000,(double) RSum),true,10000);
 
                 if (RHal > MaxRHal) {
                     MaxRHal = RHal;
                     messageRHal.setText(String.format("%d", MaxRHal));
+                    if (MaxRHal > 300) {
+                        messageRHal.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (RMet1 > MaxRMet1) {
                     MaxRMet1 = RMet1;
                     messageRMet1.setText(String.format("%d", MaxRMet1));
+                    if (MaxRMet1 > 300) {
+                        messageRMet1.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (RMet2 > MaxRMet2) {
                     MaxRMet2 = RMet2;
                     messageRMet2.setText(String.format("%d", MaxRMet2));
+                    if (MaxRMet2 > 300) {
+                        messageRMet2.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (RMet3 > MaxRMet3) {
                     MaxRMet3 = RMet3;
                     messageRMet3.setText(String.format("%d", MaxRMet3));
+                    if (MaxRMet3 > 300) {
+                        messageRMet3.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (RMid > MaxRMid) {
                     MaxRMid = RMid;
                     messageRMid.setText(String.format("%d", MaxRMid));
+                    if (MaxRMid > 300) {
+                        messageRMid.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (RCal1 > MaxRCal1) {
                     MaxRCal1 = RCal1;
                     messageRCal1.setText(String.format("%d", MaxRCal1));
+                    if (MaxRCal1 > 300) {
+                        messageRCal1.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (RCal2 > MaxRCal2) {
                     MaxRCal2 = RCal2;
                     messageRCal2.setText(String.format("%d", MaxRCal2));
+                    if (MaxRCal2 > 300) {
+                        messageRCal2.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
             }
@@ -371,6 +398,9 @@ public class ReaderActivity extends AppCompatActivity {
                 LMid = Integer.parseInt(arrofs[5]);
                 LCal1 = Integer.parseInt(arrofs[6]);
                 LCal2 = Integer.parseInt(arrofs[7]);
+                LTemp = Float.parseFloat(arrofs[8]);
+                LHum = Float.parseFloat(arrofs[9]);
+
 
 
                 LSum = (LHal) + (LMet1) + (LMet2) + (LMet3) + (LMid) + (LCal1) + (LCal2);
@@ -446,6 +476,8 @@ public class ReaderActivity extends AppCompatActivity {
                 val.Mid_data = LMid;
                 val.Cal1_data = LCal1;
                 val.Cal2_data = LCal2;
+                val.Temp_data = LTemp;
+                val.Humid_data = LHum;
 
                 val.readingDate = SystemClock.elapsedRealtime() - startTime;
 
@@ -453,41 +485,62 @@ public class ReaderActivity extends AppCompatActivity {
 
                 messageTextL.setText(s);
 
-                seriesL.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime), (double) LSum),true,10000);
+                seriesL.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime)/1000, (double) LSum),true,10000);
 
                 if (LHal > MaxLHal) {
                     MaxLHal = LHal;
                     messageLHal.setText(String.format("%d", MaxLHal));
+                    if (MaxLHal > 300) {
+                        messageLHal.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (LMet1 > MaxLMet1) {
                     MaxLMet1 = LMet1;
                     messageLMet1.setText(String.format("%d", MaxLMet1));
+                    if (MaxLMet1 > 300) {
+                        messageLMet1.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (LMet2 > MaxLMet2) {
                     MaxLMet2 = LMet2;
                     messageLMet2.setText(String.format("%d", MaxLMet2));
+                    if (MaxLMet2 > 300) {
+                        messageLMet2.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (LMet3 > MaxLMet3) {
                     MaxLMet3 = LMet3;
                     messageLMet3.setText(String.format("%d", MaxLMet3));
+                    if (MaxLMet3 > 300) {
+                        messageLMet3.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (LMid > MaxLMid) {
                     MaxLMid = LMid;
                     messageLMid.setText(String.format("%d", MaxLMid));
+                    if (MaxLMid > 300) {
+                        messageLMid.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (LCal1 > MaxLCal1) {
                     MaxLCal1 = LCal1;
                     messageLCal1.setText(String.format("%d", MaxLCal1));
+                    if (MaxLCal1 > 300) {
+                        messageLCal1.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
                 if (LCal2 > MaxLCal2) {
                     MaxLCal2 = LCal2;
                     messageLCal2.setText(String.format("%d", MaxLCal2));
+                    if (MaxLCal2 > 300) {
+                        messageLCal2.setBackgroundColor(Color.parseColor("#E38282"));
+                    }
                 }
 
             }
@@ -615,6 +668,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     public void save_data(View view) {
 
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkPermission())
@@ -666,20 +720,30 @@ public class ReaderActivity extends AppCompatActivity {
 
     private void savedata_tofile() {
 
-        String test = "Text file to check saved data";
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd,HH:mm");
+
+
+        String name = ProfileActivity.Nome;
+        String age = ProfileActivity.Idade;
+        String gender = ProfileActivity.gender;
+        String height = ProfileActivity.Altura;
+        String Weight = ProfileActivity.Peso;
+        String foot_size = ProfileActivity.Numero_Sapato;
+
         String state = Environment.getExternalStorageState();
 
         if (Environment.MEDIA_MOUNTED.equals(state)) {
 
             String root = Environment.getExternalStorageDirectory().toString();
-            File dir = new File(root + "/MyAppFile");
+            File dir = new File(root + "/FAMEST");
 
             if (!dir.exists()) {
 
                 dir.mkdir();
 
             }
-            File file = new File(dir, "example.txt");
+            File file = new File(dir, name + " on " + dateFormat.format(c.getTime()) +".txt");
             if (file.exists()){
                 file.delete();
             } else {
@@ -692,6 +756,10 @@ public class ReaderActivity extends AppCompatActivity {
                     //fos.write(PeEsquerdo.toString().getBytes());
                     //fos.write(PeDireito.toString().getBytes());
                     //fos.write(test.getBytes());
+                    fos.write(("Nome: " + name + System.getProperty("line.separator")+ "Idade: " + age + " anos" + System.getProperty("line.separator") + "Sexo: " + gender
+                            + System.getProperty("line.separator")+ "Altura: " + height+ " cm" + System.getProperty("line.separator")+ "Peso: " + Weight + " Kg"+
+                            System.getProperty("line.separator") + "Nº pé: " + foot_size + System.getProperty("line.separator")+ System.getProperty("line.separator")).getBytes());
+
                     fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
                     for (int i = 0; i < PeEsquerdo.size(); i++) {
                         fos.write(PeEsquerdo.get(i).toString().getBytes());

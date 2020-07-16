@@ -22,8 +22,6 @@ public class PairedListActivity extends Activity {
     String info;
 
     public static String DEVICE_ADDRESS = "device_address";
-    public static String  DEVICE_ADDRESS_ESQ = "device_address_esq";
-    public static String  DEVICE_ADDRESS_DIR = "device_address_dir";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

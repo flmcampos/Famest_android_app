@@ -34,28 +34,23 @@
         android:id="@+id/checkBoxHomem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
         android:layout_marginTop="24dp"
-        android:text="Homem"
         android:onClick="onCheckboxClicked"
+        android:text="Masculino"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/checkBoxMulher"
-        app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNome"
-        android:layout_marginLeft="96dp" />
+        app:layout_constraintStart_toStartOf="@+id/editTextNome"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
 
     <CheckBox
         android:id="@+id/checkBoxMulher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Mulher"
         android:onClick="onCheckboxClicked"
+        android:text="Feminino"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxHomem"
         app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
 
     <EditText
@@ -66,9 +61,7 @@
         android:ems="10"
         android:hint="Idade"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxHomem"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxHomem" />
 
     <EditText
@@ -77,11 +70,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Altura"
+        android:hint="Altura (cm)"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextIdade"
         app:layout_constraintTop_toBottomOf="@+id/editTextIdade" />
 
     <EditText
@@ -90,11 +81,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Peso"
+        android:hint="Peso (Kg)"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/editTextAltura"
         app:layout_constraintTop_toBottomOf="@+id/editTextAltura" />
 
     <EditText
@@ -103,11 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Número Sapato"
+        android:hint="Nº Pé"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.631"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/checkBoxMulher"
         app:layout_constraintTop_toBottomOf="@+id/editTextPeso" />
 
     <TextView
@@ -117,8 +104,7 @@
         android:layout_marginTop="36dp"
         android:text="Género"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/checkBoxHomem"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
@@ -128,8 +114,7 @@
         android:layout_marginTop="38dp"
         android:text="Idade"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextIdade"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
@@ -139,9 +124,7 @@
         android:layout_marginTop="46dp"
         android:text="Altura"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextAltura"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
@@ -151,9 +134,7 @@
         android:layout_marginTop="44dp"
         android:text="Peso"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextPeso"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
@@ -161,10 +142,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="Núimero Pé"
+        android:text="Número Pé"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumeroSapato"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button

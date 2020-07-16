@@ -6,7 +6,7 @@
     <string name="button">Button</string>
     <string name="PairedDevices">Paired Devices</string>
     <string name="textview">TextView</string>
-    <string name="Start">Start</string>
+    <string name="Start">Começar sessão</string>
     <string name="Esquerdo">Esquerdo</string>
     <string name="Direito">Direito</string>
     <string name="data_to_collect_esq">Data to collect esq</string>
