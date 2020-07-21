@@ -14,17 +14,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     int c =0;
-    private Button read;
+    private Button calibration;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        read = findViewById(R.id.goToStart);
+        calibration = findViewById(R.id.goToStart);
 
         if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq) {
-            read.setEnabled(true);
+            calibration.setEnabled(true);
 
         }
     }
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq && c==0) {
-            read.setEnabled(true);
+            calibration.setEnabled(true);
             AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Início de sessão");
             alertDialog.setMessage("O utilizador pode agora começar a sessão. Se desejar corrigir os dados inseridos " +
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bn = getIntent().getExtras();
         bn.getString("esq");
         bn.getString("dir");
-        Intent i = new Intent(this, ReaderActivity.class);
+        Intent i = new Intent(this, CalibrationActivity.class);
         i.putExtras(bn);
         startActivity(i);
     }

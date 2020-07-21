@@ -414,12 +414,9 @@ public class ReaderActivity extends AppCompatActivity {
                 LTemp = Float.parseFloat(arrofs[8]);
                 LHum = Float.parseFloat(arrofs[9]);
 
-
-
                 LSum = (LHal) + (LMet1) + (LMet2) + (LMet3) + (LMid) + (LCal1) + (LCal2);
 
                 //Log.d("Values", "Valores inteiros: " + LHal + "," + LMet2 + "," + LMet3 + "," + LMid + "," + LCal1 + "," + LCal2 + ", SOMA: " + LSum);
-
 
                 //Ball growth
 
@@ -477,7 +474,6 @@ public class ReaderActivity extends AppCompatActivity {
 
                 } else {
                     CP_esq_ball.setVisibility(View.INVISIBLE);
-
                 }
 
                 LeituraClass val = new LeituraClass();
@@ -555,7 +551,6 @@ public class ReaderActivity extends AppCompatActivity {
                         messageLCal2.setBackgroundColor(Color.parseColor("#E38282"));
                     }
                 }
-
             }
         }
     };
@@ -620,8 +615,6 @@ public class ReaderActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void start_map(View view) {
         dataLayout.setVisibility(View.INVISIBLE);
         graphLayout.setVisibility(View.INVISIBLE);
@@ -651,10 +644,7 @@ public class ReaderActivity extends AppCompatActivity {
             customHandler.postDelayed(updateTimerThread, 0);
         } else {
             tvTimer.setVisibility(View.VISIBLE);
-
         }
-
-
     }
 
     public void Stop_read(View view) {
@@ -668,7 +658,6 @@ public class ReaderActivity extends AppCompatActivity {
         tvTimer.setVisibility(View.INVISIBLE);
 
         //customHandler.removeCallbacks(updateTimerThread);
-
     }
 
     private Runnable updateTimerThread = new Runnable() {
