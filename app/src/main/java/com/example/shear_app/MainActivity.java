@@ -48,8 +48,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void Instructions(View view){
+        Intent i = new Intent(this, InstructionsActivity.class);
+        startActivity(i);
+    }
+
+
     public void Settings(View view) {
-        Intent i = new Intent(this,SettingsActivity.class);
+        Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
 

@@ -27,6 +27,7 @@
         <activity android:name=".ReaderActivity" />
         <activity android:name=".PairedListActivity" />
         <activity android:name=".DrawerActivity" />
+        <activity android:name=".InstructionsActivity" />
     </application>
 
 </manifest>

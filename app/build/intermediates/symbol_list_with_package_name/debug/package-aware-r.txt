@@ -1251,6 +1251,7 @@ id fixed
 id forever
 id fragment_container
 id ghost_view
+id goToInstructions
 id goToProfile
 id goToSettings
 id goToStart
@@ -1398,6 +1399,8 @@ id textView4
 id textView5
 id textView6
 id textView7
+id textView8
+id textView9
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1481,6 +1484,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout calibracao
 layout chat_bt
 layout custom_dialog
 layout data
@@ -1501,6 +1505,7 @@ layout design_text_input_password_icon
 layout drawer_activity
 layout feet_map
 layout graphs
+layout instructions
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header
