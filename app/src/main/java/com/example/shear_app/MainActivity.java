@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bn = getIntent().getExtras();
         bn.getString("esq");
         bn.getString("dir");
-        Intent i = new Intent(this, CalibrationActivity.class);
+        Intent i = new Intent(this, ReaderActivity.class);
         i.putExtras(bn);
         startActivity(i);
     }

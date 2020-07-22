@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -51,6 +52,28 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class ReaderActivity extends AppCompatActivity {
+
+    TextView calibrationTimer;
+
+    long startTimeC = 0, timeInMillisecondsC = 15;
+
+    Button btnStartC;
+
+    private Button read;
+
+    Boolean data_dir_esqC = false;
+
+    private int RHalC, RMet1C, RMet2C, RMet3C, RMidC, RCal1C, RCal2C;
+    private int LHalC, LMet1C, LMet2C, LMet3C, LMidC, LCal1C, LCal2C;
+
+    private float  RTempC, RHumC, LTempC, LHumC;
+
+    private int RSumC, LSumC;
+
+    public List<CalibrationClass> PeDireitoC = new ArrayList<>();
+    public List<CalibrationClass> PeEsquerdoC = new ArrayList<>();
+
+    Handler customHandlerC = new Handler();
 
     Vibrator v;
     // Vibrate for 500 milliseconds
@@ -115,6 +138,143 @@ public class ReaderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.calibration);
+
+        btnStartC = findViewById(R.id.goToStartCalibration);
+
+        Bundle bn = getIntent().getExtras();
+        String mDeviceAddressLeft = bn.getString("esq");
+        String mDeviceAddressRight = bn.getString("dir");
+
+        //Create connection for device
+        BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsqC);
+        BTConnectionL.execute();
+
+        //Create connection for device
+        BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDirC);
+        BTConnectionR.execute();
+
+        read = findViewById(R.id.goToReaderActivity);
+
+        calibrationTimer = (TextView) findViewById(R.id.calibrationTimer);
+    }
+
+    private final Handler mHandlerDirC = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if (data_dir_esqC) {
+                String sC = (String) msg.obj;
+                Log.d("TAG", "Mensagem lida R: " + sC);
+
+                String delimiter = "\\|";
+                String[] arrofsC = sC.split(delimiter);
+
+                RHalC = Integer.parseInt(arrofsC[1]);
+                RMet1C = Integer.parseInt(arrofsC[2]);
+                RMet2C = Integer.parseInt(arrofsC[3]);
+                RMet3C = Integer.parseInt(arrofsC[4]);
+                RMidC = Integer.parseInt(arrofsC[5]);
+                RCal1C = Integer.parseInt(arrofsC[6]);
+                RCal2C = Integer.parseInt(arrofsC[7]);
+                RTempC = Float.parseFloat(arrofsC[8]);
+                RHumC = Float.parseFloat(arrofsC[9]);
+
+
+                RSumC = (RHalC) + (RMet1C) + (RMet2C) + (RMet3C) + (RMidC) + (RCal1C) + (RCal2C);
+
+                CalibrationClass valC = new CalibrationClass();
+
+                valC.HalC_data = RHalC;
+                valC.Met1C_data = RMet1C;
+                valC.Met2C_data = RMet2C;
+                valC.Met3C_data = RMet3C;
+                valC.MidC_data = RMidC;
+                valC.Cal1C_data = RCal1C;
+                valC.Cal2C_data = RCal2C;
+                valC.TempC_data = RTempC;
+                valC.HumidC_data = RHumC;
+                valC.readingDateC = SystemClock.elapsedRealtime() - startTimeC;
+
+                PeDireitoC.add(valC);
+            }
+        }
+    };
+
+    private final Handler mHandlerEsqC = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            if (data_dir_esqC) {
+                String sC = (String) msg.obj;
+                Log.d("TAG", "Mensagem lida R: " + sC);
+
+                String delimiter = "\\|";
+                String[] arrofsC = sC.split(delimiter);
+
+                LHalC = Integer.parseInt(arrofsC[1]);
+                LMet1C = Integer.parseInt(arrofsC[2]);
+                LMet2C = Integer.parseInt(arrofsC[3]);
+                LMet3C = Integer.parseInt(arrofsC[4]);
+                LMidC = Integer.parseInt(arrofsC[5]);
+                LCal1C = Integer.parseInt(arrofsC[6]);
+                LCal2C = Integer.parseInt(arrofsC[7]);
+                LTempC = Float.parseFloat(arrofsC[8]);
+                LHumC = Float.parseFloat(arrofsC[9]);
+
+
+                LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
+
+                CalibrationClass valC = new CalibrationClass();
+
+                valC.HalC_data = LHalC;
+                valC.Met1C_data = LMet1C;
+                valC.Met2C_data = LMet2C;
+                valC.Met3C_data = LMet3C;
+                valC.MidC_data = LMidC;
+                valC.Cal1C_data = LCal1C;
+                valC.Cal2C_data = LCal2C;
+                valC.TempC_data = LTempC;
+                valC.HumidC_data = LHumC;
+                valC.readingDateC = SystemClock.elapsedRealtime() - startTimeC;
+
+                PeEsquerdoC.add(valC);
+            }
+        }
+    };
+
+    public void Start_ReadC(View view) {
+
+        data_dir_esqC = true;
+        btnStartC.setEnabled(false);
+
+        if (btnStartC.getText().equals("Start")) {
+            startTimeC = SystemClock.elapsedRealtime();
+            customHandlerC.postDelayed(updateTimerThreadC, 0);
+        } else {
+            calibrationTimer.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private Runnable updateTimerThreadC = new Runnable() {
+        public void run() {
+            customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
+            timeInMillisecondsC = 15 - (SystemClock.elapsedRealtime() - startTimeC);
+            calibrationTimer.setText(getDateFromMillisC(timeInMillisecondsC));
+
+            if (timeInMillisecondsC <= 0) {
+                calibrationTimer.setText(getDateFromMillisC(0));
+                data_dir_esqC = false;
+                read.setEnabled(true);
+            }
+        }
+    };
+
+    public static String getDateFromMillisC(long d) {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df.format(d);
+    }
+
+    public void Reader(View view){
 
         setContentView(R.layout.chat_bt);
 
@@ -189,18 +349,6 @@ public class ReaderActivity extends AppCompatActivity {
         viewportdir.setMinX(0);
         viewportdir.setMaxX(10);
 
-        Bundle bn = getIntent().getExtras();
-        String mDeviceAddressLeft = bn.getString("esq");
-        String mDeviceAddressRight = bn.getString("dir");
-
-        //Create connection for device
-        BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsq);
-        BTConnectionL.execute();
-
-        //Create connection for device
-        BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
-        BTConnectionR.execute();
-
         messageTextR = findViewById(R.id.Data_collected_dir);
         messageTextL = findViewById(R.id.Data_collected_esq);
 
@@ -222,8 +370,19 @@ public class ReaderActivity extends AppCompatActivity {
 
         MaxLHal = MaxLMet1 = MaxLMet2 = MaxLMet3 = MaxLMid = MaxLCal1 = MaxLCal2 = MaxRHal = MaxRMet1 = MaxRMet2 = MaxRMet3 = MaxRMid = MaxRCal1 = MaxRCal2 = 0;
 
+        Bundle bn = getIntent().getExtras();
+        String mDeviceAddressLeft = bn.getString("esq");
+        String mDeviceAddressRight = bn.getString("dir");
 
+        //Create connection for device
+        BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsq);
+        BTConnectionL.execute();
+
+        //Create connection for device
+        BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
+        BTConnectionR.execute();
     }
+
 
     public static String getDateFromMillis(long d) {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
@@ -250,7 +409,6 @@ public class ReaderActivity extends AppCompatActivity {
                 RCal2 = Integer.parseInt(arrofs[7]);
                 RTemp = Float.parseFloat(arrofs[8]);
                 RHum = Float.parseFloat(arrofs[9]);
-
 
                 RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
 
@@ -295,9 +453,7 @@ public class ReaderActivity extends AppCompatActivity {
                 RCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))), PorterDuff.Mode.MULTIPLY);
 
                 if (RSum != 0) {
-
                     //Calculate center of pressure coordinates
-
                     CP_dir_ball.setVisibility(View.VISIBLE);
 
                     CP_dir_ball.setX((RHal_ball.getX() * RHal + RMet1_ball.getX() * RMet1 + RMet2_ball.getX() * RMet2 + RMet3_ball.getX() * RMet3 + RMid_ball.getX() * RMid + RCal1_ball.getX() * RCal1 + RCal2_ball.getX() * RCal2) / RSum);
@@ -305,7 +461,6 @@ public class ReaderActivity extends AppCompatActivity {
 
                 } else {
                     CP_dir_ball.setVisibility(View.INVISIBLE);
-
                 }
 
                 LeituraClass val = new LeituraClass();
@@ -319,7 +474,6 @@ public class ReaderActivity extends AppCompatActivity {
                 val.Cal2_data = RCal2;
                 val.Temp_data = RTemp;
                 val.Humid_data = RHum;
-
                 val.readingDate = SystemClock.elapsedRealtime() - startTime;
 
                 PeDireito.add(val);
@@ -670,7 +824,6 @@ public class ReaderActivity extends AppCompatActivity {
 
     public void save_data(View view) {
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             if (checkPermission())
@@ -725,7 +878,6 @@ public class ReaderActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd,HH:mm");
 
-
         String name = ProfileActivity.Nome;
         String age = ProfileActivity.Idade;
         String gender = ProfileActivity.gender;
@@ -741,16 +893,13 @@ public class ReaderActivity extends AppCompatActivity {
             File dir = new File(root + "/FAMEST");
 
             if (!dir.exists()) {
-
                 dir.mkdir();
-
             }
+
             File file = new File(dir, name + " on " + dateFormat.format(c.getTime()) +".txt");
             if (file.exists()){
                 file.delete();
             } else {
-
-
                 try {
                     FileOutputStream fos = new FileOutputStream(file);
                     //ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -761,6 +910,17 @@ public class ReaderActivity extends AppCompatActivity {
                     fos.write(("Nome: " + name + System.getProperty("line.separator")+ "Idade: " + age + " anos" + System.getProperty("line.separator") + "Sexo: " + gender
                             + System.getProperty("line.separator")+ "Altura: " + height+ " cm" + System.getProperty("line.separator")+ "Peso: " + Weight + " Kg"+
                             System.getProperty("line.separator") + "Nº pé: " + foot_size + System.getProperty("line.separator")+ System.getProperty("line.separator")).getBytes());
+
+                    fos.write(("Calibration from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+                    for (int i = 0; i < PeEsquerdoC.size(); i++) {
+                        fos.write(PeEsquerdoC.get(i).toString().getBytes());
+                    }
+
+                    fos.write(("Calibration from right foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+                    for (int i = 0; i < PeDireitoC.size(); i++) {
+                        fos.write(PeDireitoC.get(i).toString().getBytes());
+                    }
+
 
                     fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
                     for (int i = 0; i < PeEsquerdo.size(); i++) {
@@ -784,7 +944,6 @@ public class ReaderActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
-
                 }
             }
         } else {

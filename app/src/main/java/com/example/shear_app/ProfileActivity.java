@@ -54,7 +54,6 @@ public class  ProfileActivity extends AppCompatActivity {
         mEditTextAltura = (EditText) findViewById(R.id.editTextAltura);
         mEditTextPeso = (EditText) findViewById(R.id.editTextPeso);
         mEditTextNumeroSapato = (EditText) findViewById(R.id.editTextNumeroSapato);
-
     }
 
     public void onCheckboxClicked(View view) {
