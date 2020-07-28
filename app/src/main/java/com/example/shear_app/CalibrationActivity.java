@@ -128,28 +128,24 @@ public class CalibrationActivity extends AppCompatActivity {
         data_dir_esqC = true;
         btnStartC.setEnabled(false);
 
-        if (btnStartC.getText().equals("Start")) {
-            startTimeC = SystemClock.elapsedRealtime();
-            customHandlerC.postDelayed(updateTimerThread, 0);
-        } else {
-            calibrationTimer.setVisibility(View.VISIBLE);
-        }
+        startTimeC = SystemClock.elapsedRealtime();
+        customHandlerC.postDelayed(updateTimerThread, 0);
+
+        calibrationTimer.setVisibility(View.VISIBLE);
     }
 
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
-            timeInMillisecondsC =- (SystemClock.elapsedRealtime() - startTimeC)/1000;
-            calibrationTimer.setText("" + timeInMillisecondsC);
+            timeInMillisecondsC = 15- (SystemClock.elapsedRealtime() - startTimeC)/1000;
 
             if (timeInMillisecondsC <= 0) {
                 calibrationTimer.setText("Calibração realizada");
                 data_dir_esqC = false;
                 read.setEnabled(true);
                 peso_calculado = SumC / length;
-
-                BTConnectionCL.disconnect();
-                BTConnectionCR.disconnect();
+            } else {
+                calibrationTimer.setText("" + timeInMillisecondsC);
             }
         }
     };
@@ -161,7 +157,16 @@ public class CalibrationActivity extends AppCompatActivity {
     }*/
 
     public void Reader(View view){
+
+        BTConnectionCL.disconnect();
+        BTConnectionCR.disconnect();
+
+        Bundle bn = getIntent().getExtras();
+        bn.getString("esq");
+        bn.getString("dir");
         Intent i = new Intent(this, ReaderActivity.class);
+        i.putExtras(bn);
+
         startActivity(i);
     }
 }

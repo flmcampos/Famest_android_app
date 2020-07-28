@@ -139,6 +139,6 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
         Toast.makeText(mactivity.getApplicationContext(), "Disconnected", Toast.LENGTH_SHORT).show();
 
-        mactivity.finish();
+        //mactivity.finish();
     }
 }
