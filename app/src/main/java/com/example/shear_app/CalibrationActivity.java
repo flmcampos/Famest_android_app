@@ -41,6 +41,8 @@ public class CalibrationActivity extends AppCompatActivity {
 
     private int RSumC, LSumC;
 
+    private int peso_calculado;
+
     public List<CalibrationClass> PeDireitoC = new ArrayList<>();
     public List<CalibrationClass> PeEsquerdoC = new ArrayList<>();
 
@@ -166,22 +168,26 @@ public class CalibrationActivity extends AppCompatActivity {
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
-            timeInMillisecondsC = 15 - (SystemClock.elapsedRealtime() - startTimeC);
-            calibrationTimer.setText(getDateFromMillisC(timeInMillisecondsC));
+            timeInMillisecondsC = 15 - (SystemClock.elapsedRealtime() - startTimeC)/1000;
+            calibrationTimer.setText("" + timeInMillisecondsC);
 
             if (timeInMillisecondsC <= 0) {
-                calibrationTimer.setText(getDateFromMillisC(0));
+                calibrationTimer.setText("Calibração realizada");
                 data_dir_esqC = false;
                 read.setEnabled(true);
+                //peso_calculado = (int)(RSumC + LSumC) * (int) ;
+
+                BTConnectionCL.disconnect();
+                BTConnectionCR.disconnect();
             }
         }
     };
 
-    public static String getDateFromMillisC(long d) {
+    /*public static String getDateFromMillisC(long d) {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         return df.format(d);
-    }
+    }*/
 
     public void Reader(View view){
 

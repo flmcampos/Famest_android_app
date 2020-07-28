@@ -28,6 +28,7 @@
         <activity android:name=".PairedListActivity" />
         <activity android:name=".DrawerActivity" />
         <activity android:name=".InstructionsActivity" />
+        <activity android:name=".CalibrationActivity"/>
     </application>
 
 </manifest>

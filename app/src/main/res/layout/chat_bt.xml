@@ -9,14 +9,15 @@
 
     <FrameLayout
         android:id="@+id/data_container"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/map_container">
+        app:layout_constraintTop_toBottomOf="@+id/Tempo_label">
 
     </FrameLayout>
 
@@ -25,13 +26,28 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Data_collected_esq">
+        app:layout_constraintTop_toBottomOf="@+id/tvTimer">
 
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/graph_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimer">
 
     </FrameLayout>
 
@@ -49,52 +65,16 @@
         app:layout_constraintStart_toEndOf="@+id/Tempo_label"
         app:layout_constraintTop_toTopOf="@+id/Tempo_label" />
 
-    <FrameLayout
-        android:id="@+id/graph_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentBottom="true"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/map_container">
-
-    </FrameLayout>
-
-    <TextView
-        android:id="@+id/Data_collected_dir"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:text="data_to_collect_dir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Data_collected_esq" />
-
-    <TextView
-        android:id="@+id/Data_collected_esq"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:layout_marginTop="192dp"
-        android:text="data_to_collect_esq"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="Start_Read"
         android:text="Start"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintTop_toTopOf="@+id/data_collect" />
 
     <Button
         android:id="@+id/Data_Button"
@@ -102,12 +82,10 @@
         android:layout_height="wrap_content"
         android:onClick="Dados"
         android:text="@string/dados"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toEndOf="@+id/Start"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintTop_toTopOf="@+id/Start" />
 
     <Button
         android:id="@+id/data_collect"
@@ -119,47 +97,43 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
         android:onClick="start_map"
         android:text="Mapa"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
         app:layout_constraintEnd_toStartOf="@+id/Start"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
+        android:enabled="false"
         android:onClick="Stop_read"
         android:text="Stop"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Start"
-        app:layout_constraintVertical_bias="0.0"
-        android:enabled="false"/>
+        app:layout_constraintTop_toBottomOf="@+id/Start" />
 
     <TextView
         android:id="@+id/Tempo_label"
-        android:layout_width="141dp"
-        android:layout_height="54dp"
+        android:layout_width="152dp"
+        android:layout_height="52dp"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="20dp"
-        android:text="Tempo:"
+        android:text="Tempo: "
+        android:textAlignment="center"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
         app:layout_constraintEnd_toStartOf="@+id/tvTimer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Save_session"
-        app:layout_constraintVertical_bias="0.0" />
+        android:gravity="center_horizontal" />
 
     <Button
         android:id="@+id/Save_session"
@@ -170,10 +144,8 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="63dp"
         android:layout_marginRight="63dp"
-        android:layout_marginBottom="80dp"
         android:onClick="save_data"
         android:text="Save"
-        app:layout_constraintBottom_toTopOf="@+id/Data_collected_esq"
         app:layout_constraintEnd_toStartOf="@+id/Stop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/data_collect" />
@@ -186,13 +158,11 @@
         android:layout_marginLeft="36dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:layout_marginBottom="83dp"
-        android:text="Gráficos"
         android:onClick="start_graph"
-        app:layout_constraintBottom_toTopOf="@+id/data_container"
+        android:text="Gráficos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Stop"
-        app:layout_constraintTop_toBottomOf="@+id/Data_Button" />
+        app:layout_constraintTop_toTopOf="@+id/Stop" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

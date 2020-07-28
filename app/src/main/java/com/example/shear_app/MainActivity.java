@@ -49,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Instructions(View view){
-        Intent i = new Intent(this, InstructionsActivity.class);
-        startActivity(i);
+        setContentView(R.layout.instructions);
     }
 
 

@@ -6,79 +6,82 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="14"
-8-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml
+8-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml
+9-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.BLUETOOTH" />
-11-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:5:5-68
-11-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:5:22-65
+11-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:5:5-68
+11-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:5:22-65
 12    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-12-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:6:5-73
-12-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:6:22-71
+12-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:6:5-73
+12-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:6:22-71
 13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-13-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:7:5-78
-13-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:7:22-76
+13-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:7:5-78
+13-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:7:22-76
 14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-14-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:8:5-81
-14-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:8:22-78
+14-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:8:5-81
+14-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:8:22-78
 15    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
-15-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:9:5-81
-15-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:9:22-78
+15-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:9:5-81
+15-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:9:22-78
 16    <uses-permission android:name="android.permission.VIBRATE" />
-16-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:10:5-65
-16-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:10:22-63
+16-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:10:5-65
+16-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:10:22-63
 17
 18    <application
-18-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:11:5-31:19
+18-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:11:5-32:19
 19        android:allowBackup="true"
-19-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:12:9-35
+19-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:12:9-35
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.5.0-alpha01] C:\Users\Freddo\.gradle\caches\transforms-2\files-2.1\1663cb94e43a9cd97f3fe000ef93fb96\core-1.5.0-alpha01\AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.5.0-alpha01] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1663cb94e43a9cd97f3fe000ef93fb96\core-1.5.0-alpha01\AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/ic_launcher_famest"
-22-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:13:9-50
+22-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:13:9-50
 23        android:label="@string/app_name"
-23-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:14:9-41
+23-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:14:9-41
 24        android:roundIcon="@mipmap/ic_launcher_round"
-24-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:15:9-54
+24-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:15:9-54
 25        android:supportsRtl="true"
-25-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:16:9-35
+25-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:16:9-35
 26        android:testOnly="true"
 27        android:theme="@style/AppTheme" >
-27-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:17:9-40
+27-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:17:9-40
 28        <activity android:name="com.example.shear_app.MainActivity" >
-28-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:18:9-24:20
-28-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:18:19-47
+28-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:18:9-24:20
+28-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:18:19-47
 29            <intent-filter>
-29-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:19:13-23:29
+29-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:19:13-23:29
 30                <action android:name="android.intent.action.MAIN" />
-30-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:20:17-69
-30-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:20:25-66
+30-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:20:17-69
+30-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:20:25-66
 31
 32                <category android:name="android.intent.category.LAUNCHER" />
-32-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:22:17-77
-32-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:22:27-74
+32-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:22:17-77
+32-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:22:27-74
 33            </intent-filter>
 34        </activity>
 35        <activity android:name="com.example.shear_app.ProfileActivity" />
-35-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:25:9-53
-35-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:25:19-50
+35-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:25:9-53
+35-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:25:19-50
 36        <activity android:name="com.example.shear_app.SettingsActivity" />
-36-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:26:9-54
-36-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:26:19-51
+36-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:26:9-54
+36-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:26:19-51
 37        <activity android:name="com.example.shear_app.ReaderActivity" />
-37-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:27:9-52
-37-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:27:19-49
+37-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:27:9-52
+37-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:27:19-49
 38        <activity android:name="com.example.shear_app.PairedListActivity" />
-38-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:28:9-56
-38-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:28:19-53
+38-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:28:9-56
+38-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:28:19-53
 39        <activity android:name="com.example.shear_app.DrawerActivity" />
-39-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:29:9-52
-39-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:29:19-49
+39-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:29:9-52
+39-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:29:19-49
 40        <activity android:name="com.example.shear_app.InstructionsActivity" />
-40-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:30:9-58
-40-->D:\Docs\famest-app\app\src\main\AndroidManifest.xml:30:19-55
-41    </application>
-42
-43</manifest>
+40-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:30:9-58
+40-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:30:19-55
+41        <activity android:name="com.example.shear_app.CalibrationActivity" />
+41-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:31:9-56
+41-->C:\Users\fcampos\Desktop\famest-app\app\src\main\AndroidManifest.xml:31:19-54
+42    </application>
+43
+44</manifest>
