@@ -37,14 +37,11 @@ public class CalibrationActivity extends AppCompatActivity {
     private int RHalC, RMet1C, RMet2C, RMet3C, RMidC, RCal1C, RCal2C;
     private int LHalC, LMet1C, LMet2C, LMet3C, LMidC, LCal1C, LCal2C;
 
-    private float  RTempC, RHumC, LTempC, LHumC;
+    private int SumC = 0, length = 0;
 
     private int RSumC, LSumC;
 
     private int peso_calculado;
-
-    public List<CalibrationClass> PeDireitoC = new ArrayList<>();
-    public List<CalibrationClass> PeEsquerdoC = new ArrayList<>();
 
     Handler customHandlerC = new Handler();
 
@@ -89,25 +86,12 @@ public class CalibrationActivity extends AppCompatActivity {
                 RMidC = Integer.parseInt(arrofsC[5]);
                 RCal1C = Integer.parseInt(arrofsC[6]);
                 RCal2C = Integer.parseInt(arrofsC[7]);
-                RTempC = Float.parseFloat(arrofsC[8]);
-                RHumC = Float.parseFloat(arrofsC[9]);
-
 
                 RSumC = (RHalC) + (RMet1C) + (RMet2C) + (RMet3C) + (RMidC) + (RCal1C) + (RCal2C);
 
-                CalibrationClass valC = new CalibrationClass();
+                SumC =+ RSumC;
 
-                valC.HalC_data = RHalC;
-                valC.Met1C_data = RMet1C;
-                valC.Met2C_data = RMet2C;
-                valC.Met3C_data = RMet3C;
-                valC.MidC_data = RMidC;
-                valC.Cal1C_data = RCal1C;
-                valC.Cal2C_data = RCal2C;
-                valC.TempC_data = RTempC;
-                valC.HumidC_data = RHumC;
-
-                PeDireitoC.add(valC);
+                length =+1;
             }
         }
     };
@@ -129,25 +113,12 @@ public class CalibrationActivity extends AppCompatActivity {
                 LMidC = Integer.parseInt(arrofsC[5]);
                 LCal1C = Integer.parseInt(arrofsC[6]);
                 LCal2C = Integer.parseInt(arrofsC[7]);
-                LTempC = Float.parseFloat(arrofsC[8]);
-                LHumC = Float.parseFloat(arrofsC[9]);
-
 
                 LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
 
-                CalibrationClass valC = new CalibrationClass();
+                SumC =+ LSumC;
 
-                valC.HalC_data = LHalC;
-                valC.Met1C_data = LMet1C;
-                valC.Met2C_data = LMet2C;
-                valC.Met3C_data = LMet3C;
-                valC.MidC_data = LMidC;
-                valC.Cal1C_data = LCal1C;
-                valC.Cal2C_data = LCal2C;
-                valC.TempC_data = LTempC;
-                valC.HumidC_data = LHumC;
-
-                PeEsquerdoC.add(valC);
+                length =+1;
             }
         }
     };
@@ -168,14 +139,14 @@ public class CalibrationActivity extends AppCompatActivity {
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
-            timeInMillisecondsC = 15 - (SystemClock.elapsedRealtime() - startTimeC)/1000;
+            timeInMillisecondsC =- (SystemClock.elapsedRealtime() - startTimeC)/1000;
             calibrationTimer.setText("" + timeInMillisecondsC);
 
             if (timeInMillisecondsC <= 0) {
                 calibrationTimer.setText("Calibração realizada");
                 data_dir_esqC = false;
                 read.setEnabled(true);
-                //peso_calculado = (int)(RSumC + LSumC) * (int) ;
+                peso_calculado = SumC / length;
 
                 BTConnectionCL.disconnect();
                 BTConnectionCR.disconnect();
@@ -190,7 +161,6 @@ public class CalibrationActivity extends AppCompatActivity {
     }*/
 
     public void Reader(View view){
-
         Intent i = new Intent(this, ReaderActivity.class);
         startActivity(i);
     }
