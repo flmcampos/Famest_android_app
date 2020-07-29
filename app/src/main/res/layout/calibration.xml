@@ -21,7 +21,7 @@
         android:id="@+id/calibrationTimer"
         android:layout_width="323dp"
         android:layout_height="73dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:clickable="false"
         android:ems="10"
         android:gravity="center"
@@ -34,16 +34,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/goToStartCalibration" />
 
+    <TextView
+        android:id="@+id/weight_result"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:clickable="false"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="time"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#99000000"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calibrationTimer" />
+
     <Button
         android:id="@+id/goToReaderActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         android:clickable="false"
+        android:enabled="false"
         android:onClick="Reader"
         android:text="Leitura"
-        android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calibrationTimer" />
+        app:layout_constraintTop_toBottomOf="@+id/weight_result" />
 </androidx.constraintlayout.widget.ConstraintLayout>

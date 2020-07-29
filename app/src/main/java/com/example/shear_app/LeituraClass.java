@@ -21,7 +21,7 @@ public class LeituraClass {
     @NonNull
     @Override
     public String toString() {
-        return (float) readingDate/1000 + "," +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
+        return (float) readingDate/1000 + ": " +Hal_data + "," + Met1_data+ "," +Met2_data+ ","
                 +Met3_data+ "," + Mid_data+ "," +Cal1_data+ "," +Cal2_data+ ","+ Temp_data + "," + Humid_data + System.getProperty("line.separator");
     }
 

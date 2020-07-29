@@ -22,6 +22,7 @@ import java.util.TimeZone;
 public class CalibrationActivity extends AppCompatActivity {
 
     TextView calibrationTimer;
+    TextView resultado_peso;
 
     long startTimeC = 0, timeInMillisecondsC = 15;
 
@@ -41,7 +42,7 @@ public class CalibrationActivity extends AppCompatActivity {
 
     private int RSumC, LSumC;
 
-    private int peso_calculado;
+    private double peso_calculado;
 
     Handler customHandlerC = new Handler();
 
@@ -77,6 +78,7 @@ public class CalibrationActivity extends AppCompatActivity {
         read = findViewById(R.id.goToReaderActivity);
 
         calibrationTimer = (TextView) findViewById(R.id.calibrationTimer);
+        resultado_peso = (TextView) findViewById(R.id.weight_result);
     }
 
     private final Handler mHandlerDirC = new Handler() {
@@ -149,12 +151,17 @@ public class CalibrationActivity extends AppCompatActivity {
             customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
             timeInMillisecondsC = 15- (SystemClock.elapsedRealtime() - startTimeC)/1000;
 
-            if (timeInMillisecondsC <= 0) {
+            if (timeInMillisecondsC == 0) {
                 calibrationTimer.setText("Calibração realizada");
                 data_dir_esqC = false;
                 read.setEnabled(true);
-                peso_calculado = SumC / length;
-            } else {
+                peso_calculado = (double)(SumC / length)*71.4e-4;
+                resultado_peso.setText(String.format("Peso calculado = %.1s Kgf", peso_calculado));
+
+                BTConnectionCL.disconnect();
+                BTConnectionCR.disconnect();
+
+            } else if (timeInMillisecondsC>0){
                 calibrationTimer.setText("" + timeInMillisecondsC);
             }
         }
@@ -167,9 +174,6 @@ public class CalibrationActivity extends AppCompatActivity {
     }*/
 
     public void Reader(View view){
-
-        BTConnectionCL.disconnect();
-        BTConnectionCR.disconnect();
 
         Bundle bn = getIntent().getExtras();
         bn.getString("esq");

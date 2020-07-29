@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     int c =0;
-    private Button calibration;
+    private Button calibration, instructions, bt, prof_;
     boolean currentlayout = false;
 
     @Override
@@ -22,8 +24,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        c =0;
         calibration = findViewById(R.id.goToStart);
+        instructions = findViewById(R.id.goToInstructions);
+        bt = findViewById(R.id.goToSettings);
+        prof_ = findViewById(R.id.goToProfile);
+
+        /*calibration.setVisibility(View.INVISIBLE);
+        instructions.setVisibility(View.INVISIBLE);
+        bt.setVisibility(View.INVISIBLE);
+        prof_.setVisibility(View.INVISIBLE);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                calibration.setVisibility(View.VISIBLE);
+                instructions.setVisibility(View.VISIBLE);
+                bt.setVisibility(View.VISIBLE);
+                prof_.setVisibility(View.VISIBLE);
+            }
+        }, 5000);*/
+
+        c =0;
+
 
         /*if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq) {
             calibration.setEnabled(true);*/

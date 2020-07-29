@@ -116,6 +116,8 @@ public class SettingsActivity extends Activity {
             bn.putString("dir",mDeviceAddressRight);
             Intent i = new Intent(this, MainActivity.class);
             i.putExtras(bn);
+            //i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //startActivityIfNeeded(openMainActivity, 0);
             startActivity(i);
         } else {
             Toast.makeText(this, "Save left and right adresses to establish Bluetooth connection", Toast.LENGTH_SHORT).show();

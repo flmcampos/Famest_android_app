@@ -62,9 +62,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\kikot\OneDrive\Área de Trabalho\Pes.jpg" />
-                                      <entry key="foregroundLayerName" value="feet" />
-                                      <entry key="outputName" value="feet_cop" />
+                                      <entry key="foregroundImage" value="C:\Users\fcampos\Desktop\123.png" />
+                                      <entry key="outputName" value="famest_back" />
                                     </map>
                                   </option>
                                 </PersistentState>

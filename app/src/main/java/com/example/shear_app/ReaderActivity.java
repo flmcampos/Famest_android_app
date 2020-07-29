@@ -121,6 +121,8 @@ public class ReaderActivity extends AppCompatActivity {
 
     private TextView tapoio_esq, tapoio_dir, passos_text;
 
+    private TextView hum_esq, hum_dir, temp_esq, temp_dir;
+
     private ProgressBar progressBar;
     private TextView Lpercentage, Rpercentage;
 
@@ -234,6 +236,11 @@ public class ReaderActivity extends AppCompatActivity {
 
         MaxLHal = MaxLMet1 = MaxLMet2 = MaxLMet3 = MaxLMid = MaxLCal1 = MaxLCal2 = MaxRHal = MaxRMet1 = MaxRMet2 = MaxRMet3 = MaxRMid = MaxRCal1 = MaxRCal2 = 0;
 
+        temp_esq = (TextView) findViewById(R.id.temperatura_esq);
+        temp_dir = (TextView) findViewById(R.id.temperatura_dir);
+        hum_esq = (TextView) findViewById(R.id.humidade_esq);
+        hum_dir = (TextView) findViewById(R.id.humidade_dir);
+
         tapoio_esq = findViewById(R.id.temp_apoioesq);
         tapoio_dir = findViewById(R.id.temp_apoiodir);
         passos_text = findViewById(R.id.no_de_passos);
@@ -270,6 +277,8 @@ public class ReaderActivity extends AppCompatActivity {
                 RTemp = Float.parseFloat(arrofs[8]);
                 RHum = Float.parseFloat(arrofs[9]);
 
+                temp_dir.setText("" + RTemp);
+                hum_dir.setText(""+ RHum);
 
                 RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
 
@@ -464,11 +473,18 @@ public class ReaderActivity extends AppCompatActivity {
                 LTemp = Float.parseFloat(arrofs[8]);
                 LHum = Float.parseFloat(arrofs[9]);
 
-
+                temp_esq.setText(""+ LTemp);
+                hum_esq.setText(""+ LHum);
 
                 LSum = (LHal) + (LMet1) + (LMet2) + (LMet3) + (LMid) + (LCal1) + (LCal2);
 
-                //Log.d("Values", "Valores inteiros: " + LHal + "," + LMet2 + "," + LMet3 + "," + LMid + "," + LCal1 + "," + LCal2 + ", SOMA: " + LSum);
+                Log.d("Values", "Valores soma: " + LSum + " - " + RSum + " - " + (LSum+RSum));
+
+                if (LSum!=0 || RSum!=0) {
+                    progressBar.setProgress((int)(LSum / (RSum + LSum))*100);
+                    Lpercentage.setText(((LSum / (RSum + LSum)) * 100) + "%");
+                    Rpercentage.setText((RSum / (RSum + LSum) * 100) + "%");
+                }
 
 
                 //Ball growth
@@ -645,42 +661,6 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
 
-        /*// char array to store hexadecimal number
-        char[] hexaDeciNum = new char[100];
-
-        // counter for hexadecimal number array
-        int i = 0;
-        while (n != 0) {
-            // temporary variable to store remainder
-            int temp = 0;
-
-            // storing remainder in temp variable.
-            temp = n % 16;
-
-            // check if temp < 10
-            if (temp < 10) {
-                hexaDeciNum[i] = (char) (temp + 48);
-                i++;
-            } else {
-                hexaDeciNum[i] = (char) (temp + 55);
-                i++;
-            }
-
-            n = n / 16;
-        }
-        StringBuilder Hexa = new StringBuilder();
-
-        for (int j = i - 1; j >= 0; j--) {
-            Hexa.append(hexaDeciNum[j]);
-        }
-
-        return "#FF" + Hexa + "00";
-
-
-        //Log.d("TAG","#FF" + Hexa + "00");*/
-
-
-
     @Override
     public void onBackPressed() {
         if (data_dir_esq) {
@@ -764,31 +744,14 @@ public class ReaderActivity extends AppCompatActivity {
             timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
             tvTimer.setText(getDateFromMillis(timeInMilliseconds));
 
-            if (LSum != 0 || RSum != 0) {
+            /*if (LSum != 0 || RSum != 0) {
                 progressBar.setProgress(LSum / (RSum + LSum) * 100);
                 Lpercentage.setText((LSum / (RSum + LSum) * 100) + "%");
                 Rpercentage.setText((RSum / (RSum + LSum) * 100) + "%");
-            }
+            }*/
         }
     };
 
-    /*private Thread thread = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            while (data_dir_esq) {
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (LSum != 0 || RSum != 0) {
-                            progressBar.setProgress(LSum / (RSum + LSum) * 100);
-                            Lpercentage.setText("" + (LSum / (RSum + LSum) * 100) + "%");
-                            Rpercentage.setText("" + (RSum / (RSum + LSum) * 100) + "%");
-                        }
-                    }
-                });
-            }
-        }
-    });*/
 
     public void save_data(View view) {
 
@@ -799,7 +762,7 @@ public class ReaderActivity extends AppCompatActivity {
             {
                 // Code for above or equal 23 API Oriented Device
                 // Your Permission granted already .Do next code
-                savedata_tofile();
+                save_dialog();
             } else {
                 requestPermission(); // Code for permission
             }
@@ -808,7 +771,7 @@ public class ReaderActivity extends AppCompatActivity {
         {
             // Code for Below 23 API Oriented Device
             // Do next code
-            savedata_tofile();
+            save_dialog();
         }
     }
 
@@ -840,6 +803,24 @@ public class ReaderActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    private void save_dialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Guardar");
+        alertDialog.setMessage("Deseja guardar os dados da atual sessão?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        savedata_tofile();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        alertDialog.show();
     }
 
     private void savedata_tofile() {
