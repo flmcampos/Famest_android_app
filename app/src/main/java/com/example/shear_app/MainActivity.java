@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bn = getIntent().getExtras();
         bn.getString("esq");
         bn.getString("dir");
-        Intent i = new Intent(this, ReaderActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         i.putExtras(bn);
         try {
             startActivity(i);

@@ -104,7 +104,7 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\fc
 	android:roundIcon
 		ADDED from C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:15:9-54
 	android:icon
-		ADDED from C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:13:9-50
+		ADDED from C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:13:9-43
 	android:allowBackup
 		ADDED from C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme

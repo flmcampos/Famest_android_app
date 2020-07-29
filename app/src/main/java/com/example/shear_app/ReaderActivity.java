@@ -53,6 +53,8 @@ import java.util.TimeZone;
 
 public class ReaderActivity extends AppCompatActivity {
 
+    int cont_cadence =0;
+
     Vibrator v;
     // Vibrate for 500 milliseconds
 
@@ -119,7 +121,12 @@ public class ReaderActivity extends AppCompatActivity {
     private boolean Rset, Lset = false;
     private int no_passos = 0;
 
+    private TextView cadence_result;
     private TextView tapoio_esq, tapoio_dir, passos_text;
+
+    long start_cadence;
+    long stop_cadence;
+    double cadence;
 
     private TextView hum_esq, hum_dir, temp_esq, temp_dir;
 
@@ -179,11 +186,11 @@ public class ReaderActivity extends AppCompatActivity {
         graphesq.addSeries(seriesL);
         graphdir.addSeries(seriesR);
 
-        seriesL.setColor(Color.GREEN);
-        seriesL.setTitle("Soma do esquerdo");
+        graphesq.setTitle("Soma do esquerdo");
+        graphdir.setTitle("Soma do direito");
 
+        seriesL.setColor(Color.GREEN);
         seriesR.setColor(Color.BLUE);
-        seriesR.setTitle("Soma do direito");
 
         //customize viewportesq
         Viewport viewportesq = graphesq.getViewport();
@@ -247,6 +254,8 @@ public class ReaderActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         Lpercentage = (TextView) findViewById(R.id.left_percentage);
         Rpercentage = (TextView) findViewById(R.id.right_percentage);
+
+        cadence_result = (TextView) findViewById(R.id.cadência);
 
     }
 
@@ -313,14 +322,6 @@ public class ReaderActivity extends AppCompatActivity {
 
                 //Ball color change
 
-                /*RHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RHal + 255))), PorterDuff.Mode.MULTIPLY);
-                RMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet1 + 255))), PorterDuff.Mode.MULTIPLY);
-                RMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet2 + 255))), PorterDuff.Mode.MULTIPLY);
-                RMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet3 + 255))), PorterDuff.Mode.MULTIPLY);
-                RMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMid + 255))), PorterDuff.Mode.MULTIPLY);
-                RCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal1 + 255))), PorterDuff.Mode.MULTIPLY);
-                RCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))), PorterDuff.Mode.MULTIPLY);*/
-
                 RHal_ball.getBackground().setColorFilter(ball_color(RHal), PorterDuff.Mode.MULTIPLY);
                 RMet1_ball.getBackground().setColorFilter(ball_color(RMet1), PorterDuff.Mode.MULTIPLY);
                 RMet2_ball.getBackground().setColorFilter(ball_color(RMet2), PorterDuff.Mode.MULTIPLY);
@@ -337,10 +338,6 @@ public class ReaderActivity extends AppCompatActivity {
 
                     CP_dir_ball.setX((RHal_ball.getX() * RHal + RMet1_ball.getX() * RMet1 + RMet2_ball.getX() * RMet2 + RMet3_ball.getX() * RMet3 + RMid_ball.getX() * RMid + RCal1_ball.getX() * RCal1 + RCal2_ball.getX() * RCal2) / RSum);
                     CP_dir_ball.setY((RHal_ball.getY() * RHal + RMet1_ball.getY() * RMet1 + RMet2_ball.getY() * RMet2 + RMet3_ball.getY() * RMet3 + RMid_ball.getY() * RMid + RCal1_ball.getY() * RCal1 + RCal2_ball.getY() * RCal2) / RSum);
-
-                    /*progressBar.setProgress(LSum / (RSum + LSum)*100);
-                    Lpercentage.setText((LSum / (RSum + LSum)*100) + "%");
-                    Rpercentage.setText((RSum / (RSum + LSum)*100) + "%");*/
 
                 } else {
                     CP_dir_ball.setVisibility(View.INVISIBLE);
@@ -359,7 +356,8 @@ public class ReaderActivity extends AppCompatActivity {
                 }
 
                 if (Rset || Lset) {
-                    no_passos = no_passos + 1;
+                    no_passos += 1;
+                    cont_cadence += 1;
                     Rset = false;
                     Lset = false;
                     passos_text.setText("" + no_passos);
@@ -566,7 +564,8 @@ public class ReaderActivity extends AppCompatActivity {
                 }
 
                 if (Rset || Lset) {
-                    no_passos = no_passos + 1;
+                    no_passos += 1;
+                    cont_cadence += 1;
                     Rset = false;
                     Lset = false;
                     passos_text.setText("" + no_passos);
@@ -733,8 +732,6 @@ public class ReaderActivity extends AppCompatActivity {
 
     public void Stop_read(View view) {
         data_dir_esq = false;
-        //messageTextL.setText("Reading stopped");
-        //messageTextR.setText("Reading stopped");
 
         btnStart.setEnabled(true);
         btnStop.setEnabled(false);
@@ -745,40 +742,47 @@ public class ReaderActivity extends AppCompatActivity {
 
     }
 
-    private Runnable updateTimerThread = new Runnable() {
+    private final Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
             timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
             tvTimer.setText(getDateFromMillis(timeInMilliseconds));
 
-            /*if (LSum != 0 || RSum != 0) {
-                progressBar.setProgress(LSum / (RSum + LSum) * 100);
-                Lpercentage.setText((LSum / (RSum + LSum) * 100) + "%");
-                Rpercentage.setText((RSum / (RSum + LSum) * 100) + "%");
-            }*/
+            if (cont_cadence == 0) {
+                start_cadence = SystemClock.elapsedRealtime()/1000;
+            } else if (cont_cadence == 6) {
+                stop_cadence = SystemClock.elapsedRealtime()/1000;
+                cadence = (double) 360/(stop_cadence - start_cadence);
+                cadence_result.setText(String.format("%.5s passos/minuto", cadence));
+
+                Log.d(TAG,"" + (stop_cadence - start_cadence) + " - " + stop_cadence );
+                cont_cadence = 0;
+            }
+
+
         }
     };
 
 
     public void save_data(View view) {
 
+        if (!data_dir_esq) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-        {
-            if (checkPermission())
-            {
-                // Code for above or equal 23 API Oriented Device
-                // Your Permission granted already .Do next code
-                save_dialog();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkPermission()) {
+                    // Code for above or equal 23 API Oriented Device
+                    // Your Permission granted already .Do next code
+                    save_dialog();
+                } else {
+                    requestPermission(); // Code for permission
+                }
             } else {
-                requestPermission(); // Code for permission
+                // Code for Below 23 API Oriented Device
+                // Do next code
+                save_dialog();
             }
-        }
-        else
-        {
-            // Code for Below 23 API Oriented Device
-            // Do next code
-            save_dialog();
+        } else {
+            Toast.makeText(this, "Parar a aquisição primeiro!", Toast.LENGTH_SHORT).show();
         }
     }
 
