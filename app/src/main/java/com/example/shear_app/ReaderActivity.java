@@ -245,7 +245,6 @@ public class ReaderActivity extends AppCompatActivity {
         tapoio_dir = findViewById(R.id.temp_apoiodir);
         passos_text = findViewById(R.id.no_de_passos);
         progressBar = findViewById(R.id.progressBar);
-        progressBar.setMax(100);
         Lpercentage = (TextView) findViewById(R.id.left_percentage);
         Rpercentage = (TextView) findViewById(R.id.right_percentage);
 
@@ -481,9 +480,17 @@ public class ReaderActivity extends AppCompatActivity {
                 Log.d("Values", "Valores soma: " + LSum + " - " + RSum + " - " + (LSum+RSum));
 
                 if (LSum!=0 || RSum!=0) {
-                    progressBar.setProgress((int)(LSum / (RSum + LSum))*100);
-                    Lpercentage.setText(((LSum / (RSum + LSum)) * 100) + "%");
-                    Rpercentage.setText((RSum / (RSum + LSum) * 100) + "%");
+
+                    progressBar.setProgress((int) (((double)LSum / (LSum + RSum))*100));
+                    Lpercentage.setText((int) (((double)LSum / (LSum + RSum))*100) + "%");
+                    Rpercentage.setText((int) (((double)RSum / (LSum + RSum))*100) + "%");
+
+                } else if (LSum==0 && RSum==0) {
+
+                    progressBar.setProgress(50);
+                    Lpercentage.setText("50%");
+                    Rpercentage.setText("50%");
+
                 }
 
 
