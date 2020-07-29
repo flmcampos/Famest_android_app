@@ -58,11 +58,21 @@ public class CalibrationActivity extends AppCompatActivity {
 
         //Create connection for device
         BTConnectionCL = new BluetoothConnectionActivity(this, mDeviceAddressLeftC, mHandlerEsqC);
-        BTConnectionCL.execute();
-
+        try {
+            BTConnectionCL.execute();
+        } catch (Exception e) {
+            BTConnectionCL.disconnect();
+            e.printStackTrace();
+        }
         //Create connection for device
         BTConnectionCR = new BluetoothConnectionActivity(this, mDeviceAddressRightC, mHandlerDirC);
-        BTConnectionCR.execute();
+        try {
+            BTConnectionCR.execute();
+        } catch (Exception e) {
+            BTConnectionCL.disconnect();
+            BTConnectionCR.disconnect();
+            e.printStackTrace();
+        }
 
         read = findViewById(R.id.goToReaderActivity);
 

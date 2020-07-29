@@ -61,6 +61,7 @@ public class ReaderActivity extends AppCompatActivity {
     TextView tvTimer;
     long startTime, timeInMilliseconds = 0;
     Handler customHandler = new Handler();
+    Handler handler = new Handler();
     Button btnStart, btnStop;
     String TAG = "TAG";
 
@@ -237,6 +238,7 @@ public class ReaderActivity extends AppCompatActivity {
         tapoio_dir = findViewById(R.id.temp_apoiodir);
         passos_text = findViewById(R.id.no_de_passos);
         progressBar = findViewById(R.id.progressBar);
+        progressBar.setMax(100);
         Lpercentage = (TextView) findViewById(R.id.left_percentage);
         Rpercentage = (TextView) findViewById(R.id.right_percentage);
 
@@ -253,7 +255,7 @@ public class ReaderActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             if (data_dir_esq) {
                 String s = (String) msg.obj;
-                Log.d("TAG", "Mensagem lida R: " + s);
+                //Log.d("TAG", "Mensagem lida R: " + s);
 
                 String delimiter = "\\|";
                 String[] arrofs = s.split(delimiter);
@@ -303,13 +305,21 @@ public class ReaderActivity extends AppCompatActivity {
 
                 //Ball color change
 
-                RHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RHal + 255))), PorterDuff.Mode.MULTIPLY);
+                /*RHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RHal + 255))), PorterDuff.Mode.MULTIPLY);
                 RMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet1 + 255))), PorterDuff.Mode.MULTIPLY);
                 RMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet2 + 255))), PorterDuff.Mode.MULTIPLY);
                 RMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMet3 + 255))), PorterDuff.Mode.MULTIPLY);
                 RMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RMid + 255))), PorterDuff.Mode.MULTIPLY);
                 RCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal1 + 255))), PorterDuff.Mode.MULTIPLY);
-                RCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))), PorterDuff.Mode.MULTIPLY);
+                RCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.17 * RCal2 + 255))), PorterDuff.Mode.MULTIPLY);*/
+
+                RHal_ball.getBackground().setColorFilter(ball_color(RHal), PorterDuff.Mode.MULTIPLY);
+                RMet1_ball.getBackground().setColorFilter(ball_color(RMet1), PorterDuff.Mode.MULTIPLY);
+                RMet2_ball.getBackground().setColorFilter(ball_color(RMet2), PorterDuff.Mode.MULTIPLY);
+                RMet3_ball.getBackground().setColorFilter(ball_color(RMet3), PorterDuff.Mode.MULTIPLY);
+                RMid_ball.getBackground().setColorFilter(ball_color(RMid), PorterDuff.Mode.MULTIPLY);
+                RCal1_ball.getBackground().setColorFilter(ball_color(RCal1), PorterDuff.Mode.MULTIPLY);
+                RCal2_ball.getBackground().setColorFilter(ball_color(RCal2), PorterDuff.Mode.MULTIPLY);
 
                 if (RSum != 0) {
 
@@ -439,7 +449,7 @@ public class ReaderActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             if (data_dir_esq) {
                 String s = (String) msg.obj;
-                Log.d("TAG", "Mensagem lida L: " + s);
+                //Log.d("TAG", "Mensagem lida L: " + s);
 
                 String delimiter = "\\|";
                 String[] arrofs = s.split(delimiter);
@@ -493,13 +503,15 @@ public class ReaderActivity extends AppCompatActivity {
 
                 //Ball color change
 
-                LHal_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LHal + 255))), PorterDuff.Mode.MULTIPLY);
-                LMet1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMet1 + 255))), PorterDuff.Mode.MULTIPLY);
-                LMet2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMet2 + 255))), PorterDuff.Mode.MULTIPLY);
-                LMet3_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMet3 + 255))), PorterDuff.Mode.MULTIPLY);
-                LMid_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LMid + 255))), PorterDuff.Mode.MULTIPLY);
-                LCal1_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LCal1 + 255))), PorterDuff.Mode.MULTIPLY);
-                LCal2_ball.getBackground().setColorFilter(Color.parseColor(DecToHexa((int) (-0.5 * LCal2 + 255))), PorterDuff.Mode.MULTIPLY);
+                LHal_ball.getBackground().setColorFilter(ball_color(LHal), PorterDuff.Mode.MULTIPLY);
+                LMet1_ball.getBackground().setColorFilter(ball_color(LMet1), PorterDuff.Mode.MULTIPLY);
+                LMet2_ball.getBackground().setColorFilter(ball_color(LMet2), PorterDuff.Mode.MULTIPLY);
+                LMet3_ball.getBackground().setColorFilter(ball_color(LMet3), PorterDuff.Mode.MULTIPLY);
+                LMid_ball.getBackground().setColorFilter(ball_color(LMid), PorterDuff.Mode.MULTIPLY);
+                LCal1_ball.getBackground().setColorFilter(ball_color(LCal1), PorterDuff.Mode.MULTIPLY);
+                LCal2_ball.getBackground().setColorFilter(ball_color(LCal2), PorterDuff.Mode.MULTIPLY);
+                //Log.d("TAG","" + Color.rgb(255,0,0));
+
 
                 //Calculate Center of pressure
 
@@ -618,44 +630,56 @@ public class ReaderActivity extends AppCompatActivity {
     };
 
 
-    String DecToHexa(int n) {
+    int ball_color (int n) {
+        int change;
 
-        if (n <= 0) {
-            return "#FF0000";
+        change = (int) (-0.5 * n + 255);
+        int new_color;
+
+        if (change <= 0) {
+            new_color = Color.rgb(255, 0, 0);
         } else {
-
-            // char array to store hexadecimal number
-            char[] hexaDeciNum = new char[100];
-
-            // counter for hexadecimal number array
-            int i = 0;
-            while (n != 0) {
-                // temporary variable to store remainder
-                int temp = 0;
-
-                // storing remainder in temp variable.
-                temp = n % 16;
-
-                // check if temp < 10
-                if (temp < 10) {
-                    hexaDeciNum[i] = (char) (temp + 48);
-                    i++;
-                } else {
-                    hexaDeciNum[i] = (char) (temp + 55);
-                    i++;
-                }
-
-                n = n / 16;
-            }
-            StringBuilder Hexa = new StringBuilder();
-
-            for (int j = i - 1; j >= 0; j--) {
-                Hexa.append(hexaDeciNum[j]);
-            }
-
-            return "#FF" + Hexa + "00";
+            new_color = Color.rgb(255, change, 0);
         }
+        return new_color;
     }
+
+
+        /*// char array to store hexadecimal number
+        char[] hexaDeciNum = new char[100];
+
+        // counter for hexadecimal number array
+        int i = 0;
+        while (n != 0) {
+            // temporary variable to store remainder
+            int temp = 0;
+
+            // storing remainder in temp variable.
+            temp = n % 16;
+
+            // check if temp < 10
+            if (temp < 10) {
+                hexaDeciNum[i] = (char) (temp + 48);
+                i++;
+            } else {
+                hexaDeciNum[i] = (char) (temp + 55);
+                i++;
+            }
+
+            n = n / 16;
+        }
+        StringBuilder Hexa = new StringBuilder();
+
+        for (int j = i - 1; j >= 0; j--) {
+            Hexa.append(hexaDeciNum[j]);
+        }
+
+        return "#FF" + Hexa + "00";
+
+
+        //Log.d("TAG","#FF" + Hexa + "00");*/
+
+
 
     @Override
     public void onBackPressed() {
@@ -707,6 +731,7 @@ public class ReaderActivity extends AppCompatActivity {
         data_dir_esq = true;
         btnStart.setEnabled(false);
         btnStop.setEnabled(true);
+        //thread.start();
 
         if (btnStart.getText().equals("Start")) {
             startTime = SystemClock.elapsedRealtime();
@@ -735,15 +760,35 @@ public class ReaderActivity extends AppCompatActivity {
 
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
-            customHandler.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTime)%1000);
+            customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
             timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
             tvTimer.setText(getDateFromMillis(timeInMilliseconds));
 
-            /*progressBar.setProgress(LSum / (RSum + LSum)*100);
-            Lpercentage.setText((LSum / (RSum + LSum)*100) + "%");
-            Rpercentage.setText((RSum / (RSum + LSum)*100) + "%");*/
+            if (LSum != 0 || RSum != 0) {
+                progressBar.setProgress(LSum / (RSum + LSum) * 100);
+                Lpercentage.setText((LSum / (RSum + LSum) * 100) + "%");
+                Rpercentage.setText((RSum / (RSum + LSum) * 100) + "%");
+            }
         }
     };
+
+    /*private Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (data_dir_esq) {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (LSum != 0 || RSum != 0) {
+                            progressBar.setProgress(LSum / (RSum + LSum) * 100);
+                            Lpercentage.setText("" + (LSum / (RSum + LSum) * 100) + "%");
+                            Rpercentage.setText("" + (RSum / (RSum + LSum) * 100) + "%");
+                        }
+                    }
+                });
+            }
+        }
+    });*/
 
     public void save_data(View view) {
 

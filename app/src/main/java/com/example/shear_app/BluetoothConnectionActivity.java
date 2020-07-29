@@ -72,6 +72,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
         if (!Connected) {
             Toast.makeText(mactivity.getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
+
             mactivity.finish();
         } else {
             Toast.makeText(mactivity.getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
@@ -125,8 +126,6 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         mHandler.sendMessage(msg);
     }
 
-
-
     public void disconnect() {
 
         if (btsocket != null) {
@@ -138,7 +137,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         }
 
         Toast.makeText(mactivity.getApplicationContext(), "Disconnected", Toast.LENGTH_SHORT).show();
-
+        //ListenInput.interrupt();
         //mactivity.finish();
     }
 }

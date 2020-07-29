@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\fcampos\\Desktop\\famest-app\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-tr\\values-tr.xml",
+            "outputFile": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-tr\\values-tr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\fcampos\\.gradle\\caches\\transforms-2\\files-2.1\\1663cb94e43a9cd97f3fe000ef93fb96\\core-1.5.0-alpha01\\res\\values-tr\\values-tr.xml",

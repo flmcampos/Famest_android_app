@@ -15,18 +15,18 @@ public class MainActivity extends AppCompatActivity {
 
     int c =0;
     private Button calibration;
+    boolean currentlayout = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        c =0;
         calibration = findViewById(R.id.goToStart);
 
-        if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq) {
-            calibration.setEnabled(true);
-
-        }
+        /*if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq) {
+            calibration.setEnabled(true);*/
     }
 
     @Override
@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void Instructions(View view){
         setContentView(R.layout.instructions);
+        currentlayout = true;
     }
 
 
@@ -69,16 +70,26 @@ public class MainActivity extends AppCompatActivity {
         Bundle bn = getIntent().getExtras();
         bn.getString("esq");
         bn.getString("dir");
-        Intent i = new Intent(this, CalibrationActivity.class);
+        Intent i = new Intent(this, ReaderActivity.class);
         i.putExtras(bn);
-        startActivity(i);
+        try {
+            startActivity(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            finishAffinity();
+        if (currentlayout) {
+            setContentView(R.layout.activity_main);
+            currentlayout = false;
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                finishAffinity();
+            } else {
+                super.onBackPressed();
+            }
         }
     }
 }

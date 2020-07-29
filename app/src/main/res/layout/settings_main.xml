@@ -30,7 +30,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:layout_marginRight="200dp" />
 
     <Button
         android:id="@+id/button_dir"
@@ -42,7 +43,8 @@
         android:text="Direito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        android:layout_marginLeft="200dp" />
 
     <Button
         android:id="@+id/button_chat"
@@ -50,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:onClick="startProcess"
-        android:text="Começar a Leitura"
+        android:text="Guardar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_dir" />
