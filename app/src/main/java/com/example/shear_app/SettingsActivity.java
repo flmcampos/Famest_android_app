@@ -117,7 +117,7 @@ public class SettingsActivity extends Activity {
             Intent i = new Intent(this, MainActivity.class);
             i.putExtras(bn);
             //i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            //startActivityIfNeeded(openMainActivity, 0);
+            //startActivityIfNeeded(i, 1);
             startActivity(i);
         } else {
             Toast.makeText(this, "Save left and right adresses to establish Bluetooth connection", Toast.LENGTH_SHORT).show();

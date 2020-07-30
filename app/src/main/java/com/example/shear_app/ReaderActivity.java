@@ -139,6 +139,8 @@ public class ReaderActivity extends AppCompatActivity {
 
         setContentView(R.layout.chat_bt);
 
+
+
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         frameLayout = (FrameLayout) findViewById(R.id.map_container);
@@ -355,6 +357,8 @@ public class ReaderActivity extends AppCompatActivity {
                     tapoio_dir.setText("Direito: " + CP_R);
                 }
 
+                //cálculo do número de passos
+
                 if (Rset || Lset) {
                     no_passos += 1;
                     cont_cadence += 1;
@@ -363,6 +367,7 @@ public class ReaderActivity extends AppCompatActivity {
                     passos_text.setText("" + no_passos);
                 }
 
+                //Adição de valores ao array que irá posteriormente ser transportado para o ficheeiro txt
 
                 LeituraClass val = new LeituraClass();
 
@@ -380,9 +385,9 @@ public class ReaderActivity extends AppCompatActivity {
 
                 PeDireito.add(val);
 
-                //messageTextR.setText(s);
-
                 seriesR.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime)/1000,(double) RSum),true,10000);
+
+                //Mudança nas cores dos valores máximos quando ultrapassado um certo limite
 
                 if (RHal > MaxRHal) {
                     MaxRHal = RHal;
@@ -397,11 +402,6 @@ public class ReaderActivity extends AppCompatActivity {
                     messageRMet1.setText(String.format("%d", MaxRMet1));
                     if (MaxRMet1 > 300) {
                         messageRMet1.setBackgroundColor(Color.parseColor("#E38282"));
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                        } else {
-                            v.vibrate(500);
-                        }
                     }
                 }
 
@@ -444,6 +444,16 @@ public class ReaderActivity extends AppCompatActivity {
                         messageRCal2.setBackgroundColor(Color.parseColor("#E38282"));
                     }
                 }
+
+                //Implementação da função vibratória
+
+                vibrate(RHal);
+                vibrate(RMet1);
+                vibrate(RMet2);
+                vibrate(RMet3);
+                vibrate(RMid);
+                vibrate(RCal1);
+                vibrate(RCal2);
 
             }
         }
@@ -647,10 +657,29 @@ public class ReaderActivity extends AppCompatActivity {
                     }
                 }
 
+                vibrate(LHal);
+                vibrate(LMet1);
+                vibrate(LMet2);
+                vibrate(LMet3);
+                vibrate(LMid);
+                vibrate(LCal1);
+                vibrate(LCal2);
+
             }
         }
     };
 
+
+    Vibrator vibrate (int n) {
+        if (n>500) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                v.vibrate(500);
+            }
+        }
+        return v;
+    }
 
     int ball_color (int n) {
         int change;

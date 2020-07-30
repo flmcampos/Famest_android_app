@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.provider.Telephony;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -101,7 +102,9 @@ public class CalibrationActivity extends AppCompatActivity {
 
                 RSumC = (RHalC) + (RMet1C) + (RMet2C) + (RMet3C) + (RMidC) + (RCal1C) + (RCal2C);
 
-                SumC =+ RSumC;
+                SumC =+ (RSumC+LSumC);
+
+                Log.d("TAG","" + LSumC + " + " + RSumC + " = " + SumC);
 
                 length =+1;
             }
@@ -128,9 +131,9 @@ public class CalibrationActivity extends AppCompatActivity {
 
                 LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
 
-                SumC =+ LSumC;
+                //SumC =+ LSumC;
 
-                length =+1;
+                //length =+1;
             }
         }
     };
@@ -156,7 +159,7 @@ public class CalibrationActivity extends AppCompatActivity {
                 data_dir_esqC = false;
                 read.setEnabled(true);
                 peso_calculado = (double)(SumC / length)*71.4e-4;
-                resultado_peso.setText(String.format("Peso calculado = %.1s Kgf", peso_calculado));
+                resultado_peso.setText(String.format("Peso calculado = %.3s Kgf", peso_calculado));
 
                 BTConnectionCL.disconnect();
                 BTConnectionCR.disconnect();
@@ -182,5 +185,6 @@ public class CalibrationActivity extends AppCompatActivity {
         i.putExtras(bn);
 
         startActivity(i);
+        finish();
     }
 }

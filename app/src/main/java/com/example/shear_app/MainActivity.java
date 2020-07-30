@@ -9,15 +9,20 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    int aux = 0;
     int c =0;
     private Button calibration, instructions, bt, prof_;
     boolean currentlayout = false;
+    private TextView welcome;
+
+    Bundle bn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
         instructions = findViewById(R.id.goToInstructions);
         bt = findViewById(R.id.goToSettings);
         prof_ = findViewById(R.id.goToProfile);
+        //welcome = findViewById(R.id.welcome_text);
 
-        /*calibration.setVisibility(View.INVISIBLE);
-        instructions.setVisibility(View.INVISIBLE);
-        bt.setVisibility(View.INVISIBLE);
-        prof_.setVisibility(View.INVISIBLE);
+        /*if (aux==0) {
+            calibration.setVisibility(View.INVISIBLE);
+            instructions.setVisibility(View.INVISIBLE);
+            bt.setVisibility(View.INVISIBLE);
+            prof_.setVisibility(View.INVISIBLE);
+            aux=1;
+        }
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -42,15 +51,24 @@ public class MainActivity extends AppCompatActivity {
                 instructions.setVisibility(View.VISIBLE);
                 bt.setVisibility(View.VISIBLE);
                 prof_.setVisibility(View.VISIBLE);
+                welcome.setVisibility(View.INVISIBLE);
             }
-        }, 5000);*/
+        }, 3000);*/
 
         c =0;
 
-
-        /*if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq) {
-            calibration.setEnabled(true);*/
     }
+
+    /*@Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        if (SettingsActivity.BTesq && SettingsActivity.BTdir && !ProfileActivity.perfil) {
+            bn = getIntent().getExtras();
+            bn.getString("esq");
+            bn.getString("dir");
+        }
+    }*/
 
     @Override
     protected void onResume() {
@@ -61,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setTitle("Início de sessão");
             alertDialog.setMessage("O utilizador pode agora começar a sessão. Se desejar corrigir os dados inseridos " +
                     "ou os endereços Bluetooth guardados, poderá com o mesmo procedimento utilizado anteriormente");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Ok",
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                         }
@@ -90,10 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void reading(View view) {
 
-        Bundle bn = getIntent().getExtras();
+        bn = getIntent().getExtras();
         bn.getString("esq");
         bn.getString("dir");
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, CalibrationActivity.class);
         i.putExtras(bn);
         try {
             startActivity(i);
