@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class DrawerActivity extends AppCompatActivity {
 
+    //Caso se pretenda adicionar uma barra lateral com opções
     protected FrameLayout frameLayout;
     public DrawerLayout drawerLayout;
 

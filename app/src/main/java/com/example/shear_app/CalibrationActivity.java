@@ -47,6 +47,8 @@ public class CalibrationActivity extends AppCompatActivity {
 
     Handler customHandlerC = new Handler();
 
+    //Início da atividade de calibração, são chamadas as funções que permitem executar duas
+    //conexões BT distintas (com DAQs da palmilha esquerda e direita)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,7 @@ public class CalibrationActivity extends AppCompatActivity {
         resultado_peso = (TextView) findViewById(R.id.weight_result);
     }
 
+    //função que permite receber a informação enviada pelo DAQ da palmilha direita
     private final Handler mHandlerDirC = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -111,6 +114,7 @@ public class CalibrationActivity extends AppCompatActivity {
         }
     };
 
+    //função que permite receber a informação enviada pelo DAQ da palmilha esquerda
     private final Handler mHandlerEsqC = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -138,6 +142,8 @@ public class CalibrationActivity extends AppCompatActivity {
         }
     };
 
+    //Botão que irá iniciar a recolha de dados para a calibração e um relógio em contagem decrescente
+    //sendo no final da contagem apresentado o resultado da calibração
     public void Start_ReadC(View view) {
 
         data_dir_esqC = true;
@@ -149,6 +155,9 @@ public class CalibrationActivity extends AppCompatActivity {
         calibrationTimer.setVisibility(View.VISIBLE);
     }
 
+    //função que permite apresentar um relógio em contagem decrescente. Quando a contagem
+    //chega ao 0, é apresentado o valor da calibração e torna acessível o botão que
+    //iniciará a sessão de monitorização de pressões plantares
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
@@ -170,12 +179,8 @@ public class CalibrationActivity extends AppCompatActivity {
         }
     };
 
-    /*public static String getDateFromMillisC(long d) {
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return df.format(d);
-    }*/
-
+    //No final da calibração, este botão é ativado, encaminhando o utilizador para a atividade de
+    //vizualização da sessão de monitorização de pressões plantares
     public void Reader(View view){
 
         Bundle bn = getIntent().getExtras();

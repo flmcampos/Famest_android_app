@@ -38,6 +38,7 @@ public class SettingsActivity extends Activity {
 
 
 
+    //Apresentação da página que permite a conexão aos sistemas DAQ
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +47,7 @@ public class SettingsActivity extends Activity {
 
     }
 
-
+    //Botão que permite a ativação da comunição BT
     public void on(View view) {
         if (BTadapter == null) {
 
@@ -62,6 +63,10 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    //Bloco de funções que permite:
+    //1: Verificar se o BT já está ativado no smartphone
+    //2: Guardar o endereço do sistema DAQ correspondente à palmilha esquerda
+    //3: Guardar o endereço do sistema DAQ correspondente à palmilha direita
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -89,26 +94,19 @@ public class SettingsActivity extends Activity {
 //
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (ProfileActivity.perfil) {
-            Bundle bn = new Bundle();
-            bn.putString("esq", mDeviceAddressLeft);
-            bn.putString("dir", mDeviceAddressRight);
-            Intent i = new Intent(this, MainActivity.class);
-            i.putExtras(bn);
-        }
-    }
-
+    //Botão que permite acesso aos dispositivos emparelhados, guardando o item clicado como
+    //Endereço BT do pé esquerdo
     public void pé_esq(View view) {
         connectToDevice("esq");
     }
 
+    //Botão que permite acesso aos dispositivos emparelhados, guardando o item clicado como
+    //Endereço BT do pé direito
     public void pé_dir(View view) {
         connectToDevice("dir");
     }
 
+    //Botão que permite começar a atividade de calibração
     public void startProcess(View view){
         if (BTesq && BTdir) {
             Bundle bn = new Bundle();
@@ -124,6 +122,7 @@ public class SettingsActivity extends Activity {
         }
     }
 
+    //Função que permite a listagem dos componentes emparelhados e que guarda o item clicado
     private void connectToDevice(String side){
         if (BTadapter == null) {
             Toast.makeText(getApplicationContext(), "No Bluetooth communication available", Toast.LENGTH_SHORT).show();

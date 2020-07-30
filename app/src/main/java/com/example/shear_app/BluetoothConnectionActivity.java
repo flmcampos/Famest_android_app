@@ -17,6 +17,8 @@ import java.util.UUID;
 
 public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
+    //Atividade executada em background e que permite a conexão a um dispositivo BT
+
     public static boolean Connected = true;
     private ProgressDialog mProgressdialog;
     private BluetoothAdapter mBluetoothadapter = null;
@@ -26,10 +28,6 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
     private Handler mHandler;
 
     private InputStream minstream;
-    private String inmessage;
-
-    private int mystate;
-
 
     private static final String TAG = "Socket_Creation";
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -42,19 +40,26 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
     }
 
+    //Inicialmente é apresentada uma caixa de diálogo que informa o utilizador da tentativa de
+    //estabelecimento de conexão BT
     @Override
     protected void onPreExecute() {
         mProgressdialog = ProgressDialog.show(mactivity, "Connecting", "Please wait...");
     }
 
+    //De seguida, é executada a tentativa de comunicação com o outro dispositivo BT em background
     @Override
     protected Void doInBackground(Void... devices) {
         try {
             if (btsocket == null || !Connected) {
                 mBluetoothadapter = BluetoothAdapter.getDefaultAdapter();
+                //Criação de uma socket com o endereço obtida da lista de dispositivos emparelhados
                 BluetoothDevice device = mBluetoothadapter.getRemoteDevice(maddress);
                 btsocket = device.createInsecureRfcommSocketToServiceRecord(MY_UUID);
-                btsocket.connect();
+
+
+                btsocket.connect(); //Conexão à socket
+
 
                 //Get input stream from the socket
                 minstream = btsocket.getInputStream();
@@ -66,6 +71,9 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         return null;
     }
 
+    //Em caso de resultado positivo, é apresentada uma mensagem a indicar o sucesso da conexão
+    //E no caso negativo a indicar a falha desta tentativa
+    //Em caso positivo, é iniciada a função que permite ler os dados enviados pelo DAQ da palmilha
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
@@ -73,21 +81,22 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         if (!Connected) {
             Toast.makeText(mactivity.getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
 
-            mactivity.finish();
+            mactivity.finish(); //Encerrar esta atividade no caso de tentativa mal sucedida
         } else {
             Toast.makeText(mactivity.getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
-            ListenInput.start();
+            ListenInput.start(); //Leitura dos dados
         }
         mProgressdialog.dismiss();
     }
 
+    //Thread que permite a leitura e envio dos dados para a atividade da sessão (ReaderActivity)
     Thread ListenInput = new Thread() {
         @Override
         public void run() {
             while (Connected) {
                 try {
-                    String s = read();
-                    sendToReadHandler(s);
+                    String s = read(); //Informação obtida transferida para uma String
+                    sendToReadHandler(s); //Envio da String para uma função que irá apresentar esses dados no ReaderActivity (Handler)
                 } catch (Exception e) {
                     Log.i(TAG, "Not able to perform read");
                 }
@@ -100,6 +109,8 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         }
     };
 
+    //Função que lê os bytes enviados pelo outro dispositivo
+    // Irá converter esses dados para formato texto
     private String read() {
 
         String s = "";
@@ -120,12 +131,14 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         return s;
     }
 
+    //Função que envia os dados já em texto para a atividade da sessão (ReaderActivity)
     public void sendToReadHandler(String s) {
         Message msg = Message.obtain();
         msg.obj = s;
         mHandler.sendMessage(msg);
     }
 
+    //Função que termina a ligação BT existente entre o smartphone e outro dispositivo
     public void disconnect() {
 
         if (btsocket != null) {
@@ -137,7 +150,5 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         }
 
         Toast.makeText(mactivity.getApplicationContext(), "Disconnected", Toast.LENGTH_SHORT).show();
-        //ListenInput.interrupt();
-        //mactivity.finish();
     }
 }

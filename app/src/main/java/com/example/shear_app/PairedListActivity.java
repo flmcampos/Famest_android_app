@@ -23,6 +23,7 @@ public class PairedListActivity extends Activity {
 
     public static String DEVICE_ADDRESS = "device_address";
 
+    //Atividade que permite listar numa primeira instância os dispositivos emparelhados por BT
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +40,8 @@ public class PairedListActivity extends Activity {
 
     }
 
+    //Após essa listagem, com o clique num item, guarda o endereço BT do dispositivo que será posteriormente utilizado
+    //Para a conexão os DAQ do sistema de pressões
     private AdapterView.OnItemClickListener myclickLis = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -49,9 +52,6 @@ public class PairedListActivity extends Activity {
             returnIntent.putExtra(DEVICE_ADDRESS,item);
             setResult(Activity.RESULT_OK,returnIntent);
             finish();
-
-
-            //////////////////////////teste de verificação do gitlab///////////////////////////////
 
         }
     };

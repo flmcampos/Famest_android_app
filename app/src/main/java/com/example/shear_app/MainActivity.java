@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }*/
 
+
+    //Após preencher os dados sobre BT e o perfil é apresentada uma caixa de diálogo a informar sobre
+    //o começo da sessão
     @Override
     protected void onResume() {
         super.onResume();
@@ -89,23 +92,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Encaminhamento para uma página com instruções sobre o funcionamento da aplicação
     public void Instructions(View view){
         setContentView(R.layout.instructions);
         currentlayout = true;
     }
 
-
+    //Encaminhamento para página de setup de BT
     public void Settings(View view) {
         Intent i = new Intent(this, SettingsActivity.class);
         startActivity(i);
     }
 
-
+    //Encaminhamento para página de preenchimento do perfil
     public void Profile(View view) {
         Intent i = new Intent(this, ProfileActivity.class);
         startActivity(i);
     }
 
+    //Início da atividade de calibração com os endereços BT guardados a serem usados na conexão com os DAQ
     public void reading(View view) {
 
         bn = getIntent().getExtras();
@@ -120,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Caso a página apresentada seja a de instruções, clicando no botão de retornar volta à pagina inicial
+    //Caso contrário fecha a aplicação
     @Override
     public void onBackPressed() {
         if (currentlayout) {

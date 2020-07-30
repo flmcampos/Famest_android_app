@@ -287,6 +287,14 @@ public class ReaderActivity extends AppCompatActivity {
                 RTemp = Float.parseFloat(arrofs[8]);
                 RHum = Float.parseFloat(arrofs[9]);
 
+                RHal_ball.setVisibility(View.VISIBLE);
+                RMet1_ball.setVisibility(View.VISIBLE);
+                RMet2_ball.setVisibility(View.VISIBLE);
+                RMet3_ball.setVisibility(View.VISIBLE);
+                RMid_ball.setVisibility(View.VISIBLE);
+                RCal1_ball.setVisibility(View.VISIBLE);
+                RCal2_ball.setVisibility(View.VISIBLE);
+
                 temp_dir.setText("" + RTemp);
                 hum_dir.setText(""+ RHum);
 
@@ -294,32 +302,32 @@ public class ReaderActivity extends AppCompatActivity {
 
                 //Ball growth
 
-                RHal_ball.getLayoutParams().width = (200 + (RHal)) / 10;
-                RHal_ball.getLayoutParams().height = (200 + (RHal)) / 10;
+                RHal_ball.getLayoutParams().width = (350 + (RHal)) / 10;
+                RHal_ball.getLayoutParams().height = (350 + (RHal)) / 10;
                 RHal_ball.requestLayout();
 
-                RMet1_ball.getLayoutParams().width = (200 + (RMet1)) / 10;
-                RMet1_ball.getLayoutParams().height = (200 + (RMet1)) / 10;
+                RMet1_ball.getLayoutParams().width = (350 + (RMet1)) / 10;
+                RMet1_ball.getLayoutParams().height = (350 + (RMet1)) / 10;
                 RMet1_ball.requestLayout();
 
-                RMet2_ball.getLayoutParams().width = (200 + (RMet2)) / 10;
-                RMet2_ball.getLayoutParams().height = (200 + (RMet2)) / 10;
+                RMet2_ball.getLayoutParams().width = (350 + (RMet2)) / 10;
+                RMet2_ball.getLayoutParams().height = (350 + (RMet2)) / 10;
                 RMet2_ball.requestLayout();
 
-                RMet3_ball.getLayoutParams().width = (200 + (RMet3)) / 10;
-                RMet3_ball.getLayoutParams().height = (200 + (RMet3)) / 10;
+                RMet3_ball.getLayoutParams().width = (350 + (RMet3)) / 10;
+                RMet3_ball.getLayoutParams().height = (350 + (RMet3)) / 10;
                 RMet3_ball.requestLayout();
 
-                RMid_ball.getLayoutParams().width = (200 + (RMid)) / 10;
-                RMid_ball.getLayoutParams().height = (200 + (RMid)) / 10;
+                RMid_ball.getLayoutParams().width = (350 + (RMid)) / 10;
+                RMid_ball.getLayoutParams().height = (350 + (RMid)) / 10;
                 RMid_ball.requestLayout();
 
-                RCal1_ball.getLayoutParams().width = (200 + (RCal1)) / 10;
-                RCal1_ball.getLayoutParams().height = (200 + (RCal1)) / 10;
+                RCal1_ball.getLayoutParams().width = (350 + (RCal1)) / 10;
+                RCal1_ball.getLayoutParams().height = (350 + (RCal1)) / 10;
                 RCal1_ball.requestLayout();
 
-                RCal2_ball.getLayoutParams().width = (200 + (RCal2)) / 10;
-                RCal2_ball.getLayoutParams().height = (200 + (RCal2)) / 10;
+                RCal2_ball.getLayoutParams().width = (350 + (RCal2)) / 10;
+                RCal2_ball.getLayoutParams().height = (350 + (RCal2)) / 10;
                 RCal2_ball.requestLayout();
 
                 //Ball color change
@@ -480,6 +488,14 @@ public class ReaderActivity extends AppCompatActivity {
                 LTemp = Float.parseFloat(arrofs[8]);
                 LHum = Float.parseFloat(arrofs[9]);
 
+                LHal_ball.setVisibility(View.VISIBLE);
+                LMet1_ball.setVisibility(View.VISIBLE);
+                LMet2_ball.setVisibility(View.VISIBLE);
+                LMet3_ball.setVisibility(View.VISIBLE);
+                LMid_ball.setVisibility(View.VISIBLE);
+                LCal1_ball.setVisibility(View.VISIBLE);
+                LCal2_ball.setVisibility(View.VISIBLE);
+
                 temp_esq.setText(""+ LTemp);
                 hum_esq.setText(""+ LHum);
 
@@ -504,32 +520,32 @@ public class ReaderActivity extends AppCompatActivity {
 
                 //Ball growth
 
-                LHal_ball.getLayoutParams().width = (200 + (LHal)) / 10;
-                LHal_ball.getLayoutParams().height = (200 + (LHal)) / 10;
+                LHal_ball.getLayoutParams().width = (350 + (LHal)) / 10;
+                LHal_ball.getLayoutParams().height = (350 + (LHal)) / 10;
                 LHal_ball.requestLayout();
 
-                LMet1_ball.getLayoutParams().width = (200 + (LMet1)) / 10;
-                LMet1_ball.getLayoutParams().height = (200 + (LMet1)) / 10;
+                LMet1_ball.getLayoutParams().width = (350 + (LMet1)) / 10;
+                LMet1_ball.getLayoutParams().height = (350 + (LMet1)) / 10;
                 LMet1_ball.requestLayout();
 
-                LMet2_ball.getLayoutParams().width = (200 + (LMet2)) / 10;
-                LMet2_ball.getLayoutParams().height = (200 + (LMet2)) / 10;
+                LMet2_ball.getLayoutParams().width = (350 + (LMet2)) / 10;
+                LMet2_ball.getLayoutParams().height = (350 + (LMet2)) / 10;
                 LMet2_ball.requestLayout();
 
-                LMet3_ball.getLayoutParams().width = (200 + (LMet3)) / 10;
-                LMet3_ball.getLayoutParams().height = (200 + (LMet3)) / 10;
+                LMet3_ball.getLayoutParams().width = (350 + (LMet3)) / 10;
+                LMet3_ball.getLayoutParams().height = (350 + (LMet3)) / 10;
                 LMet3_ball.requestLayout();
 
-                LMid_ball.getLayoutParams().width = (200 + (LMid)) / 10;
-                LMid_ball.getLayoutParams().height = (200 + (LMid)) / 10;
+                LMid_ball.getLayoutParams().width = (350 + (LMid)) / 10;
+                LMid_ball.getLayoutParams().height = (350 + (LMid)) / 10;
                 LMid_ball.requestLayout();
 
-                LCal1_ball.getLayoutParams().width = (200 + (LCal1)) / 10;
-                LCal1_ball.getLayoutParams().height = (200 + (LCal1)) / 10;
+                LCal1_ball.getLayoutParams().width = (350 + (LCal1)) / 10;
+                LCal1_ball.getLayoutParams().height = (350 + (LCal1)) / 10;
                 LCal1_ball.requestLayout();
 
-                LCal2_ball.getLayoutParams().width = (200 + (LCal2)) / 10;
-                LCal2_ball.getLayoutParams().height = (200 + (LCal2)) / 10;
+                LCal2_ball.getLayoutParams().width = (350 + (LCal2)) / 10;
+                LCal2_ball.getLayoutParams().height = (350 + (LCal2)) / 10;
                 LCal2_ball.requestLayout();
 
                 //Ball color change
@@ -684,7 +700,7 @@ public class ReaderActivity extends AppCompatActivity {
     int ball_color (int n) {
         int change;
 
-        change = (int) (-0.5 * n + 255);
+        change = (int) (-0.4 * n + 255);
         int new_color;
 
         if (change <= 0) {
@@ -896,16 +912,13 @@ public class ReaderActivity extends AppCompatActivity {
 
                 try {
                     FileOutputStream fos = new FileOutputStream(file);
-                    //ObjectOutputStream oos = new ObjectOutputStream(fos);
-                    //fos = openFileOutput("example.txt", MODE_PRIVATE);
-                    //fos.write(PeEsquerdo.toString().getBytes());
-                    //fos.write(PeDireito.toString().getBytes());
-                    //fos.write(test.getBytes());
+
                     fos.write(("Nome: " + name + System.getProperty("line.separator")+ "Idade: " + age + " anos" + System.getProperty("line.separator") + "Sexo: " + gender
                             + System.getProperty("line.separator")+ "Altura: " + height+ " cm" + System.getProperty("line.separator")+ "Peso: " + Weight + " Kg"+
                             System.getProperty("line.separator") + "Nº pé: " + foot_size + System.getProperty("line.separator")+ System.getProperty("line.separator")).getBytes());
 
                     fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+
                     for (int i = 0; i < PeEsquerdo.size(); i++) {
                         fos.write(PeEsquerdo.get(i).toString().getBytes());
                     }
