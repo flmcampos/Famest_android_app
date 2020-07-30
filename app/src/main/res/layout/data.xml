@@ -190,9 +190,14 @@
         android:id="@+id/temp_apoioesq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
         android:text="Esquerdo: "
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView30"
+        app:layout_constraintEnd_toStartOf="@+id/temp_apoiodir"
         app:layout_constraintStart_toEndOf="@+id/textView30"
         app:layout_constraintTop_toTopOf="@+id/textView30" />
 
@@ -200,10 +205,11 @@
         android:id="@+id/temp_apoiodir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:text="Direito: "
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/temp_apoioesq"
         app:layout_constraintStart_toEndOf="@+id/temp_apoioesq"
         app:layout_constraintTop_toTopOf="@+id/textView30" />
 

@@ -21,17 +21,15 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="362dp"
+        android:layout_width="match_parent"
         android:layout_height="545dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="92dp"
-        android:layout_marginRight="20dp"
+        android:gravity="center_horizontal"
         android:text="Para iniciar a leitura, terá que primeiramente que conectar o telemóvel às palmilhas (clicando no botão Settings) e preencher as informações pessoais (clicando no botão Perfil). Seguidamente, aparecerá no Menu Principal um novo botão, destinado à Calibração dos sensores e do sistema. Posta a calibração, será possível proceder às leituras"
-        android:textSize="20sp"
         android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        android:gravity="center_horizontal" />
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 </androidx.constraintlayout.widget.ConstraintLayout>

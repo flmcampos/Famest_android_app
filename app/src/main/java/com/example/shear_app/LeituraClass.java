@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+//classe que possibilita a transcrição dos dados recebidos para uma linha que será depois adicionada no ficheiro txt
+
 public class LeituraClass {
     public int Hal_data;
     public int Met1_data;

@@ -51,6 +51,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
 
+
+//Atividade que permite a vizualização de toda a informação que está a ser recolhida, estando
+//disponível diferentes tipos de disposição da informação: mapa, gráficos e texto
 public class ReaderActivity extends AppCompatActivity {
 
     int cont_cadence =0;
@@ -63,7 +66,6 @@ public class ReaderActivity extends AppCompatActivity {
     TextView tvTimer;
     long startTime, timeInMilliseconds = 0;
     Handler customHandler = new Handler();
-    Handler handler = new Handler();
     Button btnStart, btnStop;
     String TAG = "TAG";
 
@@ -133,13 +135,13 @@ public class ReaderActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private TextView Lpercentage, Rpercentage;
 
+    //Aparecimento do layout para vizualiação dos dados pelo utilizador
+    //Neste bloco serão associadas as variáveis desta classe às variáveis do ficheiro XML correspondente
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.chat_bt);
-
-
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -185,6 +187,7 @@ public class ReaderActivity extends AppCompatActivity {
         GraphView graphesq = (GraphView) findViewById(R.id.graph);
         GraphView graphdir = (GraphView) findViewById(R.id.graph2);
 
+        //Adição das curvas que irão corresponder à variação da soma de pressões do pé esquerdo e direito, respetivamente
         graphesq.addSeries(seriesL);
         graphdir.addSeries(seriesR);
 
@@ -194,7 +197,7 @@ public class ReaderActivity extends AppCompatActivity {
         seriesL.setColor(Color.GREEN);
         seriesR.setColor(Color.BLUE);
 
-        //customize viewportesq
+        //customize viewport pé esq
         Viewport viewportesq = graphesq.getViewport();
         viewportesq.setYAxisBoundsManual(true);
         viewportesq.setXAxisBoundsManual(true);
@@ -203,7 +206,7 @@ public class ReaderActivity extends AppCompatActivity {
         viewportesq.setMinX(0);
         viewportesq.setMaxX(10);
 
-        //customize viewportdir
+        //customize viewport pé dir
         Viewport viewportdir = graphdir.getViewport();
         viewportdir.setYAxisBoundsManual(true);
         viewportdir.setXAxisBoundsManual(true);
@@ -224,8 +227,6 @@ public class ReaderActivity extends AppCompatActivity {
         BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
         BTConnectionR.execute();
 
-        //messageTextR = findViewById(R.id.Data_collected_dir);
-        //messageTextL = findViewById(R.id.Data_collected_esq);
 
         messageLHal = findViewById(R.id.LHalMax);
         messageLMet1 = findViewById(R.id.LMet1Max);
@@ -261,22 +262,27 @@ public class ReaderActivity extends AppCompatActivity {
 
     }
 
+    //Bloco que permite a apresentação do tempo apresentado no display no formato Horas:Minutos:Segundos
     public static String getDateFromMillis(long d) {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
         return df.format(d);
     }
 
+    //Os próximos dois blocos lidam com o recebimento dos dados provenientes da conexão BT correspondente
+    // Aqui estes dados serão atualizados à medida que estes recebidos do DAQ
+    //Tendo os blocos funções idênticas, serão apenas comentadas as funções do primeiro bloco (mHandlerdir)
     private final Handler mHandlerDir = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (data_dir_esq) {
                 String s = (String) msg.obj;
-                //Log.d("TAG", "Mensagem lida R: " + s);
 
                 String delimiter = "\\|";
                 String[] arrofs = s.split(delimiter);
 
+                //Tendo sido aplicado o split na string que contém os dados, é de seguida associado para cada
+                // posição do array resultante a variável correspondente
                 RHal = Integer.parseInt(arrofs[1]);
                 RMet1 = Integer.parseInt(arrofs[2]);
                 RMet2 = Integer.parseInt(arrofs[3]);
@@ -287,6 +293,7 @@ public class ReaderActivity extends AppCompatActivity {
                 RTemp = Float.parseFloat(arrofs[8]);
                 RHum = Float.parseFloat(arrofs[9]);
 
+                //Bolas correspondentes aos pontos de pressão a medir tornam-se visíveis
                 RHal_ball.setVisibility(View.VISIBLE);
                 RMet1_ball.setVisibility(View.VISIBLE);
                 RMet2_ball.setVisibility(View.VISIBLE);
@@ -295,9 +302,11 @@ public class ReaderActivity extends AppCompatActivity {
                 RCal1_ball.setVisibility(View.VISIBLE);
                 RCal2_ball.setVisibility(View.VISIBLE);
 
+                //Apresentação dos valores de temperatura e humidade respetivamente
                 temp_dir.setText("" + RTemp);
                 hum_dir.setText(""+ RHum);
 
+                //Somatório das pressões do pé direito
                 RSum = (RHal) + (RMet1) + (RMet2) + (RMet3) + (RMid) + (RCal1) + (RCal2);
 
                 //Ball growth
@@ -354,6 +363,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 }
 
+                //Cálculo do tempo de apoio do pé direito
                 if (CP_dir_ball.getVisibility() == View.VISIBLE && auxR == 0) {
                     auxR = 1;
                     CP_Rstart = (int) SystemClock.elapsedRealtime();
@@ -375,7 +385,7 @@ public class ReaderActivity extends AppCompatActivity {
                     passos_text.setText("" + no_passos);
                 }
 
-                //Adição de valores ao array que irá posteriormente ser transportado para o ficheeiro txt
+                //Adição de valores ao array que irá posteriormente ser transportado para o ficheiro txt
 
                 LeituraClass val = new LeituraClass();
 
@@ -578,6 +588,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 }
 
+
                 if (CP_esq_ball.getVisibility() == View.VISIBLE && auxL == 0) {
                     auxL = 1;
                     CP_Lstart = (int) SystemClock.elapsedRealtime();
@@ -685,7 +696,7 @@ public class ReaderActivity extends AppCompatActivity {
         }
     };
 
-
+    //Função que impõe vibração no smartphone quando ultrapassado um limite imposto
     Vibrator vibrate (int n) {
         if (n>500) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -697,6 +708,7 @@ public class ReaderActivity extends AppCompatActivity {
         return v;
     }
 
+    //Função que permite a mudança de cor num ponto de pressão de acordo com a intensidade que está a ser aplicada nesse ponto
     int ball_color (int n) {
         int change;
 
@@ -712,6 +724,7 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
 
+    //Pressionando o botão de retorno do smartphone é apresentada uma caixa de diálogo que questiona o utilizador se pretende saír da sessão
     @Override
     public void onBackPressed() {
         if (data_dir_esq) {
@@ -738,25 +751,28 @@ public class ReaderActivity extends AppCompatActivity {
     }
 
 
-
+    //Botão que apresenta no display o mapa de pressões
     public void start_map(View view) {
         dataLayout.setVisibility(View.INVISIBLE);
         graphLayout.setVisibility(View.INVISIBLE);
         frameLayout.setVisibility(View.VISIBLE);
     }
 
+    //Botão que apresenta no display os dados no formato de texto
     public void Dados(View view) {
         frameLayout.setVisibility(View.INVISIBLE);
         graphLayout.setVisibility(View.INVISIBLE);
         dataLayout.setVisibility(View.VISIBLE);
     }
 
+    //Botão que apresenta no display o gráficos referentes ao somatório das pressões em cada pé
     public void start_graph(View view) {
         frameLayout.setVisibility(View.INVISIBLE);
         graphLayout.setVisibility(View.VISIBLE);
         dataLayout.setVisibility(View.INVISIBLE);
     }
 
+    //Botão que inicia a leitura e o relógio
     public void Start_Read(View view) {
 
         data_dir_esq = true;
@@ -771,10 +787,9 @@ public class ReaderActivity extends AppCompatActivity {
             tvTimer.setVisibility(View.VISIBLE);
 
         }
-
-
     }
 
+    //Botão que permite pausar a leitura
     public void Stop_read(View view) {
         data_dir_esq = false;
 
@@ -787,6 +802,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     }
 
+    //Implementação do cronómetro da sessão
     private final Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
@@ -795,20 +811,20 @@ public class ReaderActivity extends AppCompatActivity {
 
             if (cont_cadence == 0) {
                 start_cadence = SystemClock.elapsedRealtime()/1000;
-            } else if (cont_cadence == 6) {
+            } else if (cont_cadence >= 6) {
                 stop_cadence = SystemClock.elapsedRealtime()/1000;
-                cadence = (double) 360/(stop_cadence - start_cadence);
+                cadence = (double) (60*cont_cadence)/(stop_cadence - start_cadence);
                 cadence_result.setText(String.format("%.5s passos/minuto", cadence));
 
                 Log.d(TAG,"" + (stop_cadence - start_cadence) + " - " + stop_cadence );
-                cont_cadence = 0;
+                //cont_cadence = 0;
             }
 
 
         }
     };
 
-
+    //Botão que permite guardar os dados relativos à sessão
     public void save_data(View view) {
 
         if (!data_dir_esq) {
@@ -831,6 +847,7 @@ public class ReaderActivity extends AppCompatActivity {
         }
     }
 
+    //No caso do smartphone usar uma API superior a 23 executa a seguinte função na qual pede permissão ao utilizador para aceder à memória interna do telemóvel
     private void requestPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             Toast.makeText(this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
@@ -839,6 +856,7 @@ public class ReaderActivity extends AppCompatActivity {
         }
     }
 
+    //Função que permite aferir se o utilizador concedeu permissão para aceder à memória interna do smartphone
     private boolean checkPermission() {
         int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (result == PackageManager.PERMISSION_GRANTED) {
@@ -848,6 +866,7 @@ public class ReaderActivity extends AppCompatActivity {
         }
     }
 
+    //Função que transcreve para uma variável booleana a resposta do utilizador ao pedido de acesso à memória interna
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -933,7 +952,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                     fos.close();
 
-                    Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Data saved", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();

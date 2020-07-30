@@ -43,6 +43,7 @@ public class  ProfileActivity extends AppCompatActivity {
 
     public static Boolean perfil = false;
 
+    //Apresentação da página onde o utilizador irá preencher algumas informações úteis como nome, altura, etc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
@@ -56,6 +57,7 @@ public class  ProfileActivity extends AppCompatActivity {
         mEditTextNumeroSapato = (EditText) findViewById(R.id.editTextNumeroSapato);
     }
 
+    //Com esta função pretende-se seleccionar apenas uma das opções relativamente ao gênero do utilizador
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
@@ -82,6 +84,8 @@ public class  ProfileActivity extends AppCompatActivity {
         }
     }
 
+    //Após premir este botão os dados preenchidos serão guardados em variáveis que serão depois transportadas
+    //para o ficheiro txt que será gerado no final de cada sessão
     public void guardarInfo(View view) {
 
         Nome = mEditTextNome.getText().toString();
