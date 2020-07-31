@@ -513,6 +513,8 @@ public class ReaderActivity extends AppCompatActivity {
 
                 Log.d("Values", "Valores soma: " + LSum + " - " + RSum + " - " + (LSum+RSum));
 
+
+                //Determinação do balanceamento através de uma ProgressBar
                 if (LSum!=0 || RSum!=0) {
 
                     progressBar.setProgress((int) (((double)LSum / (LSum + RSum))*100));
@@ -529,7 +531,6 @@ public class ReaderActivity extends AppCompatActivity {
 
 
                 //Ball growth
-
                 LHal_ball.getLayoutParams().width = (350 + (LHal)) / 10;
                 LHal_ball.getLayoutParams().height = (350 + (LHal)) / 10;
                 LHal_ball.requestLayout();
@@ -559,7 +560,6 @@ public class ReaderActivity extends AppCompatActivity {
                 LCal2_ball.requestLayout();
 
                 //Ball color change
-
                 LHal_ball.getBackground().setColorFilter(ball_color(LHal), PorterDuff.Mode.MULTIPLY);
                 LMet1_ball.getBackground().setColorFilter(ball_color(LMet1), PorterDuff.Mode.MULTIPLY);
                 LMet2_ball.getBackground().setColorFilter(ball_color(LMet2), PorterDuff.Mode.MULTIPLY);
@@ -567,7 +567,6 @@ public class ReaderActivity extends AppCompatActivity {
                 LMid_ball.getBackground().setColorFilter(ball_color(LMid), PorterDuff.Mode.MULTIPLY);
                 LCal1_ball.getBackground().setColorFilter(ball_color(LCal1), PorterDuff.Mode.MULTIPLY);
                 LCal2_ball.getBackground().setColorFilter(ball_color(LCal2), PorterDuff.Mode.MULTIPLY);
-                //Log.d("TAG","" + Color.rgb(255,0,0));
 
 
                 //Calculate Center of pressure
@@ -880,6 +879,7 @@ public class ReaderActivity extends AppCompatActivity {
         }
     }
 
+    //Quando esta função é chamada, uma caixa de diálogo aparece para o utilizador confirmar a gravaçõo dos dados referentes à atual sessão
     private void save_dialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Guardar");
@@ -898,6 +898,7 @@ public class ReaderActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    //Bloco que efetiva a transcrição dos dados produzidos nesta atividade para um ficheiro txt
     private void savedata_tofile() {
 
         Calendar c = Calendar.getInstance();
@@ -913,22 +914,29 @@ public class ReaderActivity extends AppCompatActivity {
 
         String state = Environment.getExternalStorageState();
 
+        //Verificação da existência de armazenamento interno
         if (Environment.MEDIA_MOUNTED.equals(state)) {
 
             String root = Environment.getExternalStorageDirectory().toString();
             File dir = new File(root + "/FAMEST");
 
+            //Criação de um diretório para onde será enviado o ficheiro txt
             if (!dir.exists()) {
 
                 dir.mkdir();
 
             }
+
+            //criação do ficheiro txt
+            //No nome do ficheiro será incluido o nome colocado no perfil e a data e hora de criação deste
             File file = new File(dir, name + " on " + dateFormat.format(c.getTime()) +".txt");
+
+            //No caso de já existir um ficheiro com o mesmo nome, este será apagado
             if (file.exists()){
                 file.delete();
+
+                //Bloco que garante escrever toda a informação no ficheiro txt
             } else {
-
-
                 try {
                     FileOutputStream fos = new FileOutputStream(file);
 

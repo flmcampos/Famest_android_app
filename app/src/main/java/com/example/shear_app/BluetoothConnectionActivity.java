@@ -126,7 +126,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
             s = new String(buffer, "ASCII");
             s = s.substring(0, bytes);
         } catch (IOException e) {
-            Log.e(TAG, "Read failed");
+            //Log.e(TAG, "Read failed");
         }
         return s;
     }

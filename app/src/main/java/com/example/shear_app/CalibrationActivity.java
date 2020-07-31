@@ -24,6 +24,7 @@ public class CalibrationActivity extends AppCompatActivity {
 
     TextView calibrationTimer;
     TextView resultado_peso;
+    TextView aviso;
 
     long startTimeC = 0, timeInMillisecondsC = 15;
 
@@ -82,6 +83,7 @@ public class CalibrationActivity extends AppCompatActivity {
 
         calibrationTimer = (TextView) findViewById(R.id.calibrationTimer);
         resultado_peso = (TextView) findViewById(R.id.weight_result);
+        aviso = (TextView) findViewById(R.id.msg_aviso);
     }
 
     //função que permite receber a informação enviada pelo DAQ da palmilha direita
@@ -164,6 +166,7 @@ public class CalibrationActivity extends AppCompatActivity {
             timeInMillisecondsC = 15- (SystemClock.elapsedRealtime() - startTimeC)/1000;
 
             if (timeInMillisecondsC == 0) {
+                aviso.setVisibility(View.INVISIBLE);
                 calibrationTimer.setText("Calibração realizada");
                 data_dir_esqC = false;
                 read.setEnabled(true);
