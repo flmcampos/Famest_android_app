@@ -1057,7 +1057,6 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
-drawable famest_back_background
 drawable graph_icon
 drawable ic_bluetooth_black_24dp
 drawable ic_launcher_background

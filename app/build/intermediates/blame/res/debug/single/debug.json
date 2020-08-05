@@ -64,10 +64,6 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-xxxhdpi\\feet_cop.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_famest_back_background.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\famest_back_background.png"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_graph_icon.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\graph_icon.png"
     },
@@ -92,10 +88,6 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_famest_back_background.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\famest_back_background.png"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_foreground.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_launcher_foreground.png"
     },
@@ -110,10 +102,6 @@
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_famest_back.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-hdpi\\famest_back.png"
-    },
-    {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_famest_back_background.xml.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\famest_back_background.xml"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
@@ -200,10 +188,6 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\layout\\profile.xml"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_famest_back_background.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\famest_back_background.png"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
@@ -284,10 +268,6 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_famest_back_background.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\famest_back_background.png"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_graph_icon.xml.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\graph_icon.xml"
     },
@@ -324,10 +304,6 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_famest_back_background.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\famest_back_background.png"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_feet_cop.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-xxhdpi\\feet_cop.png"
     },
@@ -338,10 +314,6 @@
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_launcher_background.png"
-    },
-    {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_famest_back_background.png.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\famest_back_background.png"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_famest.png.flat",
