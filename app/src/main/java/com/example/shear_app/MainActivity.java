@@ -16,11 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    int aux = 0;
+    //int aux = 0;
     int c =0;
-    private Button calibration, instructions, bt, prof_;
+    private Button calibration;
     boolean currentlayout = false;
-    private TextView welcome;
 
     Bundle bn;
 
@@ -30,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         calibration = findViewById(R.id.goToStart);
-        instructions = findViewById(R.id.goToInstructions);
+        /*instructions = findViewById(R.id.goToInstructions);
         bt = findViewById(R.id.goToSettings);
         prof_ = findViewById(R.id.goToProfile);
         //welcome = findViewById(R.id.welcome_text);
 
-        /*if (aux==0) {
+        if (aux==0) {
             calibration.setVisibility(View.INVISIBLE);
             instructions.setVisibility(View.INVISIBLE);
             bt.setVisibility(View.INVISIBLE);

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -22,14 +25,40 @@
     <TextView
         android:id="@+id/textView9"
         android:layout_width="match_parent"
-        android:layout_height="545dp"
-        android:layout_marginTop="92dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:gravity="center_horizontal"
-        android:text="Para iniciar a leitura, terá que primeiramente que conectar o telemóvel às palmilhas (clicando no botão Settings) e preencher as informações pessoais (clicando no botão Perfil). Seguidamente, aparecerá no Menu Principal um novo botão, destinado à Calibração dos sensores e do sistema. Posta a calibração, será possível proceder às leituras"
+        android:text="Bem vindo à aplicação FAMEST!"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Antes de iniciar a sua utilização deverá certificar-se que tanto as palmilhas,
+como os respetivos sistemas de aquisição estão corretamente colocados no calçado.
+Após essa verificação, deverá seguir os seguintes passos:\n\n
+1. Ligação de ambas as palmilhas aos respetivos sistemas de aquisição através do interruptor presente
+em cada invólucro. Irá acender-se uma luz azul;\n\n2. Efetuar emparelhamento Bluetooth com ambas as
+palmilhas. Para esse efeito, deverá proceder, no menu Bluetooth do smartphone (fora desta App!), a um
+emparelhamento comum entre smartphone e um dispositivo Bluetooth; \n\n3. Pode então proceder à
+utilização da aplicação começando por premir o botão 'Configuração', onde deverá guardar os endereços
+dos dispositivos Bluetooth correspondentes às palmilhas. No botão 'Esquerdo' deverá guardar o
+dispositivo correspondente à palmilha esquerda e no botão 'Direito', o correspondente à palmilha
+direita;\n\n4. De seguida, deverá preencher as suas informações pessoais, clicando no botão 'Perfil';
+\n\n5. É possível agora iniciar a calibração procedendo ao clique do botão 'Calibração'. O utilizador
+deverá estar 15 segundos estático após início da contagem; \n\n6. Finalmente, clicando em 'Leitura'
+a sessão de monitorização de pressões plantares irá começar."
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
