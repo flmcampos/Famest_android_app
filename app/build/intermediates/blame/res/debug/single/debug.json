@@ -24,12 +24,12 @@
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_feet_cop_round.png.flat",
         "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\mipmap-xxhdpi\\feet_cop_round.png"
+    },
+    {
+        "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "C:\\Users\\fcampos\\Desktop\\famest-app2\\app\\build\\intermediates\\res\\merged\\debug\\layout_drawer_activity.xml.flat",
