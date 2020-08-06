@@ -22,31 +22,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center_horizontal"
-        android:text="Bem vindo à aplicação FAMEST!"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center_horizontal"
+            android:text="Bem vindo à aplicação FAMEST!"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <TextView
-        android:id="@+id/instructions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Antes de iniciar a sua utilização deverá certificar-se que tanto as palmilhas,
+        <TextView
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Antes de iniciar a sua utilização deverá certificar-se que tanto as palmilhas,
 como os respetivos sistemas de aquisição estão corretamente colocados no calçado.
 Após essa verificação, deverá proceder aos seguintes passos:\n\n
 1. Ligação de ambas as palmilhas aos respetivos sistemas de aquisição através do interruptor presente
 em cada invólucro. Irá acender-se uma luz azul;\n\n2. Efetuar emparelhamento Bluetooth com ambas as
-palmilhas. Para esse efeito, deverá proceder, no menu Bluetooth do smartphone (fora desta App!), a um
+palmilhas. Para esse efeito, deverá proceder, no menu Bluetooth do smartphone (fora da App!), a um
 emparelhamento comum entre smartphone e um dispositivo Bluetooth; \n\n3. Pode então proceder à
 utilização da aplicação começando por premir o botão 'Configuração', onde deverá guardar os endereços
 dos dispositivos Bluetooth correspondentes às palmilhas. No botão 'Esquerdo' deverá guardar o
@@ -55,10 +64,11 @@ direita;\n\n4. De seguida, deverá preencher as suas informações pessoais, cli
 \n\n5. É possível agora iniciar a calibração procedendo ao clique do botão 'Calibração'. O utilizador
 deverá estar 15 segundos estático após início da contagem; \n\n6. Finalmente, clicando em 'Leitura'
 a sessão de monitorização de pressões plantares irá começar."
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

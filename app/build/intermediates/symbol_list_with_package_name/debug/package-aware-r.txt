@@ -1274,6 +1274,7 @@ id icon_group
 id ifRoom
 id image
 id info
+id instructions
 id invisible
 id italic
 id item_touch_helper_previous_elevation

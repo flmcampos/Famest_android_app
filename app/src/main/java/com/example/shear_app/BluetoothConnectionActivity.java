@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
+import android.os.RemoteException;
 import android.util.Log;
+import android.view.autofill.AutofillManager;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -18,6 +21,8 @@ import java.util.UUID;
 public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
     //Atividade executada em background e que permite a conexão a um dispositivo BT
+
+    public static final int DONT_FINISH_TASK_WITH_ACTIVITY = 0;
 
     public static boolean Connected = true;
     private ProgressDialog mProgressdialog;
@@ -50,19 +55,23 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
     //De seguida, é executada a tentativa de comunicação com o outro dispositivo BT em background
     @Override
     protected Void doInBackground(Void... devices) {
+
+
         try {
-            if (btsocket == null || !Connected) {
-                mBluetoothadapter = BluetoothAdapter.getDefaultAdapter();
-                //Criação de uma socket com o endereço obtida da lista de dispositivos emparelhados
-                BluetoothDevice device = mBluetoothadapter.getRemoteDevice(maddress);
-                btsocket = device.createInsecureRfcommSocketToServiceRecord(MY_UUID);
+            if (!isCancelled()) {
+                if (btsocket == null || !Connected) {
+                    mBluetoothadapter = BluetoothAdapter.getDefaultAdapter();
+                    //Criação de uma socket com o endereço obtida da lista de dispositivos emparelhados
+                    BluetoothDevice device = mBluetoothadapter.getRemoteDevice(maddress);
+                    btsocket = device.createInsecureRfcommSocketToServiceRecord(MY_UUID);
 
 
-                btsocket.connect(); //Conexão à socket
+                    btsocket.connect(); //Conexão à socket
 
 
-                //Get input stream from the socket
-                minstream = btsocket.getInputStream();
+                    //Get input stream from the socket
+                    minstream = btsocket.getInputStream();
+                }
             }
         } catch (Exception e) {
             Connected = false;
@@ -126,10 +135,11 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
             s = new String(buffer, "ASCII");
             s = s.substring(0, bytes);
         } catch (IOException e) {
-            //Log.e(TAG, "Read failed");
+            Log.e(TAG, "Read failed");
         }
         return s;
     }
+
 
     //Função que envia os dados já em texto para a atividade da sessão (ReaderActivity)
     public void sendToReadHandler(String s) {
@@ -138,12 +148,19 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         mHandler.sendMessage(msg);
     }
 
+    @Override
+    protected void onCancelled() {
+        super.onCancelled();
+    }
+
+
     //Função que termina a ligação BT existente entre o smartphone e outro dispositivo
     public void disconnect() {
 
         if (btsocket != null) {
             try {
                 btsocket.close();
+                isCancelled();
             } catch (IOException e) {
                 Toast.makeText(mactivity.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
             }

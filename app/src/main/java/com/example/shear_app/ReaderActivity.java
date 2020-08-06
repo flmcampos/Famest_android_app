@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -221,11 +222,11 @@ public class ReaderActivity extends AppCompatActivity {
 
         //Create connection for device
         BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsq);
-        BTConnectionL.execute();
+        BTConnectionL.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         //Create connection for device
         BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
-        BTConnectionR.execute();
+        BTConnectionR.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
         messageLHal = findViewById(R.id.LHalMax);
@@ -737,6 +738,8 @@ public class ReaderActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             BTConnectionL.disconnect();
                             BTConnectionR.disconnect();
+                            BTConnectionR.cancel(true);
+                            BTConnectionL.cancel(true);
                             finish();
                         }
                     });

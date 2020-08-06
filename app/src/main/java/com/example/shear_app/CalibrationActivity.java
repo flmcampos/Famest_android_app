@@ -1,6 +1,7 @@
 package com.example.shear_app;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -64,7 +65,7 @@ public class CalibrationActivity extends AppCompatActivity {
         //Create connection for device
         BTConnectionCL = new BluetoothConnectionActivity(this, mDeviceAddressLeftC, mHandlerEsqC);
         try {
-            BTConnectionCL.execute();
+            BTConnectionCL.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } catch (Exception e) {
             BTConnectionCL.disconnect();
             e.printStackTrace();
@@ -72,7 +73,7 @@ public class CalibrationActivity extends AppCompatActivity {
         //Create connection for device
         BTConnectionCR = new BluetoothConnectionActivity(this, mDeviceAddressRightC, mHandlerDirC);
         try {
-            BTConnectionCR.execute();
+            BTConnectionCR.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } catch (Exception e) {
             BTConnectionCL.disconnect();
             BTConnectionCR.disconnect();
@@ -173,8 +174,11 @@ public class CalibrationActivity extends AppCompatActivity {
                 peso_calculado = (double)(SumC / length)*71.4e-4;
                 resultado_peso.setText(String.format("Peso calculado = %.3s Kgf", peso_calculado));
 
-                BTConnectionCL.disconnect();
-                BTConnectionCR.disconnect();
+                //BTConnectionCL.disconnect();
+                //BTConnectionCR.disconnect();
+
+                //BTConnectionCR.cancel(true);
+                //BTConnectionCL.cancel(true);
 
             } else if (timeInMillisecondsC>0){
                 calibrationTimer.setText("" + timeInMillisecondsC);
@@ -186,6 +190,8 @@ public class CalibrationActivity extends AppCompatActivity {
     //vizualização da sessão de monitorização de pressões plantares
     public void Reader(View view){
 
+        BTConnectionCL.disconnect();
+        BTConnectionCR.disconnect();
         Bundle bn = getIntent().getExtras();
         bn.getString("esq");
         bn.getString("dir");
@@ -193,6 +199,7 @@ public class CalibrationActivity extends AppCompatActivity {
         i.putExtras(bn);
 
         startActivity(i);
+
         finish();
     }
 }
