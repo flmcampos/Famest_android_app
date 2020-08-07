@@ -29,47 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         calibration = findViewById(R.id.goToStart);
-        /*instructions = findViewById(R.id.goToInstructions);
-        bt = findViewById(R.id.goToSettings);
-        prof_ = findViewById(R.id.goToProfile);
-        //welcome = findViewById(R.id.welcome_text);
-
-        if (aux==0) {
-            calibration.setVisibility(View.INVISIBLE);
-            instructions.setVisibility(View.INVISIBLE);
-            bt.setVisibility(View.INVISIBLE);
-            prof_.setVisibility(View.INVISIBLE);
-            aux=1;
-        }
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                calibration.setVisibility(View.VISIBLE);
-                instructions.setVisibility(View.VISIBLE);
-                bt.setVisibility(View.VISIBLE);
-                prof_.setVisibility(View.VISIBLE);
-                welcome.setVisibility(View.INVISIBLE);
-            }
-        }, 3000);*/
-
         c =0;
-
-    }
-
-    /*@Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        if (SettingsActivity.BTesq && SettingsActivity.BTdir && !ProfileActivity.perfil) {
-            bn = getIntent().getExtras();
-            bn.getString("esq");
-            bn.getString("dir");
-        }
-    }*/
-
-
+}
     //Após preencher os dados sobre BT e o perfil é apresentada uma caixa de diálogo a informar sobre
     //o começo da sessão
     @Override

@@ -36,6 +36,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
 
     private static final String TAG = "Socket_Creation";
     private static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    private boolean running = true;
 
     BluetoothConnectionActivity(Activity activity, String address, Handler handler) {
         mactivity = activity;
@@ -103,11 +104,13 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         @Override
         public void run() {
             while (Connected) {
-                try {
-                    String s = read(); //Informação obtida transferida para uma String
-                    sendToReadHandler(s); //Envio da String para uma função que irá apresentar esses dados no ReaderActivity (Handler)
-                } catch (Exception e) {
-                    Log.i(TAG, "Not able to perform read");
+                if (running) {
+                    try {
+                        String s = read(); //Informação obtida transferida para uma String
+                        sendToReadHandler(s); //Envio da String para uma função que irá apresentar esses dados no ReaderActivity (Handler)
+                    } catch (Exception e) {
+                        Log.i(TAG, "Not able to perform read");
+                    }
                 }
             }
         }
@@ -161,6 +164,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
             try {
                 btsocket.close();
                 isCancelled();
+                running = false;
             } catch (IOException e) {
                 Toast.makeText(mactivity.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
             }
