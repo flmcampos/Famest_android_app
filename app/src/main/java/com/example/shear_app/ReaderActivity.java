@@ -920,7 +920,12 @@ public class ReaderActivity extends AppCompatActivity {
         //Verificação da existência de armazenamento interno
         if (Environment.MEDIA_MOUNTED.equals(state)) {
 
-            String root = Environment.getExternalStorageDirectory().toString();
+            String root;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                root = String.valueOf(getExternalFilesDir(null));
+            } else {
+                root = Environment.getExternalStorageDirectory().toString();
+            }
             File dir = new File(root + "/FAMEST");
 
             //Criação de um diretório para onde será enviado o ficheiro txt
@@ -969,7 +974,7 @@ public class ReaderActivity extends AppCompatActivity {
                     Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(this, "Error saving data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error saving data2", Toast.LENGTH_SHORT).show();
 
                 }
             }
