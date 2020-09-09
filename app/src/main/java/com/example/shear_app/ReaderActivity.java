@@ -907,6 +907,7 @@ public class ReaderActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM-dd,HH:mm");
 
+        Context context = this.getApplicationContext();
 
         String name = ProfileActivity.Nome;
         String age = ProfileActivity.Idade;
@@ -920,12 +921,19 @@ public class ReaderActivity extends AppCompatActivity {
         //Verificação da existência de armazenamento interno
         if (Environment.MEDIA_MOUNTED.equals(state)) {
 
+            /*File dir;
             String root;
+
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                root = String.valueOf(getExternalFilesDir(null));
+                root = getExternalFilesDir(null).toString();
+                dir = new File(root);
             } else {
                 root = Environment.getExternalStorageDirectory().toString();
-            }
+                dir = new File(root + "/FAMEST");
+            }*/
+
+            String root = Environment.getExternalStorageDirectory().toString();
             File dir = new File(root + "/FAMEST");
 
             //Criação de um diretório para onde será enviado o ficheiro txt
@@ -942,6 +950,7 @@ public class ReaderActivity extends AppCompatActivity {
             //No caso de já existir um ficheiro com o mesmo nome, este será apagado
             if (file.exists()){
                 file.delete();
+                Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
                 //Bloco que garante escrever toda a informação no ficheiro txt
             } else {
