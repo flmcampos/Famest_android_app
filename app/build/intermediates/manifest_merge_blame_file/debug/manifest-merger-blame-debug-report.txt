@@ -34,7 +34,7 @@
 19        android:allowBackup="true"
 19-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:12:9-35
 20        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-20-->[androidx.core:core:1.5.0-alpha02] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\3047c824169d09f187b6f436e8ff28ac\core-1.5.0-alpha02\AndroidManifest.xml:24:18-86
+20-->[androidx.core:core:1.5.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\2ac3e6f999ee2a209fa7c18a55566bb7\core-1.5.0-alpha03\AndroidManifest.xml:24:18-86
 21        android:debuggable="true"
 22        android:icon="@mipmap/famest_back"
 22-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:13:9-43

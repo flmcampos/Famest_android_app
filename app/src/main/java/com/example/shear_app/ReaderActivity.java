@@ -49,6 +49,7 @@ import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -99,6 +100,13 @@ public class ReaderActivity extends AppCompatActivity {
 
     private LineGraphSeries<DataPoint> seriesL;
     private LineGraphSeries<DataPoint> seriesR;
+
+    GraphView graphesq;
+    GraphView graphdir;
+
+    Viewport viewportesq;
+    Viewport viewportdir;
+    int oldmaxY=0;
 
     public TextView messageLHal;
     public TextView messageLMet1;
@@ -185,8 +193,8 @@ public class ReaderActivity extends AppCompatActivity {
         seriesL = new LineGraphSeries<DataPoint>();
         seriesR = new LineGraphSeries<DataPoint>();
 
-        GraphView graphesq = (GraphView) findViewById(R.id.graph);
-        GraphView graphdir = (GraphView) findViewById(R.id.graph2);
+        graphesq = (GraphView) findViewById(R.id.graph);
+        graphdir = (GraphView) findViewById(R.id.graph2);
 
         //Adição das curvas que irão corresponder à variação da soma de pressões do pé esquerdo e direito, respetivamente
         graphesq.addSeries(seriesL);
@@ -199,7 +207,7 @@ public class ReaderActivity extends AppCompatActivity {
         seriesR.setColor(Color.BLUE);
 
         //customize viewport pé esq
-        Viewport viewportesq = graphesq.getViewport();
+        viewportesq = graphesq.getViewport();
         viewportesq.setYAxisBoundsManual(true);
         viewportesq.setXAxisBoundsManual(true);
         viewportesq.setMinY(0);
@@ -208,7 +216,7 @@ public class ReaderActivity extends AppCompatActivity {
         viewportesq.setMaxX(10);
 
         //customize viewport pé dir
-        Viewport viewportdir = graphdir.getViewport();
+        viewportdir = graphdir.getViewport();
         viewportdir.setYAxisBoundsManual(true);
         viewportdir.setXAxisBoundsManual(true);
         viewportdir.setMinY(0);
@@ -222,12 +230,11 @@ public class ReaderActivity extends AppCompatActivity {
 
         //Create connection for device
         BTConnectionL = new BluetoothConnectionActivity(this, mDeviceAddressLeft, mHandlerEsq);
-        BTConnectionL.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        BTConnectionL.execute();
 
         //Create connection for device
         BTConnectionR = new BluetoothConnectionActivity(this, mDeviceAddressRight, mHandlerDir);
-        BTConnectionR.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-
+        BTConnectionR.execute();
 
         messageLHal = findViewById(R.id.LHalMax);
         messageLMet1 = findViewById(R.id.LMet1Max);
@@ -628,6 +635,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                 seriesL.appendData(new DataPoint((double) (SystemClock.elapsedRealtime() - startTime)/1000, (double) LSum),true,10000);
 
+
                 if (LHal > MaxLHal) {
                     MaxLHal = LHal;
                     messageLHal.setText(String.format("%d", MaxLHal));
@@ -738,8 +746,8 @@ public class ReaderActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             BTConnectionL.disconnect();
                             BTConnectionR.disconnect();
-                            BTConnectionR.cancel(true);
-                            BTConnectionL.cancel(true);
+                            PeDireito.clear();
+                            PeEsquerdo.clear();
                             finish();
                         }
                     });
@@ -961,7 +969,7 @@ public class ReaderActivity extends AppCompatActivity {
                             + System.getProperty("line.separator")+ "Altura: " + height+ " cm" + System.getProperty("line.separator")+ "Peso: " + Weight + " Kg"+
                             System.getProperty("line.separator") + "Nº pé: " + foot_size + System.getProperty("line.separator")+ System.getProperty("line.separator")).getBytes());
 
-                    fos.write(("Data from left foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+                    fos.write(("Dados do Pé esquerdo"+System.getProperty("line.separator")+ "Time: Hal, Met1, Met2, Met3, Mid, Cal1, Cal2, Temperatura, Humidade" + System.getProperty("line.separator")).getBytes());
 
                     for (int i = 0; i < PeEsquerdo.size(); i++) {
                         fos.write(PeEsquerdo.get(i).toString().getBytes());
@@ -969,7 +977,7 @@ public class ReaderActivity extends AppCompatActivity {
 
                     fos.write((System.getProperty("line.separator")).getBytes());
 
-                    fos.write(("Data from right foot: Time, Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
+                    fos.write(("Dados do Pé direito"+System.getProperty("line.separator")+ "Time: Hal, Met1, Met2, Met3, Mid, Cal1, Cal2" + System.getProperty("line.separator")).getBytes());
 
                     for (int i = 0; i < PeDireito.size(); i++) {
                         fos.write(PeDireito.get(i).toString().getBytes());

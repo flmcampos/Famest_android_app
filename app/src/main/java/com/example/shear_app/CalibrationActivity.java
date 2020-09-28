@@ -1,6 +1,7 @@
 package com.example.shear_app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,6 +42,9 @@ public class CalibrationActivity extends AppCompatActivity {
     private int RHalC, RMet1C, RMet2C, RMet3C, RMidC, RCal1C, RCal2C;
     private int LHalC, LMet1C, LMet2C, LMet3C, LMidC, LCal1C, LCal2C;
 
+    private int MaxLHal, MaxLMet1, MaxLMet2, MaxLMet3, MaxLMid, MaxLCal1, MaxLCal2;
+    private int MaxRHal, MaxRMet1, MaxRMet2, MaxRMet3, MaxRMid, MaxRCal1, MaxRCal2;
+
     private int SumC = 0, length = 0;
 
     private int RSumC, LSumC;
@@ -65,20 +69,24 @@ public class CalibrationActivity extends AppCompatActivity {
         //Create connection for device
         BTConnectionCL = new BluetoothConnectionActivity(this, mDeviceAddressLeftC, mHandlerEsqC);
         try {
-            BTConnectionCL.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            BTConnectionCL.execute();
         } catch (Exception e) {
             BTConnectionCL.disconnect();
+            finish();
             e.printStackTrace();
         }
         //Create connection for device
         BTConnectionCR = new BluetoothConnectionActivity(this, mDeviceAddressRightC, mHandlerDirC);
         try {
-            BTConnectionCR.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            BTConnectionCR.execute();
         } catch (Exception e) {
             BTConnectionCL.disconnect();
             BTConnectionCR.disconnect();
+            finish();
             e.printStackTrace();
         }
+
+        MaxLHal = MaxLMet1 = MaxLMet2 = MaxLMet3 = MaxLMid = MaxLCal1 = MaxLCal2 = MaxRHal = MaxRMet1 = MaxRMet2 = MaxRMet3 = MaxRMid = MaxRCal1 = MaxRCal2 = 0;
 
         read = findViewById(R.id.goToReaderActivity);
 
@@ -106,7 +114,35 @@ public class CalibrationActivity extends AppCompatActivity {
                 RCal1C = Integer.parseInt(arrofsC[6]);
                 RCal2C = Integer.parseInt(arrofsC[7]);
 
-                RSumC = (RHalC) + (RMet1C) + (RMet2C) + (RMet3C) + (RMidC) + (RCal1C) + (RCal2C);
+                if (RHalC > MaxRHal) {
+                    MaxRHal = RHalC;
+                }
+
+                if (RMet1C > MaxRMet1) {
+                    MaxRMet1 = RMet1C;
+                }
+
+                if (RMet2C > MaxRMet2) {
+                    MaxRMet2 = RMet2C;
+                }
+
+                if (RMet3C > MaxRMet3) {
+                    MaxRMet3 = RMet3C;
+                }
+
+                if (RMidC > MaxRMid) {
+                    MaxRMid = RMidC;
+                }
+
+                if (RCal1C > MaxRCal1) {
+                    MaxRCal1 = RCal1C;
+                }
+
+                if (RCal2C > MaxRCal2) {
+                    MaxRCal2 = RCal2C;
+                }
+
+                RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
 
                 SumC =+ (RSumC+LSumC);
 
@@ -136,9 +172,37 @@ public class CalibrationActivity extends AppCompatActivity {
                 LCal1C = Integer.parseInt(arrofsC[6]);
                 LCal2C = Integer.parseInt(arrofsC[7]);
 
-                LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
+                //LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
 
                 //SumC =+ LSumC;
+                if (LHalC > MaxLHal) {
+                    MaxLHal = LHalC;
+                }
+
+                if (LMet1C > MaxLMet1) {
+                    MaxLMet1 = LMet1C;
+                }
+
+                if (LMet2C > MaxLMet2) {
+                    MaxLMet2 = LMet2C;
+                }
+
+                if (LMet3C > MaxLMet3) {
+                    MaxLMet3 = LMet3C;
+                }
+
+                if (LMidC > MaxLMid) {
+                    MaxLMid = LMidC;
+                }
+
+                if (LCal1C > MaxLCal1) {
+                    MaxLCal1 = LCal1C;
+                }
+
+                if (LCal2C > MaxLCal2) {
+                    MaxLCal2 = LCal2C;
+                }
+
 
                 //length =+1;
             }
@@ -171,7 +235,10 @@ public class CalibrationActivity extends AppCompatActivity {
                 calibrationTimer.setText("Calibração realizada");
                 data_dir_esqC = false;
                 read.setEnabled(true);
-                peso_calculado = (double)(SumC / length)*71.4e-4;
+                RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
+                LSumC = MaxLHal + MaxLMet1 + MaxLMet2 +MaxLMet3+MaxLMid+MaxLCal1+MaxLCal2;
+                SumC = LSumC + RSumC;
+                peso_calculado = (double) SumC*71.4e-3/9.8;
                 resultado_peso.setText(String.format("Peso calculado = %.3s Kgf", peso_calculado));
 
                 //BTConnectionCL.disconnect();
