@@ -106,13 +106,13 @@ public class CalibrationActivity extends AppCompatActivity {
                 String delimiter = "\\|";
                 String[] arrofsC = sC.split(delimiter);
 
-                RHalC = Integer.parseInt(arrofsC[1]);
-                RMet1C = Integer.parseInt(arrofsC[2]);
-                RMet2C = Integer.parseInt(arrofsC[3]);
-                RMet3C = Integer.parseInt(arrofsC[4]);
-                RMidC = Integer.parseInt(arrofsC[5]);
-                RCal1C = Integer.parseInt(arrofsC[6]);
-                RCal2C = Integer.parseInt(arrofsC[7]);
+                RHalC = (int)Integer.parseInt(arrofsC[1]);
+                RMet1C = (int)Integer.parseInt(arrofsC[2]);
+                RMet2C = (int)Integer.parseInt(arrofsC[3]);
+                RMet3C = (int)Integer.parseInt(arrofsC[4]);
+                RMidC = (int)Integer.parseInt(arrofsC[5]);
+                RCal1C = (int)Integer.parseInt(arrofsC[6]);
+                RCal2C = (int)Integer.parseInt(arrofsC[7]);
 
                 if (RHalC > MaxRHal) {
                     MaxRHal = RHalC;
@@ -142,13 +142,13 @@ public class CalibrationActivity extends AppCompatActivity {
                     MaxRCal2 = RCal2C;
                 }
 
-                RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
+                //RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
 
-                SumC =+ (RSumC+LSumC);
+                //SumC =+ (RSumC+LSumC);
 
                 Log.d("TAG","" + LSumC + " + " + RSumC + " = " + SumC);
 
-                length =+1;
+                //length =+1;
             }
         }
     };
@@ -238,8 +238,8 @@ public class CalibrationActivity extends AppCompatActivity {
                 RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
                 LSumC = MaxLHal + MaxLMet1 + MaxLMet2 +MaxLMet3+MaxLMid+MaxLCal1+MaxLCal2;
                 SumC = LSumC + RSumC;
-                peso_calculado = (double) SumC*71.4e-3/9.8;
-                resultado_peso.setText(String.format("Peso calculado = %.3s Kgf", peso_calculado));
+                peso_calculado = (double) SumC*8.5*71.4e-3/9.8; //3.65 corresponde ao fator de calibração
+                resultado_peso.setText(String.format("Peso calculado = %.4s Kgf", peso_calculado));
 
                 //BTConnectionCL.disconnect();
                 //BTConnectionCR.disconnect();
