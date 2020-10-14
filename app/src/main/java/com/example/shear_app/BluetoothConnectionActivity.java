@@ -151,11 +151,6 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         mHandler.sendMessage(msg);
     }
 
-    @Override
-    protected void onCancelled() {
-        super.onCancelled();
-    }
-
 
     //Função que termina a ligação BT existente entre o smartphone e outro dispositivo
     public void disconnect() {

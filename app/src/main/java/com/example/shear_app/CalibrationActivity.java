@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -28,7 +30,8 @@ public class CalibrationActivity extends AppCompatActivity {
     TextView resultado_peso;
     TextView aviso;
 
-    long startTimeC = 0, timeInMillisecondsC = 15;
+    long startTimeC_dir = 0, timeInMillisecondsC_dir = 12;
+    long startTimeC_esq = 0, timeInMillisecondsC_esq = 12;
 
     public static BluetoothConnectionActivity BTConnectionCL;
     public static BluetoothConnectionActivity BTConnectionCR;
@@ -37,7 +40,8 @@ public class CalibrationActivity extends AppCompatActivity {
 
     private Button read;
 
-    Boolean data_dir_esqC = false;
+    Boolean data_dirC = false;
+    Boolean data_esqC = false;
 
     private int RHalC, RMet1C, RMet2C, RMet3C, RMidC, RCal1C, RCal2C;
     private int LHalC, LMet1C, LMet2C, LMet3C, LMidC, LCal1C, LCal2C;
@@ -45,13 +49,18 @@ public class CalibrationActivity extends AppCompatActivity {
     private int MaxLHal, MaxLMet1, MaxLMet2, MaxLMet3, MaxLMid, MaxLCal1, MaxLCal2;
     private int MaxRHal, MaxRMet1, MaxRMet2, MaxRMet3, MaxRMid, MaxRCal1, MaxRCal2;
 
-    private int SumC = 0, length = 0;
+    private int SumC = 0, lengthL, lengthR = 0;
+    int[] listR= new int[lengthR];
+    int[] listL= new int[lengthL];
+
+    private int maxR1,maxR2,maxR3,maxL1,maxL2,maxL3= 0;
 
     private int RSumC, LSumC;
 
     private double peso_calculado;
 
-    Handler customHandlerC = new Handler();
+    Handler customHandlerC_dir = new Handler();
+    Handler customHandlerC_esq = new Handler();
 
     //Início da atividade de calibração, são chamadas as funções que permitem executar duas
     //conexões BT distintas (com DAQs da palmilha esquerda e direita)
@@ -99,56 +108,41 @@ public class CalibrationActivity extends AppCompatActivity {
     private final Handler mHandlerDirC = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            if (data_dir_esqC) {
+
+
+            if (data_dirC) {
                 String sC = (String) msg.obj;
                 Log.d("TAG", "Mensagem lida R: " + sC);
 
                 String delimiter = "\\|";
                 String[] arrofsC = sC.split(delimiter);
 
-                RHalC = (int)Integer.parseInt(arrofsC[1]);
-                RMet1C = (int)Integer.parseInt(arrofsC[2]);
-                RMet2C = (int)Integer.parseInt(arrofsC[3]);
-                RMet3C = (int)Integer.parseInt(arrofsC[4]);
-                RMidC = (int)Integer.parseInt(arrofsC[5]);
-                RCal1C = (int)Integer.parseInt(arrofsC[6]);
-                RCal2C = (int)Integer.parseInt(arrofsC[7]);
+                if (arrofsC.length >= 8) {
+                    RHalC = (int) Integer.parseInt(arrofsC[1]);
+                    RMet1C = (int) Integer.parseInt(arrofsC[2]);
+                    RMet2C = (int) Integer.parseInt(arrofsC[3]);
+                    RMet3C = (int) Integer.parseInt(arrofsC[4]);
+                    RMidC = (int) Integer.parseInt(arrofsC[5]);
+                    RCal1C = (int) Integer.parseInt(arrofsC[6]);
+                    RCal2C = (int) Integer.parseInt(arrofsC[7]);
 
-                if (RHalC > MaxRHal) {
-                    MaxRHal = RHalC;
+                    RSumC = RHalC + RMet1C + RMet2C + RMet3C + RMidC + RCal1C + RCal2C;
+
+                    listR = add_element(lengthR, listR, RSumC);
+                    lengthR = listR.length;
+
+
+                    //SumC =+ (RSumC+LSumC);
+
+                    Log.d("TAG5", "" + Arrays.toString(listR));
+
+                    //length =+1;
+                } else {
+                    Toast.makeText(CalibrationActivity.this, "Está a ocorrer um erro na ligação Bluetooth direita. Renicie app e dispositivos de aquisição", Toast.LENGTH_LONG).show();
+                    BTConnectionCL.disconnect();
+                    BTConnectionCR.disconnect();
+                    finish();
                 }
-
-                if (RMet1C > MaxRMet1) {
-                    MaxRMet1 = RMet1C;
-                }
-
-                if (RMet2C > MaxRMet2) {
-                    MaxRMet2 = RMet2C;
-                }
-
-                if (RMet3C > MaxRMet3) {
-                    MaxRMet3 = RMet3C;
-                }
-
-                if (RMidC > MaxRMid) {
-                    MaxRMid = RMidC;
-                }
-
-                if (RCal1C > MaxRCal1) {
-                    MaxRCal1 = RCal1C;
-                }
-
-                if (RCal2C > MaxRCal2) {
-                    MaxRCal2 = RCal2C;
-                }
-
-                //RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
-
-                //SumC =+ (RSumC+LSumC);
-
-                Log.d("TAG","" + LSumC + " + " + RSumC + " = " + SumC);
-
-                //length =+1;
             }
         }
     };
@@ -157,98 +151,179 @@ public class CalibrationActivity extends AppCompatActivity {
     private final Handler mHandlerEsqC = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            if (data_dir_esqC) {
+            if (data_esqC) {
                 String sC = (String) msg.obj;
-                Log.d("TAG", "Mensagem lida R: " + sC);
+                Log.d("TAG", "Mensagem lida L: " + sC);
 
                 String delimiter = "\\|";
                 String[] arrofsC = sC.split(delimiter);
 
-                LHalC = Integer.parseInt(arrofsC[1]);
-                LMet1C = Integer.parseInt(arrofsC[2]);
-                LMet2C = Integer.parseInt(arrofsC[3]);
-                LMet3C = Integer.parseInt(arrofsC[4]);
-                LMidC = Integer.parseInt(arrofsC[5]);
-                LCal1C = Integer.parseInt(arrofsC[6]);
-                LCal2C = Integer.parseInt(arrofsC[7]);
+                if (arrofsC.length >= 8) {
+                    LHalC = Integer.parseInt(arrofsC[1]);
+                    LMet1C = Integer.parseInt(arrofsC[2]);
+                    LMet2C = Integer.parseInt(arrofsC[3]);
+                    LMet3C = Integer.parseInt(arrofsC[4]);
+                    LMidC = Integer.parseInt(arrofsC[5]);
+                    LCal1C = Integer.parseInt(arrofsC[6]);
+                    LCal2C = Integer.parseInt(arrofsC[7]);
 
-                //LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
+                    LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
 
-                //SumC =+ LSumC;
-                if (LHalC > MaxLHal) {
-                    MaxLHal = LHalC;
+                    listL = add_element(lengthL, listL, LSumC);
+                    lengthL = listL.length;
+
+                    Log.d("TAG6", "" + Arrays.toString(listL));
+                } else {
+                    Toast.makeText(CalibrationActivity.this, "Está a ocorrer um erro na ligação Bluetooth esquerda. Renicie app e dispositivos de aquisição", Toast.LENGTH_LONG).show();
+                    BTConnectionCL.disconnect();
+                    BTConnectionCR.disconnect();
+                    finish();
                 }
-
-                if (LMet1C > MaxLMet1) {
-                    MaxLMet1 = LMet1C;
-                }
-
-                if (LMet2C > MaxLMet2) {
-                    MaxLMet2 = LMet2C;
-                }
-
-                if (LMet3C > MaxLMet3) {
-                    MaxLMet3 = LMet3C;
-                }
-
-                if (LMidC > MaxLMid) {
-                    MaxLMid = LMidC;
-                }
-
-                if (LCal1C > MaxLCal1) {
-                    MaxLCal1 = LCal1C;
-                }
-
-                if (LCal2C > MaxLCal2) {
-                    MaxLCal2 = LCal2C;
-                }
-
-
-                //length =+1;
             }
         }
     };
 
+
+
+    public static int[] add_element(int n, int myarray[], int ele)
+    {
+        int i;
+
+        int newArray[] = new int[n + 1];
+        //copy original array into new array
+        for (i = 0; i < n; i++)
+        newArray[i] = myarray[i];
+
+        //add element to the new array
+        newArray[n] = ele;
+
+        return newArray;
+    }
+
     //Botão que irá iniciar a recolha de dados para a calibração e um relógio em contagem decrescente
     //sendo no final da contagem apresentado o resultado da calibração
     public void Start_ReadC(View view) {
+        if (btnStartC.getText().equals("Direito")) {
 
-        data_dir_esqC = true;
-        btnStartC.setEnabled(false);
+            data_dirC = true;
+            btnStartC.setEnabled(false);
 
-        startTimeC = SystemClock.elapsedRealtime();
-        customHandlerC.postDelayed(updateTimerThread, 0);
+            startTimeC_dir = SystemClock.elapsedRealtime();
+            customHandlerC_dir.postDelayed(updateTimerThread_dir, 0);
+            aviso.setText("Por favor não se mexa até a calibração terminar");
 
-        calibrationTimer.setVisibility(View.VISIBLE);
+        } else if (btnStartC.getText().equals("Esquerdo")){
+            data_esqC = true;
+            btnStartC.setEnabled(false);
+
+            startTimeC_esq = SystemClock.elapsedRealtime();
+            customHandlerC_esq.postDelayed(updateTimerThread_esq, 0);
+            aviso.setText("Por favor não se mexa até a calibração terminar");
+        }
     }
 
     //função que permite apresentar um relógio em contagem decrescente. Quando a contagem
     //chega ao 0, é apresentado o valor da calibração e torna acessível o botão que
     //iniciará a sessão de monitorização de pressões plantares
-    private Runnable updateTimerThread = new Runnable() {
+    private Runnable updateTimerThread_dir = new Runnable() {
         public void run() {
-            customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
-            timeInMillisecondsC = 15- (SystemClock.elapsedRealtime() - startTimeC)/1000;
+            customHandlerC_dir.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC_dir)%1000);
+            timeInMillisecondsC_dir = 12- (SystemClock.elapsedRealtime() - startTimeC_dir)/1000;
 
-            if (timeInMillisecondsC == 0) {
+            if (timeInMillisecondsC_dir == 8) {
+                data_dirC = false;
+                for (int i =0; i<lengthR; i++) {
+                    if (RSumC > maxR1) {
+                        maxR1 = RSumC;
+                    }
+                }
+                lengthR = 0;
+                listR= new int[lengthR];
+                data_dirC = true;
+            }
+
+            if (timeInMillisecondsC_dir == 4) {
+                data_dirC = false;
+                for (int i =0; i<lengthR; i++) {
+                    if (RSumC > maxR2) {
+                        maxR2 = RSumC;
+                    }
+                }
+                lengthR = 0;
+                listR= new int[lengthR];
+                data_dirC = true;
+            }
+
+            if (timeInMillisecondsC_dir == 0) {
+                aviso.setText("Agora apoie-se apenas no pé esquerdo");
+                calibrationTimer.setText("Calibração realizada");
+                data_dirC = false;
+
+                for (int i =0; i<lengthR; i++) {
+                    if (RSumC > maxR3) {
+                        maxR3 = RSumC;
+                    }
+                }
+
+                btnStartC.setText("Esquerdo");
+                btnStartC.setEnabled(true);
+                calibrationTimer.setText("" + timeInMillisecondsC_esq);
+
+
+
+            } else if (timeInMillisecondsC_dir>0){
+                calibrationTimer.setText("" + timeInMillisecondsC_dir);
+            }
+        }
+    };
+
+    private Runnable updateTimerThread_esq = new Runnable() {
+        public void run() {
+            customHandlerC_esq.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC_esq)%1000);
+            timeInMillisecondsC_esq = 12- (SystemClock.elapsedRealtime() - startTimeC_esq)/1000;
+
+            if (timeInMillisecondsC_esq == 8) {
+                data_esqC = false;
+                for (int i =0; i<lengthL; i++) {
+                    if (LSumC > maxL1) {
+                        maxL1 = LSumC;
+                    }
+                }
+                lengthL = 0;
+                listL= new int[lengthL];
+                data_esqC = true;
+            }
+
+            if (timeInMillisecondsC_esq == 4) {
+                data_esqC = false;
+                for (int i =0; i<lengthL; i++) {
+                    if (LSumC > maxL2) {
+                        maxL2 = LSumC;
+                    }
+                }
+                lengthL = 0;
+                listL= new int[lengthL];
+                data_esqC = true;
+            }
+
+            if (timeInMillisecondsC_esq == 0) {
                 aviso.setVisibility(View.INVISIBLE);
                 calibrationTimer.setText("Calibração realizada");
-                data_dir_esqC = false;
+                data_esqC = false;
                 read.setEnabled(true);
-                RSumC = MaxRHal + MaxRMet1 + MaxRMet2 +MaxRMet3+MaxRMid+MaxRCal1+MaxRCal2;
-                LSumC = MaxLHal + MaxLMet1 + MaxLMet2 +MaxLMet3+MaxLMid+MaxLCal1+MaxLCal2;
-                SumC = LSumC + RSumC;
-                peso_calculado = (double) SumC*8.5*71.4e-3/9.8; //3.65 corresponde ao fator de calibração
+
+                for (int i =0; i<lengthL; i++) {
+                    if (LSumC > maxL3) {
+                        maxL3 = LSumC;
+                    }
+                }
+
+                SumC = (maxR1 + maxR2 + maxR3+maxL1+maxL2+maxL3)/3;
+                peso_calculado = (double) SumC*3*7*71.4e-3/9.8; //3.65 corresponde ao fator de calibração
                 resultado_peso.setText(String.format("Peso calculado = %.4s Kgf", peso_calculado));
 
-                //BTConnectionCL.disconnect();
-                //BTConnectionCR.disconnect();
-
-                //BTConnectionCR.cancel(true);
-                //BTConnectionCL.cancel(true);
-
-            } else if (timeInMillisecondsC>0){
-                calibrationTimer.setText("" + timeInMillisecondsC);
+            } else if (timeInMillisecondsC_esq>0){
+                calibrationTimer.setText("" + timeInMillisecondsC_esq);
             }
         }
     };

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (ProfileActivity.perfil && SettingsActivity.BTdir && SettingsActivity.BTesq && c==0) {
             calibration.setEnabled(true);
-            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            /*AlertDialog alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.setTitle("Início de sessão");
             alertDialog.setMessage("O utilizador pode agora começar a sessão. Se desejar corrigir os dados inseridos " +
                     "ou os endereços Bluetooth guardados, poderá com o mesmo procedimento utilizado anteriormente");
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
             alertDialog.show();
-            c=1;
+            c=1;*/
         }
     }
 

@@ -46,40 +46,41 @@
 25-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:15:9-54
 26        android:supportsRtl="true"
 26-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:16:9-35
-27        android:theme="@style/AppTheme" >
-27-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:18:9-40
-28        <activity android:name="com.example.shear_app.MainActivity" >
-28-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:19:9-25:20
-28-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:19:19-47
-29            <intent-filter>
-29-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:20:13-24:29
-30                <action android:name="android.intent.action.MAIN" />
-30-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:21:17-69
-30-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:21:25-66
-31
-32                <category android:name="android.intent.category.LAUNCHER" />
-32-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:23:17-77
-32-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:23:27-74
-33            </intent-filter>
-34        </activity>
-35        <activity android:name="com.example.shear_app.ProfileActivity" />
-35-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:26:9-53
-35-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:26:19-50
-36        <activity android:name="com.example.shear_app.SettingsActivity" />
-36-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:27:9-54
-36-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:27:19-51
-37        <activity android:name="com.example.shear_app.ReaderActivity" />
-37-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:28:9-52
-37-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:28:19-49
-38        <activity android:name="com.example.shear_app.PairedListActivity" />
-38-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:29:9-56
-38-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:29:19-53
-39        <activity android:name="com.example.shear_app.DrawerActivity" />
-39-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:30:9-52
-39-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:30:19-49
-40        <activity android:name="com.example.shear_app.CalibrationActivity" />
-40-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:31:9-56
-40-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:31:19-54
-41    </application>
-42
-43</manifest>
+27        android:testOnly="true"
+28        android:theme="@style/AppTheme" >
+28-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:18:9-40
+29        <activity android:name="com.example.shear_app.MainActivity" >
+29-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:19:9-25:20
+29-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:19:19-47
+30            <intent-filter>
+30-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:20:13-24:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:21:17-69
+31-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:21:25-66
+32
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:23:17-77
+33-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:23:27-74
+34            </intent-filter>
+35        </activity>
+36        <activity android:name="com.example.shear_app.ProfileActivity" />
+36-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:26:9-53
+36-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:26:19-50
+37        <activity android:name="com.example.shear_app.SettingsActivity" />
+37-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:27:9-54
+37-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:27:19-51
+38        <activity android:name="com.example.shear_app.ReaderActivity" />
+38-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:28:9-52
+38-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:28:19-49
+39        <activity android:name="com.example.shear_app.PairedListActivity" />
+39-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:29:9-56
+39-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:29:19-53
+40        <activity android:name="com.example.shear_app.DrawerActivity" />
+40-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:30:9-52
+40-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:30:19-49
+41        <activity android:name="com.example.shear_app.CalibrationActivity" />
+41-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:31:9-56
+41-->C:\Users\fcampos\Desktop\famest-app2\app\src\main\AndroidManifest.xml:31:19-54
+42    </application>
+43
+44</manifest>
