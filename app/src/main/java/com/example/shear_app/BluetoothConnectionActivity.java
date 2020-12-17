@@ -111,6 +111,8 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
                     } catch (Exception e) {
                         Log.i(TAG, "Not able to perform read");
                     }
+                } else {
+                    break;
                 }
             }
         }
