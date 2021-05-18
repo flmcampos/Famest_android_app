@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shear_app">
+    package="com.example.FAMEST_app">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
     <application
         android:allowBackup="true"
@@ -16,19 +16,19 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.FAMEST_app.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".ReaderActivity" />
-        <activity android:name=".PairedListActivity" />
-        <activity android:name=".DrawerActivity" />
-        <activity android:name=".CalibrationActivity"/>
+        <activity android:name="com.example.FAMEST_app.ProfileActivity" />
+        <activity android:name="com.example.FAMEST_app.SettingsActivity" />
+        <activity android:name="com.example.FAMEST_app.ReaderActivity" />
+        <activity android:name="com.example.FAMEST_app.PairedListActivity" />
+        <activity android:name="com.example.FAMEST_app.DrawerActivity" />
+        <activity android:name="com.example.FAMEST_app.CalibrationActivity"/>
     </application>
 
 </manifest>

@@ -10,9 +10,9 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -26,19 +26,19 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.example.shear_app.MainActivity" >
+        <activity android:name="com.example.FAMEST_app.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.shear_app.ProfileActivity" />
-        <activity android:name="com.example.shear_app.SettingsActivity" />
-        <activity android:name="com.example.shear_app.ReaderActivity" />
-        <activity android:name="com.example.shear_app.PairedListActivity" />
-        <activity android:name="com.example.shear_app.DrawerActivity" />
-        <activity android:name="com.example.shear_app.CalibrationActivity" />
+        <activity android:name="com.example.FAMEST_app.ProfileActivity" />
+        <activity android:name="com.example.FAMEST_app.SettingsActivity" />
+        <activity android:name="com.example.FAMEST_app.ReaderActivity" />
+        <activity android:name="com.example.FAMEST_app.PairedListActivity" />
+        <activity android:name="com.example.FAMEST_app.DrawerActivity" />
+        <activity android:name="com.example.FAMEST_app.CalibrationActivity" />
     </application>
 
 </manifest>

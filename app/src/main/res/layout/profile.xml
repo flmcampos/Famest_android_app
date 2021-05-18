@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:ems="10"
+        android:ems="5"
         android:hint="Idade"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/checkBoxHomem"
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:ems="10"
+        android:ems="5"
         android:hint="Altura (cm)"
         android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="@+id/editTextIdade"
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:ems="10"
+        android:ems="5"
         android:hint="Peso (Kgf)"
         android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="@+id/editTextAltura"
@@ -91,10 +91,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:ems="10"
+        android:ems="5"
         android:hint="Nº Pé"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/checkBoxMulher"
+        app:layout_constraintStart_toStartOf="@+id/editTextPeso"
         app:layout_constraintTop_toBottomOf="@+id/editTextPeso" />
 
     <TextView
@@ -142,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:text="Número Pé"
+        android:text="Nº Pé"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -152,11 +152,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Guardar"
         android:onClick="guardarInfo"
+        android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -169,5 +169,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="loadprofile"
+        android:text="Carregar\nperfil"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonSave" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:visibility="invisible">
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
