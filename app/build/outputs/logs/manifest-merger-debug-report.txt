@@ -1,94 +1,103 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\203ed45ff62d571ddb2f27c5db9e75dd\material-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\d56b547ba0a39ec124154c760efe7d34\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\25f86517c522823cfce2695a45d566d7\constraintlayout-1.1.3\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8df487e4928c56bf5f81c1495ece00af\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\2673381ecbb15b71948e1497d88e49cd\material-1.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\86c8362e45c9d88dbf1cb30a1c8227f3\constraintlayout-2.0.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bf486935e2cf6581998971bedac1c6d\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\0e2daabeef5a315a3ffbd8362da66a88\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\870107431207fa3dabd4fd625167ea72\recyclerview-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core-ktx:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\b3a0f697b813ae30c5b981ddb0e44fb6\jetified-core-ktx-1.6.0-alpha03\AndroidManifest.xml:2:1-9:12
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\052b7e32192a7da1e2c5f5fec321b2aa\jetified-graphview-4.2.2\AndroidManifest.xml:2:1-14:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\816122283c32e5f1b9130e236274e4b4\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\ac5ef0dd2ea9e9fc0d37caec0b41685b\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\62a91f25b348591cc15acc99c60df661\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\fab7e5dbd73fec576fdfb00115e8f52f\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\919bb31c04a2890144492f26db6ec34f\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\6374ca097572e95b746a19ae66f229c4\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\728ee46f721db6c9ef3b9b1f559e7cac\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e1b1b375e052e85221b7a4b3c8b12e6e\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\5737a15cf189586314c8f0c0018abbd8\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\6cada96cca808684013aaf53ebfd642e\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7a8fd11edffcd6526b2c872cad796d0b\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\921dbf2e6014e952f42cb7702026b609\customview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a3056e9d375dcf132b75b4d6462a4600\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.transition:transition:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7e69173917dba73bec08b4b0336493b2\transition-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\930a89c8dc62c8ad9fb5309b2bcf54e5\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8d6fe3339db0bf783d2a6313c75c93d1\loader-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\eee43310dc68d737fb373a4390e8aecd\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\32ff426c63b9c109db20590dcf934e4d\transition-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c5b3e2466260255aa521604206c50ae9\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e6247819d72e13f42304acf6ba3312ca\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e9bc0204c720dd736ef8506114bda3ef\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a3056e9d375dcf132b75b4d6462a4600\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8d6fe3339db0bf783d2a6313c75c93d1\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\eee43310dc68d737fb373a4390e8aecd\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c7fd1948ffafcc65fb3b23f9786ab7ff\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\62941f2c365a0488c4b15f31832fb09a\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\80a50724c7c8bf5953775bae4621eba4\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.media:media:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c7fd1948ffafcc65fb3b23f9786ab7ff\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bc74f3ee6ff87d6f1dc7bfe1c25fc9a\core-1.6.0-alpha03\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\be1446dfb302f43cd40c026483bc06d8\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1f485d83e6902045c7554998becf36b3\lifecycle-runtime-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e8b2efabc42e07111e503ba88c3ed16b\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\729b94392575afa626f22b9098f2b277\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a01e2fff2aadb18c0a70f529ad1dd9cc\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\b237374c28e05de58e882772b3231f1d\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\9e8113cd675119259d6b932a6fd69295\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\095bcf875e623e60b12deeb2f0570b5f\print-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1f485d83e6902045c7554998becf36b3\lifecycle-runtime-2.1.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e8b2efabc42e07111e503ba88c3ed16b\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\729b94392575afa626f22b9098f2b277\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1e32f77205697c4a379284c2ca910e65\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\17e688fffcf742db2042a024f6473e19\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\14331aa5f6f905244db4cc1c79f0a63d\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
-INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e2fdb1510421be07eea1c8dddb6605bc\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
 	package
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:3:5-37
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:4:5-37
 		INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
 		INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-34:12
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:1-36:12
 		INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.BLUETOOTH
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:5:5-68
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:6:5-68
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:5:22-65
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:6:22-65
 uses-permission#android.permission.BLUETOOTH_ADMIN
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:6:5-73
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:7:5-73
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:6:22-71
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:7:22-71
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:7:5-81
-	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:7:22-78
-uses-permission#android.permission.WRITE_INTERNAL_STORAGE
 ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:8:5-81
 	android:name
 		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:8:22-78
+uses-permission#android.permission.WRITE_INTERNAL_STORAGE
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:9:5-81
+	android:name
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:9:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:9:5-80
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:10:5-80
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:9:22-77
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:10:22-77
+uses-permission#android.permission.MANAGE_EXTERNAL_STORAGE
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:11:5-82
+	android:name
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:11:22-79
 uses-permission#android.permission.VIBRATE
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:10:5-65
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:12:5-65
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:10:22-63
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:12:22-63
 application
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:11:5-32:19
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\203ed45ff62d571ddb2f27c5db9e75dd\material-1.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\203ed45ff62d571ddb2f27c5db9e75dd\material-1.0.0\AndroidManifest.xml:22:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\25f86517c522823cfce2695a45d566d7\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\25f86517c522823cfce2695a45d566d7\constraintlayout-1.1.3\AndroidManifest.xml:9:5-20
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:13:5-34:19
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\2673381ecbb15b71948e1497d88e49cd\material-1.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\2673381ecbb15b71948e1497d88e49cd\material-1.3.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\86c8362e45c9d88dbf1cb30a1c8227f3\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\86c8362e45c9d88dbf1cb30a1c8227f3\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\052b7e32192a7da1e2c5f5fec321b2aa\jetified-graphview-4.2.2\AndroidManifest.xml:11:5-12:19
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\052b7e32192a7da1e2c5f5fec321b2aa\jetified-graphview-4.2.2\AndroidManifest.xml:11:5-12:19
 MERGED from [androidx.core:core:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bc74f3ee6ff87d6f1dc7bfe1c25fc9a\core-1.6.0-alpha03\AndroidManifest.xml:24:5-89
@@ -96,71 +105,73 @@ MERGED from [androidx.core:core:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\t
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\be1446dfb302f43cd40c026483bc06d8\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\be1446dfb302f43cd40c026483bc06d8\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:requestLegacyExternalStorage
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:17:9-52
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:19:9-52
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bc74f3ee6ff87d6f1dc7bfe1c25fc9a\core-1.6.0-alpha03\AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:16:9-35
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:18:9-35
 	android:label
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:14:9-41
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:16:9-41
 	android:roundIcon
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:15:9-54
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:17:9-54
 	android:icon
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:13:9-43
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:15:9-43
 	android:allowBackup
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:14:9-35
 	android:theme
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:18:9-40
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:20:9-40
 activity#com.example.FAMEST_app.MainActivity
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:19:9-25:20
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:21:9-27:20
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:19:19-69
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:21:19-69
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:20:13-24:29
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:22:13-26:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:21:17-69
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:21:25-66
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:25:17-77
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:25:27-74
 activity#com.example.FAMEST_app.ProfileActivity
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:26:9-75
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:28:9-75
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:26:19-72
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:28:19-72
 activity#com.example.FAMEST_app.SettingsActivity
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:27:9-76
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:29:9-76
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:27:19-73
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:29:19-73
 activity#com.example.FAMEST_app.ReaderActivity
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:28:9-74
-	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:28:19-71
-activity#com.example.FAMEST_app.PairedListActivity
-ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:29:9-78
-	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:29:19-75
-activity#com.example.FAMEST_app.DrawerActivity
 ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:30:9-74
 	android:name
 		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:30:19-71
-activity#com.example.FAMEST_app.CalibrationActivity
+activity#com.example.FAMEST_app.PairedListActivity
 ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:31:9-78
 	android:name
-		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:31:19-76
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:31:19-75
+activity#com.example.FAMEST_app.DrawerActivity
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:32:9-74
+	android:name
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:32:19-71
+activity#com.example.FAMEST_app.CalibrationActivity
+ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:33:9-78
+	android:name
+		ADDED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml:33:19-76
 uses-sdk
 INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\203ed45ff62d571ddb2f27c5db9e75dd\material-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.material:material:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\203ed45ff62d571ddb2f27c5db9e75dd\material-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\d56b547ba0a39ec124154c760efe7d34\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\d56b547ba0a39ec124154c760efe7d34\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\25f86517c522823cfce2695a45d566d7\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\25f86517c522823cfce2695a45d566d7\constraintlayout-1.1.3\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8df487e4928c56bf5f81c1495ece00af\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8df487e4928c56bf5f81c1495ece00af\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\2673381ecbb15b71948e1497d88e49cd\material-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\2673381ecbb15b71948e1497d88e49cd\material-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\86c8362e45c9d88dbf1cb30a1c8227f3\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\86c8362e45c9d88dbf1cb30a1c8227f3\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bf486935e2cf6581998971bedac1c6d\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bf486935e2cf6581998971bedac1c6d\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\0e2daabeef5a315a3ffbd8362da66a88\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\0e2daabeef5a315a3ffbd8362da66a88\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\870107431207fa3dabd4fd625167ea72\recyclerview-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\870107431207fa3dabd4fd625167ea72\recyclerview-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-ktx:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\b3a0f697b813ae30c5b981ddb0e44fb6\jetified-core-ktx-1.6.0-alpha03\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.core:core-ktx:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\b3a0f697b813ae30c5b981ddb0e44fb6\jetified-core-ktx-1.6.0-alpha03\AndroidManifest.xml:5:5-7:41
 MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\052b7e32192a7da1e2c5f5fec321b2aa\jetified-graphview-4.2.2\AndroidManifest.xml:7:5-9:41
@@ -173,42 +184,50 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\fcampos\.gradl
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\62a91f25b348591cc15acc99c60df661\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\fab7e5dbd73fec576fdfb00115e8f52f\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\fab7e5dbd73fec576fdfb00115e8f52f\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\919bb31c04a2890144492f26db6ec34f\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.appcompat:appcompat-resources:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\919bb31c04a2890144492f26db6ec34f\jetified-appcompat-resources-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\6374ca097572e95b746a19ae66f229c4\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\6374ca097572e95b746a19ae66f229c4\jetified-appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\728ee46f721db6c9ef3b9b1f559e7cac\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\728ee46f721db6c9ef3b9b1f559e7cac\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e1b1b375e052e85221b7a4b3c8b12e6e\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e1b1b375e052e85221b7a4b3c8b12e6e\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\5737a15cf189586314c8f0c0018abbd8\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\5737a15cf189586314c8f0c0018abbd8\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\6cada96cca808684013aaf53ebfd642e\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\6cada96cca808684013aaf53ebfd642e\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7a8fd11edffcd6526b2c872cad796d0b\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7a8fd11edffcd6526b2c872cad796d0b\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\921dbf2e6014e952f42cb7702026b609\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\921dbf2e6014e952f42cb7702026b609\customview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a3056e9d375dcf132b75b4d6462a4600\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a3056e9d375dcf132b75b4d6462a4600\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7e69173917dba73bec08b4b0336493b2\transition-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.transition:transition:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7e69173917dba73bec08b4b0336493b2\transition-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\930a89c8dc62c8ad9fb5309b2bcf54e5\cardview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\930a89c8dc62c8ad9fb5309b2bcf54e5\cardview-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8d6fe3339db0bf783d2a6313c75c93d1\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.loader:loader:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8d6fe3339db0bf783d2a6313c75c93d1\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\eee43310dc68d737fb373a4390e8aecd\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\eee43310dc68d737fb373a4390e8aecd\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\32ff426c63b9c109db20590dcf934e4d\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\32ff426c63b9c109db20590dcf934e4d\transition-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c5b3e2466260255aa521604206c50ae9\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c5b3e2466260255aa521604206c50ae9\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e6247819d72e13f42304acf6ba3312ca\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e6247819d72e13f42304acf6ba3312ca\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e9bc0204c720dd736ef8506114bda3ef\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e9bc0204c720dd736ef8506114bda3ef\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a3056e9d375dcf132b75b4d6462a4600\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a3056e9d375dcf132b75b4d6462a4600\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8d6fe3339db0bf783d2a6313c75c93d1\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\8d6fe3339db0bf783d2a6313c75c93d1\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\eee43310dc68d737fb373a4390e8aecd\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\eee43310dc68d737fb373a4390e8aecd\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.media:media:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c7fd1948ffafcc65fb3b23f9786ab7ff\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c7fd1948ffafcc65fb3b23f9786ab7ff\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\62941f2c365a0488c4b15f31832fb09a\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\62941f2c365a0488c4b15f31832fb09a\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\80a50724c7c8bf5953775bae4621eba4\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\80a50724c7c8bf5953775bae4621eba4\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c7fd1948ffafcc65fb3b23f9786ab7ff\media-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.media:media:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\c7fd1948ffafcc65fb3b23f9786ab7ff\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bc74f3ee6ff87d6f1dc7bfe1c25fc9a\core-1.6.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core:1.6.0-alpha03] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\7bc74f3ee6ff87d6f1dc7bfe1c25fc9a\core-1.6.0-alpha03\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\be1446dfb302f43cd40c026483bc06d8\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\be1446dfb302f43cd40c026483bc06d8\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1f485d83e6902045c7554998becf36b3\lifecycle-runtime-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1f485d83e6902045c7554998becf36b3\lifecycle-runtime-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e8b2efabc42e07111e503ba88c3ed16b\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e8b2efabc42e07111e503ba88c3ed16b\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\729b94392575afa626f22b9098f2b277\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\729b94392575afa626f22b9098f2b277\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a01e2fff2aadb18c0a70f529ad1dd9cc\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\a01e2fff2aadb18c0a70f529ad1dd9cc\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\b237374c28e05de58e882772b3231f1d\documentfile-1.0.0\AndroidManifest.xml:20:5-44
@@ -217,18 +236,14 @@ MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\User
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\9e8113cd675119259d6b932a6fd69295\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\095bcf875e623e60b12deeb2f0570b5f\print-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.print:print:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\095bcf875e623e60b12deeb2f0570b5f\print-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1f485d83e6902045c7554998becf36b3\lifecycle-runtime-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1f485d83e6902045c7554998becf36b3\lifecycle-runtime-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e8b2efabc42e07111e503ba88c3ed16b\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e8b2efabc42e07111e503ba88c3ed16b\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\729b94392575afa626f22b9098f2b277\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\729b94392575afa626f22b9098f2b277\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1e32f77205697c4a379284c2ca910e65\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\1e32f77205697c4a379284c2ca910e65\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\17e688fffcf742db2042a024f6473e19\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\17e688fffcf742db2042a024f6473e19\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\14331aa5f6f905244db4cc1c79f0a63d\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\14331aa5f6f905244db4cc1c79f0a63d\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e2fdb1510421be07eea1c8dddb6605bc\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\fcampos\.gradle\caches\transforms-2\files-2.1\e2fdb1510421be07eea1c8dddb6605bc\jetified-annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
 INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\fcampos\Desktop\famest-app2_melhoramento\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion

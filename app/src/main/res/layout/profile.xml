@@ -6,6 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/xmlprofile">
     <EditText
         android:id="@+id/editTextNome"
         android:layout_width="wrap_content"
@@ -183,15 +187,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonSave" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <FrameLayout
+        android:id="@+id/listprofile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:visibility="invisible">
+        app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
 
