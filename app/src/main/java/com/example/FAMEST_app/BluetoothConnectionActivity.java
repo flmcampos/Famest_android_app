@@ -157,7 +157,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
         if (btsocket != null) {
             try {
                 btsocket.close();
-                isCancelled();
+                cancel(true);
                 running = false;
             } catch (IOException e) {
                 Toast.makeText(mactivity.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();

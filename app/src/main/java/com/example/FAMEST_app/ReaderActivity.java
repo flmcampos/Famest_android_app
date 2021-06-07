@@ -390,6 +390,9 @@ public class ReaderActivity extends AppCompatActivity {
                             passos_text.setText("" + no_passos);
                         }
 
+                        int ths = Integer.parseInt(ProfileActivity.Peso);
+
+
                         //Adição de valores ao array que irá posteriormente ser transportado para o ficheiro txt
 
                         LeituraClass val = new LeituraClass();
@@ -804,7 +807,7 @@ public class ReaderActivity extends AppCompatActivity {
             customHandler.postDelayed(updateTimerThread, 0);
         } else {
             tvTimer.setVisibility(View.VISIBLE);
-
+            customHandler.postDelayed(updateTimerThread, 0);
         }
     }
 
@@ -816,6 +819,7 @@ public class ReaderActivity extends AppCompatActivity {
         btnStop.setEnabled(false);
         btnStart.setText("Resume");
         tvTimer.setVisibility(View.INVISIBLE);
+        customHandler.removeCallbacks(updateTimerThread);
 
         //customHandler.removeCallbacks(updateTimerThread);
 
@@ -825,21 +829,22 @@ public class ReaderActivity extends AppCompatActivity {
     private final Runnable updateTimerThread = new Runnable() {
         public void run() {
 
-            customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
-            timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
-            tvTimer.setText(getDateFromMillis(timeInMilliseconds));
+            if(data_dir_esq) {
+                customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
+                timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
+                tvTimer.setText(getDateFromMillis(timeInMilliseconds));
 
-            if (cont_cadence == 0) {
-                start_cadence = SystemClock.elapsedRealtime()/1000;
-            } else if (cont_cadence >= 6) {
-                stop_cadence = SystemClock.elapsedRealtime()/1000;
-                cadence = (double) (60*cont_cadence)/(stop_cadence - start_cadence);
-                cadence_result.setText(String.format("%.5s passos/minuto", cadence));
+                if (cont_cadence == 0) {
+                    start_cadence = SystemClock.elapsedRealtime()/1000;
+                } else if (cont_cadence >= 6) {
+                    stop_cadence = SystemClock.elapsedRealtime()/1000;
+                    cadence = (double) (60*cont_cadence)/(stop_cadence - start_cadence);
+                    cadence_result.setText(String.format("%.1f passos/minuto", cadence));
 
-                Log.d(TAG,"" + (stop_cadence - start_cadence) + " - " + stop_cadence );
-                //cont_cadence = 0;
+                    Log.d(TAG,"" + (stop_cadence - start_cadence) + " - " + stop_cadence );
+                    //cont_cadence = 0;
+                }
             }
-
 
         }
     };

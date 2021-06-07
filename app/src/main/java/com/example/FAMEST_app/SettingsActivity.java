@@ -54,6 +54,7 @@ public class SettingsActivity extends Activity {
             if (!BTadapter.isEnabled()) {
                 Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivityForResult(i, 1);
+
             } else {
                 Toast.makeText(this, "Bluetooth already turned ON", Toast.LENGTH_SHORT).show();
             }
@@ -114,6 +115,7 @@ public class SettingsActivity extends Activity {
             //i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //startActivityIfNeeded(i, 1);
             startActivity(i);
+            finish();
         } else {
             Toast.makeText(this, "Save left and right adresses to establish Bluetooth connection", Toast.LENGTH_SHORT).show();
         }

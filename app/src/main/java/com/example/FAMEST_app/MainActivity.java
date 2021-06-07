@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 finishAffinity();
+                System.exit(0);
             } else {
                 super.onBackPressed();
             }

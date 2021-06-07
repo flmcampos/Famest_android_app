@@ -46,6 +46,7 @@ import java.util.Set;
 
 public class  ProfileActivity extends AppCompatActivity {
 
+    public static final int ACTIVITY_REQUEST_CODE = 200;
     private static final int PERMISSION_REQUEST_CODE = 1;
     private File file;
     File[] list_file;
@@ -66,7 +67,7 @@ public class  ProfileActivity extends AppCompatActivity {
     private CheckBox checkHomem;
     private CheckBox checkMulher;
 
-    public static String gender;
+    public static String gender ;
     public static String Nome;
     public static String Idade;
     public static String Altura;
@@ -77,6 +78,7 @@ public class  ProfileActivity extends AppCompatActivity {
     protected ConstraintLayout layout;
 
     public static Boolean perfil = false;
+    private Boolean l_perfil = false;
 
     //Apresentação da página onde o utilizador irá preencher algumas informações úteis como nome, altura, etc
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -192,6 +194,7 @@ public class  ProfileActivity extends AppCompatActivity {
                 // Code for above or equal 16 API Oriented Device
                 // Your Permission granted already .Do next code
                 listprofile();
+                l_perfil = true;
             } else {
                 requestPermission(); // Code for permission
             }
@@ -199,6 +202,7 @@ public class  ProfileActivity extends AppCompatActivity {
             // Code for Below 23 API Oriented Device
             // Do next code
             listprofile();
+            l_perfil = true;
         }
     }
 
@@ -386,18 +390,23 @@ public class  ProfileActivity extends AppCompatActivity {
         if (array_dados[2].equals("Masculino")){
             checkMulher.setChecked(false);
             checkHomem.setChecked(true);
+            gender = checkHomem.getText().toString();
         } else {
             checkHomem.setChecked(false);
             checkMulher.setChecked(true);
+            gender = checkMulher.getText().toString();
         }
 
 
     };
 
-    private String[] remove_arr (String[] arr, int pos) {
-        for (int i = pos; i < arr.length - 1; i++) {
-            arr[i] = arr[i + 1];
+    @Override
+    public void onBackPressed() {
+        if (l_perfil){
+            frameLayout.setVisibility(View.INVISIBLE);
+            layout.setVisibility(View.VISIBLE);
+        } else {
+            super.onBackPressed();
         }
-        return arr;
     }
 }

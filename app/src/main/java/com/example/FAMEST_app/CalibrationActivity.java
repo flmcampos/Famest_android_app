@@ -269,10 +269,10 @@ public class CalibrationActivity extends AppCompatActivity {
                     }
                 }
 
-                SumC[0] = (double) (maxR1+maxL1)*2.44*7*71.4e-3/9.8;//(maxR1 + maxR2 + maxR3+maxL1+maxL2+maxL3)/3;
-                SumC[1]= (double) (maxR2+maxL2)*2.44*7*71.4e-3/9.8;
-                SumC[2]= (double) (maxR3+maxL3)*2.44*7*71.4e-3/9.8;
-                peso_calculado = (SumC[0]+SumC[1]+SumC[2])/3; //3.65 corresponde ao fator de calibração
+                SumC[0] = (double) (maxR1+maxL1)*71.4e-3/9.8;
+                SumC[1]= (double) (maxR2+maxL2)*71.4e-3/9.8;
+                SumC[2]= (double) (maxR3+maxL3)*71.4e-3/9.8;
+                peso_calculado = (SumC[0]+SumC[1]+SumC[2])*2.44/3; //(maxR1 + maxR2 + maxR3 + maxL1 + maxL2 + maxL3)/3;
                 resultado_peso.setText(String.format("Peso calculado = %.1f Kgf", peso_calculado));
 
             } else if (timeInMillisecondsC>0){
