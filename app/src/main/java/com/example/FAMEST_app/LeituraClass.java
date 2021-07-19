@@ -23,6 +23,11 @@ public class LeituraClass {
                 +Met3_data+ "," + Mid_data+ "," +Cal1_data+ "," +Cal2_data+ ","+ Temp_data + "," + Humid_data + System.getProperty("line.separator");
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+    }
+
     /*private static String getMSDateFromMillis(long d) {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss.SSS");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));

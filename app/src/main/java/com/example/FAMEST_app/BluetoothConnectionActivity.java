@@ -114,10 +114,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
             }
         }
 
-        @Override
-        public void interrupt() {
-            currentThread().interrupt();
-        }
+
     };
 
     //Função que lê os bytes enviados pelo outro dispositivo
@@ -159,6 +156,7 @@ public class BluetoothConnectionActivity extends AsyncTask<Void, Void, Void> {
                 btsocket.close();
                 cancel(true);
                 running = false;
+                mactivity.finish();
             } catch (IOException e) {
                 Toast.makeText(mactivity.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
             }

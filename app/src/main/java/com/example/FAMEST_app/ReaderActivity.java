@@ -40,7 +40,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.TimeZone;
 
 
@@ -57,6 +56,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     TextView tvTimer;
     long startTime, timeInMilliseconds = 0;
+    long pauseTime=0;
     Handler customHandler = new Handler();
     Button btnStart, btnStop;
     String TAG = "TAG";
@@ -71,8 +71,8 @@ public class ReaderActivity extends AppCompatActivity {
     protected FrameLayout dataLayout;
     protected FrameLayout graphLayout;
 
-    List<LeituraClass> PeDireito = new ArrayList<>();
-    List<LeituraClass> PeEsquerdo = new ArrayList<>();
+    ArrayList<LeituraClass> PeDireito = new ArrayList<>();
+    ArrayList<LeituraClass> PeEsquerdo = new ArrayList<>();
 
     private int LHal, LMet1, LMet2, LMet3, LMid, LCal1, LCal2;
     private int RHal, RMet1, RMet2, RMet3, RMid, RCal1, RCal2;
@@ -96,7 +96,7 @@ public class ReaderActivity extends AppCompatActivity {
 
     Viewport viewportesq;
     Viewport viewportdir;
-    int oldmaxY=0;
+
 
     public TextView messageLHal;
     public TextView messageLMet1;
@@ -754,19 +754,15 @@ public class ReaderActivity extends AppCompatActivity {
             alertDialog.setTitle("Encerrar atividade");
             alertDialog.setMessage("Deseja encerrar a atividade e a conexão com as palmilhas?");
             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Sim",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            BTConnectionL.disconnect();
-                            BTConnectionR.disconnect();
-                            PeDireito.clear();
-                            PeEsquerdo.clear();
-                            finish();
-                        }
+                    (dialog, which) -> {
+                        BTConnectionL.disconnect();
+                        BTConnectionR.disconnect();
+                        PeDireito.clear();
+                        PeEsquerdo.clear();
+                        finish();
                     });
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
+                    (dialog, which) -> {
                     });
             alertDialog.show();
         }
@@ -800,14 +796,15 @@ public class ReaderActivity extends AppCompatActivity {
         data_dir_esq = true;
         btnStart.setEnabled(false);
         btnStop.setEnabled(true);
-        //thread.start();
+
 
         if (btnStart.getText().equals("Start")) {
             startTime = SystemClock.elapsedRealtime();
             customHandler.postDelayed(updateTimerThread, 0);
         } else {
-            tvTimer.setVisibility(View.VISIBLE);
+            startTime += ( SystemClock.elapsedRealtime()-pauseTime );
             customHandler.postDelayed(updateTimerThread, 0);
+
         }
     }
 
@@ -818,10 +815,9 @@ public class ReaderActivity extends AppCompatActivity {
         btnStart.setEnabled(true);
         btnStop.setEnabled(false);
         btnStart.setText("Resume");
-        tvTimer.setVisibility(View.INVISIBLE);
-        customHandler.removeCallbacks(updateTimerThread);
 
-        //customHandler.removeCallbacks(updateTimerThread);
+        pauseTime = SystemClock.elapsedRealtime();
+
 
     }
 
@@ -829,19 +825,21 @@ public class ReaderActivity extends AppCompatActivity {
     private final Runnable updateTimerThread = new Runnable() {
         public void run() {
 
-            if(data_dir_esq) {
-                customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
-                timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
-                tvTimer.setText(getDateFromMillis(timeInMilliseconds));
 
+            customHandler.postDelayed(this, 1000 - (SystemClock.elapsedRealtime() - startTime) % 1000);
+            timeInMilliseconds = SystemClock.elapsedRealtime() - startTime;
+            //tvTimer.setText(getDateFromMillis(timeInMilliseconds));
+
+            if(data_dir_esq) {
+                tvTimer.setText(getDateFromMillis(timeInMilliseconds));
                 if (cont_cadence == 0) {
-                    start_cadence = SystemClock.elapsedRealtime()/1000;
+                    start_cadence = timeInMilliseconds / 1000;
                 } else if (cont_cadence >= 6) {
-                    stop_cadence = SystemClock.elapsedRealtime()/1000;
-                    cadence = (double) (60*cont_cadence)/(stop_cadence - start_cadence);
+                    stop_cadence = timeInMilliseconds / 1000;
+                    cadence = (double) (60 * cont_cadence) / (stop_cadence - start_cadence);
                     cadence_result.setText(String.format("%.1f passos/minuto", cadence));
 
-                    Log.d(TAG,"" + (stop_cadence - start_cadence) + " - " + stop_cadence );
+                    Log.d(TAG, "" + (stop_cadence - start_cadence) + " - " + stop_cadence);
                     //cont_cadence = 0;
                 }
             }
