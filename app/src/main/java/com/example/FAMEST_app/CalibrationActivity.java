@@ -15,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
-
 public class CalibrationActivity extends AppCompatActivity {
 
     TextView calibrationTimer;
@@ -34,16 +32,18 @@ public class CalibrationActivity extends AppCompatActivity {
 
     Boolean data_dir_esqC = false;
 
-    private int maxR1=0,maxR2=0,maxR3=0,maxL1=0,maxL2=0,maxL3= 0;
-
     private int RHalC, RMet1C, RMet2C, RMet3C, RMidC, RCal1C, RCal2C;
     private int LHalC, LMet1C, LMet2C, LMet3C, LMidC, LCal1C, LCal2C;
 
-    private int lengthL = 0, lengthR = 0;
-    private double[] SumC = new double[3];
-    int[] listR= new int[lengthR];
-    int[] listL= new int[lengthL];
+    private int[] Rhal_list, Rmet1_list, Rmet2_list, Rmet3_list, Rmid_list, Rcal1_list, Rcal2_list;
+    private int[] Lhal_list, Lmet1_list, Lmet2_list, Lmet3_list, Lmid_list, Lcal1_list, Lcal2_list;
 
+    int [] maxR = new int[7];
+    int [] maxL = new int[7];
+
+    private int lengthL = 0, lengthR = 0;
+    private int[] SumC = new int[12];
+    private int soma = 0;
 
     private int RSumC, LSumC;
 
@@ -111,15 +111,21 @@ public class CalibrationActivity extends AppCompatActivity {
                     RCal1C = (int) Integer.parseInt(arrofsC[6]);
                     RCal2C = (int) Integer.parseInt(arrofsC[7]);
 
-                    RSumC = RHalC + RMet1C + RMet2C + RMet3C + RMidC + RCal1C + RCal2C;
+                    Rhal_list = add_element(lengthR, Rhal_list, RHalC);
+                    Rmet1_list = add_element(lengthR, Rmet1_list, RMet1C);
+                    Rmet2_list = add_element(lengthR, Rmet2_list, RMet2C);
+                    Rmet3_list = add_element(lengthR, Rmet3_list, RMet3C);
+                    Rmid_list = add_element(lengthR, Rmid_list, RMidC);
+                    Rcal1_list = add_element(lengthR, Rcal1_list, RCal1C);
+                    Rcal2_list = add_element(lengthR, Rcal2_list, RCal2C);
 
-                    listR = add_element(lengthR, listR, RSumC);
-                    lengthR = listR.length;
+
+                    lengthR = Rhal_list.length;
 
 
                     //SumC =+ (RSumC+LSumC);
 
-                    Log.d("TAG5", "" + Arrays.toString(listR));
+                    //Log.d("TAG5", "" + Arrays.toString(listR));
                     //length =+1;
                 } else {
                     Toast.makeText(CalibrationActivity.this, "Está a ocorrer um erro na ligação Bluetooth direita. Renicie app e dispositivos de aquisição", Toast.LENGTH_LONG).show();
@@ -153,10 +159,16 @@ public class CalibrationActivity extends AppCompatActivity {
                     LCal1C = Integer.parseInt(arrofsC[6]);
                     LCal2C = Integer.parseInt(arrofsC[7]);
 
-                    LSumC = (LHalC) + (LMet1C) + (LMet2C) + (LMet3C) + (LMidC) + (LCal1C) + (LCal2C);
+                    Lhal_list = add_element(lengthL, Lhal_list, LHalC);
+                    Lmet1_list = add_element(lengthL, Lmet1_list, LMet1C);
+                    Lmet2_list = add_element(lengthL, Lmet2_list, LMet2C);
+                    Lmet3_list = add_element(lengthL, Lmet3_list, LMet3C);
+                    Lmid_list = add_element(lengthL, Lmid_list, LMidC);
+                    Lcal1_list = add_element(lengthL, Lcal1_list, LCal1C);
+                    Lcal2_list = add_element(lengthL, Lcal2_list, LCal2C);
 
-                    listL = add_element(lengthL, listL, LSumC);
-                    lengthL = listL.length;
+
+                    lengthL = Lhal_list.length;
 
 
                 } else {
@@ -209,48 +221,44 @@ public class CalibrationActivity extends AppCompatActivity {
     private Runnable updateTimerThread = new Runnable() {
         public void run() {
             customHandlerC.postDelayed(this, 1000- (SystemClock.elapsedRealtime() - startTimeC)%1000);
-            timeInMillisecondsC = 12- (SystemClock.elapsedRealtime() - startTimeC)/1000;
+            timeInMillisecondsC = 12 - (SystemClock.elapsedRealtime() - startTimeC)/1000;
 
-            if (timeInMillisecondsC == 8) {
-                data_dir_esqC = false;
-                for (int i =0; i<lengthL; i++) {
-                    if (LSumC > maxL1) {
-                        maxL1 = LSumC;
+            data_dir_esqC = false;
+
+            int [][] array_r = {Rhal_list,Rmet1_list,Rmet2_list,Rmet3_list,Rmid_list,Rcal1_list,Rcal2_list};
+            int [][] array_l = {Lhal_list,Lmet1_list,Lmet2_list,Lmet3_list,Lmid_list,Lcal1_list,Lcal2_list};
+
+
+            for (int j = 0 ; j<array_l.length ; j++) {
+                for (int i = 0; i < lengthL; i++) {
+                    if (array_l[j][i] > maxL[j]) {
+                        maxL[j] = array_l[j][i];
                     }
                 }
-
-                for (int i =0; i<lengthR; i++) {
-                    if (RSumC > maxR1) {
-                        maxR1 = RSumC;
-                    }
-                }
-                lengthR =0;
-                listR = new int[lengthR];
-
-                lengthL = 0;
-                listL= new int[lengthL];
-                data_dir_esqC = true;
             }
 
-            if (timeInMillisecondsC == 4) {
-                data_dir_esqC = false;
-                for (int i =0; i<lengthL; i++) {
-                    if (LSumC > maxL2) {
-                        maxL2 = LSumC;
-                    }
-                }
-                for (int i =0; i<lengthR; i++) {
-                    if (RSumC > maxR1) {
-                        maxR2 = RSumC;
-                    }
-                }
-                lengthR =0;
-                listR = new int[lengthR];
 
-                lengthL = 0;
-                listL= new int[lengthL];
-                data_dir_esqC = true;
+            for (int j = 0 ; j<array_r.length ; j++) {
+                for (int i = 0; i < lengthR; i++) {
+                    if (array_r[j][i] > maxR[j]) {
+                        maxR[j] = array_r[j][i];
+                    }
+                }
             }
+            for (int i=0;i<maxR.length;i++) {
+                SumC[(int) (12 - timeInMillisecondsC)] += (maxR[i] + maxL[i]);
+            }
+
+            lengthR =0;
+            lengthL = 0;
+
+            for (int i = 0; i<array_r.length;i++){
+                array_r [i] = new int[lengthR];
+                array_l [i] = new int[lengthL];
+            }
+
+            data_dir_esqC = true;
+
 
             if (timeInMillisecondsC == 0) {
                 aviso.setVisibility(View.INVISIBLE);
@@ -258,22 +266,13 @@ public class CalibrationActivity extends AppCompatActivity {
                 data_dir_esqC = false;
                 read.setEnabled(true);
 
-                for (int i =0; i<lengthL; i++) {
-                    if (LSumC > maxL3) {
-                        maxL3 = LSumC;
-                    }
-                }
-                for (int i =0; i<lengthR; i++) {
-                    if (RSumC > maxR1) {
-                        maxR1 = RSumC;
-                    }
+                for (int j : SumC) {
+                    soma += j;
                 }
 
-                SumC[0] = (double) (maxR1+maxL1)*71.4e-3/9.8;
-                SumC[1]= (double) (maxR2+maxL2)*71.4e-3/9.8;
-                SumC[2]= (double) (maxR3+maxL3)*71.4e-3/9.8;
-                peso_calculado = (SumC[0]+SumC[1]+SumC[2])*2.44/3; //(maxR1 + maxR2 + maxR3 + maxL1 + maxL2 + maxL3)/3;
+                peso_calculado = (soma/12.0)*63.6; //
                 resultado_peso.setText(String.format("Peso calculado = %.1f Kgf", peso_calculado));
+                customHandlerC.removeCallbacks(updateTimerThread);
 
             } else if (timeInMillisecondsC>0){
                 calibrationTimer.setText("" + timeInMillisecondsC);
