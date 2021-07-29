@@ -1,18 +1,17 @@
 package com.example.FAMEST_app;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.content.Intent;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,13 +26,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,12 +39,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Objects;
-import java.util.Set;
 
 public class  ProfileActivity extends AppCompatActivity {
 
-    public static final int ACTIVITY_REQUEST_CODE = 200;
+    public static final int ACTIVITY_REQUEST_CODE = 2;
     private static final int PERMISSION_REQUEST_CODE = 1;
     private File file;
     File[] list_file;
@@ -125,7 +121,7 @@ public class  ProfileActivity extends AppCompatActivity {
     }
 
     //Com esta função pretende-se seleccionar apenas uma das opções relativamente ao gênero do utilizador
-    public void onCheckboxClicked(View view) {
+    public void onCheckboxClicked(@NotNull View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
 
@@ -163,25 +159,14 @@ public class  ProfileActivity extends AppCompatActivity {
 
         if (Nome.length()>0 && Idade.length()>0 && Altura.length()>0 && Peso.length()>0 && Numero_Sapato.length()>0 && gender.length()>0) {
 
-            //Intent intent = new Intent(this, MainActivity.class);
-
             perfil = true;
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkPermission()) {
-                    // Code for above or equal 23 API Oriented Device
-                    // Your Permission granted already .Do next code
-                    gravar_dados();
-                } else {
-                    requestPermission(); // Code for permission
-                }
-            } else {
-                // Code for Below 23 API Oriented Device
-                // Do next code
-                gravar_dados();
-            }
+            if (checkPermission()) {
 
-            //startActivity(intent);
+                gravar_dados();
+            } else {
+                requestPermission(); // Code for permission
+            }
 
         } else {
             Toast.makeText(this, "Preencha os restantes campos", Toast.LENGTH_SHORT).show();
@@ -189,57 +174,82 @@ public class  ProfileActivity extends AppCompatActivity {
     }
 
     public void loadprofile(View view) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkPermission()) {
-                // Code for above or equal 16 API Oriented Device
-                // Your Permission granted already .Do next code
-                listprofile();
-                l_perfil = true;
-            } else {
-                requestPermission(); // Code for permission
-            }
-        } else {
-            // Code for Below 23 API Oriented Device
-            // Do next code
+
+        if (checkPermission()) {
+
             listprofile();
             l_perfil = true;
+
+        } else {
+            requestPermission(); // Code for permission
         }
     }
 
     private void requestPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R){
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s", new Object[]{getApplicationContext().getPackageName()})));
+                startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(intent, ACTIVITY_REQUEST_CODE);
+            }
+
+        }
+        else {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                Toast.makeText(this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+            }
         }
     }
 
     //Função que permite aferir se o utilizador concedeu permissão para aceder à memória interna do smartphone
     private boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) +
-                ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R){
+            Log.d("Versão", "Versão 11");
+            return Environment.isExternalStorageManager();
         }
+        else {
+            int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) +
+                    ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE);
+            Log.d("Versão", "Versão 10");
+            return result == PackageManager.PERMISSION_GRANTED;
+
+        }
+
+
     }
 
     //Função que transcreve para uma variável booleana a resposta do utilizador ao pedido de acesso à memória interna
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.e("value", "Permission Granted, Now you can use local drive .");
-                } else {
-                    Log.e("value", "Permission Denied, You cannot use local drive .");
-                }
-                break;
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.e("value", "Permission Granted, Now you can use local drive .");
+            } else {
+                Log.e("value", "Permission Denied, You cannot use local drive .");
+            }
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTIVITY_REQUEST_CODE) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    Toast.makeText(this, "Permission Granted in Android 11", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
 
     private void gravar_dados() {
 
@@ -405,6 +415,7 @@ public class  ProfileActivity extends AppCompatActivity {
         if (l_perfil){
             frameLayout.setVisibility(View.INVISIBLE);
             layout.setVisibility(View.VISIBLE);
+            l_perfil=false;
         } else {
             super.onBackPressed();
         }

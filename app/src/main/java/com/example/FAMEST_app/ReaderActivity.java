@@ -3,7 +3,6 @@ package com.example.FAMEST_app;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -25,8 +24,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.Viewport;
@@ -851,55 +848,9 @@ public class ReaderActivity extends AppCompatActivity {
     public void save_data(View view) {
 
         if (!data_dir_esq) {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (checkPermission()) {
-                    // Code for above or equal 23 API Oriented Device
-                    // Your Permission granted already .Do next code
-                    save_dialog();
-                } else {
-                    requestPermission(); // Code for permission
-                }
-            } else {
-                // Code for Below 23 API Oriented Device
-                // Do next code
-                save_dialog();
-            }
+            save_dialog();
         } else {
             Toast.makeText(this, "Parar a aquisição primeiro!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //No caso do smartphone usar uma API superior a 23 executa a seguinte função na qual pede permissão ao utilizador para aceder à memória interna do telemóvel
-    private void requestPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Toast.makeText(this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
-        }
-    }
-
-    //Função que permite aferir se o utilizador concedeu permissão para aceder à memória interna do smartphone
-    private boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //Função que transcreve para uma variável booleana a resposta do utilizador ao pedido de acesso à memória interna
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.e("value", "Permission Granted, Now you can use local drive .");
-                } else {
-                    Log.e("value", "Permission Denied, You cannot use local drive .");
-                }
-                break;
         }
     }
 
@@ -916,8 +867,7 @@ public class ReaderActivity extends AppCompatActivity {
                 });
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Não",
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 });
         alertDialog.show();
     }
